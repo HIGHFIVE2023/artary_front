@@ -37,7 +37,7 @@ const Diary = () => {
     <div className="Diary">
       <div className="DiaryFrame">
         <div className="Right">
-          <IndexBtn className="Index01" />
+          <IndexBtn />
           <div className="textsquare">{squares}</div>
         </div>
       </div>
