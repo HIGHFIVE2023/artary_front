@@ -1,38 +1,31 @@
-.App {
-  text-align: center;
+/*다이어리 기본 프레임*/
+.DiaryFrame {
+  background-image: url(../public/img/diary.png);
+  background-size: 800px 500px;
+  width: 800px;
+  height: 500px;
+  display: block;
+  margin: 50px auto;
+  position: relative;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.Right {
+  position: absolute;
+  left: 430px;
+  top: 75px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.IndexBtn {
+  position: absolute;
+  top: 10px; /* 버튼의 위치를 조절할 수 있습니다. */
+  right: -90px;
+  width: 70px; /* 버튼의 크기를 조절할 수 있습니다. */
+  height: 40px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/*원고지*/
+.textsquare {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  flex-wrap: wrap;
+  width: 350px;
 }
