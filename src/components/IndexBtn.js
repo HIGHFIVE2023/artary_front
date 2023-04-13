@@ -1,10 +1,21 @@
-const IndexBtn = () => {
-  function handleClick() {
-    // 버튼을 클릭했을 때 동작
-    console.log("다이어리 버튼 클릭됨");
-  }
-
-  return <button className="IndexBtn" onClick={handleClick}></button>;
+const IndexBtn = ({ text, onClick, backgroundColor }) => {
+  return (
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        width: "90px",
+        height: "35px",
+        border: "transparent",
+        marginLeft: "10px",
+        cursor: "pointer",
+        backgroundColor: backgroundColor,
+      }}
+      onClick={onClick}
+    >
+      {text}
+    </div>
+  );
 };
-
 export default IndexBtn;
