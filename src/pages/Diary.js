@@ -1,5 +1,6 @@
 import React from "react";
 import IndexBtn from "../components/IndexBtn";
+import BottomBtn from "../components/BottomBtn";
 
 const Diary = () => {
   const str =
@@ -37,6 +38,7 @@ const Diary = () => {
   return (
     <div className="Diary">
       <div className="DiaryFrame">
+<<<<<<< Updated upstream
         <div className="DiaryImageContainer">
           <img
             className="DiaryImage"
@@ -73,6 +75,24 @@ const Diary = () => {
               />
             </div>
           </div>
+=======
+        <div className="LeftDivOveray">
+          <div className="Left">
+            <header>
+              <div className="theDate">{"날짜"}</div>
+              <div className="Emotion">오늘의 기분</div>
+              <div className="todayEmotion">이모지</div>
+            </header>
+          </div>
+          <div className="LeftBottomDiv">
+            <BottomBtn text={"하단버튼1"}></BottomBtn>
+            <BottomBtn text={"하단버튼2"}></BottomBtn>
+          </div>
+        </div>
+        <div className="Right">
+          <IndexBtn />
+          <div className="textsquare">{squares}</div>
+>>>>>>> Stashed changes
         </div>
         <div className="TextSquareContainer">{squares}</div>
       </div>
