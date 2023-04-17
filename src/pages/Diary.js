@@ -39,6 +39,7 @@ const Diary = () => {
     <div className="Diary">
       <div className="DiaryFrame">
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         <div className="DiaryImageContainer">
           <img
             className="DiaryImage"
@@ -76,6 +77,8 @@ const Diary = () => {
             </div>
           </div>
 =======
+=======
+>>>>>>> Stashed changes
         <div className="LeftDivOveray">
           <div className="Left">
             <header>
