@@ -7,7 +7,7 @@ const Diary = () => {
     "오늘은 인덱스 버튼을 만들었다! 나 아주 신났다. 하이파이브 아트어리 화이탱탱구링~";
 
   const numRows = 9;
-  const numCols = 10;
+  const numCols = 8;
   const squares = [];
 
   for (let i = 0; i < numRows; i++) {
@@ -38,8 +38,6 @@ const Diary = () => {
   return (
     <div className="Diary">
       <div className="DiaryFrame">
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
         <div className="DiaryImageContainer">
           <img
             className="DiaryImage"
@@ -76,9 +74,9 @@ const Diary = () => {
               />
             </div>
           </div>
-=======
-=======
->>>>>>> Stashed changes
+          <IndexBtn />
+        </div>
+
         <div className="LeftDivOveray">
           <div className="Left">
             <header>
@@ -92,12 +90,20 @@ const Diary = () => {
             <BottomBtn text={"하단버튼2"}></BottomBtn>
           </div>
         </div>
-        <div className="Right">
-          <IndexBtn />
-          <div className="textsquare">{squares}</div>
->>>>>>> Stashed changes
+        <div className="RightDivOveray">
+          <div className="Right">
+            <header>
+              <div className="title">제목: </div>
+              <div className="작성자">오늘의 기분</div>
+            </header>
+
+            <div className="TextSquareContainer">{squares}</div>
+            <div className="RightBottomDiv">
+              <BottomBtn text={"수정하기"}></BottomBtn>
+              <BottomBtn text={"삭제하기"}></BottomBtn>
+            </div>
+          </div>
         </div>
-        <div className="TextSquareContainer">{squares}</div>
       </div>
     </div>
   );
