@@ -22,6 +22,7 @@
 .HomeFrame {
   width: 800px;
   height: 500px;
+  top: -15px;
   display: block;
   margin: 50px auto;
   position: relative;
@@ -34,6 +35,22 @@
 .HomeImage {
   width: 55%;
   height: 100%;
+}
+.HomeFrame .MainIcon {
+  position: absolute;
+  top: 100px;
+  left: 270px;
+  width: 270px;
+  height: 250px;
+}
+
+/*홈 인덱스 버튼*/
+.HomeButtonContainer {
+  font-family: "crayon";
+  position: absolute;
+  right: 115px;
+  top: 70px;
+  padding: 10px;
 }
 
 /*다이어리 기본 틀*/
