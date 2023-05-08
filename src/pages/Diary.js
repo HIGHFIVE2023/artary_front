@@ -1,6 +1,7 @@
 import React from "react";
 import IndexBtn from "../components/IndexBtn";
 import BottomBtn from "../components/BottomBtn";
+import DrawingDiary from "../components/DrawingDiary";
 
 const Diary = () => {
   const str =
@@ -78,13 +79,7 @@ const Diary = () => {
         </div>
 
         <div className="LeftDivOveray">
-          <div className="Left">
-            <header>
-              <div className="theDate">{"날짜"}</div>
-              <div className="Emotion">오늘의 기분</div>
-              <div className="todayEmotion">이모지</div>
-            </header>
-          </div>
+          <DrawingDiary />
           <div className="LeftBottomDiv">
             <BottomBtn text={"하단버튼1"}></BottomBtn>
             <BottomBtn text={"하단버튼2"}></BottomBtn>
