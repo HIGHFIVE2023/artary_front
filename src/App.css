@@ -204,43 +204,6 @@ header > div {
   margin-bottom: 3px;
 }
 
-/*왼쪽 그림 출력 div*/
-.LeftDivOveray {
-  position: absolute;
-  top: 5px;
-  left: 0px;
-  display: flex;
-  flex-wrap: wrap;
-  width: 350px;
-  height: 85%;
-  margin-left: 30px;
-  margin-top: 30px;
-  border: 1px solid#e2e2e2;
-}
-.Left {
-  background-color: yellow;
-  width: 90%;
-  height: 85%;
-  display: block;
-  margin-left: 10px;
-  margin-top: 10px;
-  position: absolute;
-  border: 1px solid#e2e2e2;
-}
-
-/*기분 이모지랑 기분 날짜 출력*/
-header {
-  padding: 5px;
-
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid #e2e2e2;
-}
-
-header > div {
-  display: flex;
-}
-
 .LeftBottomDiv {
   margin: 5px;
   position: absolute;
