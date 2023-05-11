@@ -8,6 +8,28 @@
   src: url("../public/font/Typo_CrayonM.ttf");
 }
 
+.textarea-container {
+  background-image: url("../public/img/square_.png");
+  background-repeat: repeat-y;
+  background-size: contain;
+  padding: 3px;
+}
+
+textarea {
+  font-family: "kyobo";
+  background-color: transparent;
+  border: none;
+  font-size: 19px;
+  height: 270px;
+  width: 360px;
+  resize: none;
+
+  line-height: 1.75; /* 줄간격 설정 */
+  padding-left: 10px; /* 텍스트와 테두리 간격 설정 */
+}
+
+/*임시^^*/
+
 .body {
   background-color: #f6f6f6;
   display: flex;
@@ -44,15 +66,6 @@
   height: 250px;
 }
 
-/*홈 인덱스 버튼*/
-.HomeButtonContainer {
-  font-family: "crayon";
-  position: absolute;
-  right: 115px;
-  top: 70px;
-  padding: 10px;
-}
-
 /*다이어리 기본 틀*/
 .DiaryFrame {
   width: 800px;
@@ -74,25 +87,64 @@
 }
 
 /*인덱스 버튼*/
-.DiaryButtonContainer {
+.HomeButtonContainer {
+  font-family: "crayon";
+  position: absolute;
+  right: 115px;
+  top: 70px;
+  padding: 10px;
+}
+button {
+  border: none;
+  outline: none;
+}
+.IndexBtnContainer {
   font-family: "crayon";
   position: absolute;
   right: -100px;
   top: 44px;
   padding: 10px;
-}
-.Index01 {
-  display: inline-block; /* 수정 */
-  vertical-align: top; /* 추가 */
-  margin-bottom: 3px;
-}
-.Index02 {
-  margin-bottom: 3px;
-}
-.Index03 {
-  margin-bottom: 3px;
+  display: "flex";
+  justify-content: "center";
+  align-items: "center";
+  border: none;
 }
 
+.indexContainer01 {
+  display: inline-block;
+  vertical-align: top;
+  margin-bottom: 3px;
+}
+.indexContainer02 {
+  margin-bottom: 3px;
+}
+.indexContainer03 {
+  margin-bottom: 3px;
+}
+.Index01 {
+  width: 90px;
+  height: 40px;
+  font-size: 15px;
+  background-color: #ff6666;
+}
+.Index02 {
+  width: 90px;
+  height: 40px;
+  font-size: 15px;
+  background-color: #ffbd55;
+}
+.Index03 {
+  width: 90px;
+  height: 40px;
+  font-size: 15px;
+  background-color: #ffff66;
+}
+.Index04 {
+  width: 90px;
+  height: 40px;
+  font-size: 15px;
+  background-color: #9de24f;
+}
 /*왼쪽 그림 출력 div*/
 .LeftDivOveray {
   position: absolute;
@@ -120,7 +172,6 @@
 /*기분 이모지랑 기분 날짜 출력*/
 header {
   padding: 5px;
-
   display: flex;
   align-items: center;
   border-bottom: 1px solid #e2e2e2;

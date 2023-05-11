@@ -3,8 +3,7 @@ import IndexBtn from "../components/IndexBtn";
 import BottomBtn from "../components/BottomBtn";
 
 const Diary = () => {
-  const str =
-    "오늘은 인덱스 버튼을 만들었다! 나 아주 신났다. 하이파이브 아트어리 화이탱탱구링~";
+  const str = "";
 
   const numRows = 9;
   const numCols = 8;
@@ -44,39 +43,10 @@ const Diary = () => {
             src="/img/diary.png"
             alt="diary background"
           />
-          <div className="DiaryButtonContainer">
-            <div className="Index01">
-              <IndexBtn
-                backgroundColor={"#ff6666"}
-                text="다이어리"
-                onClick={() => console.log("다이어리 버튼 눌렀다")}
-              />
-            </div>
-            <div className="Index02">
-              <IndexBtn
-                backgroundColor={"#ffbd55"}
-                text="일기 쓰기"
-                onClick={() => console.log("일기쓰기 버튼 눌렀다")}
-              />
-            </div>
-            <div className="Index03">
-              <IndexBtn
-                backgroundColor={"#ffff66"}
-                text="마이 페이지"
-                onClick={() => console.log("마이페이지 버튼 눌렀다")}
-              />
-            </div>
-            <div className="Index04">
-              <IndexBtn
-                backgroundColor={"#9de24f"}
-                text="환경설정"
-                onClick={() => console.log("환경설정 버튼 눌렀다")}
-              />
-            </div>
+          <div className="IndexBtnContainer">
+            <IndexBtn />
           </div>
-          <IndexBtn />
         </div>
-
         <div className="LeftDivOveray">
           <div className="Left">
             <header>

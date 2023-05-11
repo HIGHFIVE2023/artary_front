@@ -19,34 +19,7 @@ const Home = () => {
           />
           <img className="MainIcon" src="/img/mainicon.png" alt="main icon" />
           <div className="HomeButtonContainer">
-            <div className="Index01">
-              <IndexBtn
-                backgroundColor={"#ff6666"}
-                text="다이어리"
-                onClick={() => console.log("다이어리 버튼 눌렀다")}
-              />
-            </div>
-            <div className="Index02">
-              <IndexBtn
-                backgroundColor={"#ffbd55"}
-                text="일기 쓰기"
-                onClick={() => console.log("일기쓰기 버튼 눌렀다")}
-              />
-            </div>
-            <div className="Index03">
-              <IndexBtn
-                backgroundColor={"#ffff66"}
-                text="마이 페이지"
-                onClick={() => console.log("마이페이지 버튼 눌렀다")}
-              />
-            </div>
-            <div className="Index04">
-              <IndexBtn
-                backgroundColor={"#9de24f"}
-                text="환경설정"
-                onClick={() => console.log("환경설정 버튼 눌렀다")}
-              />
-            </div>
+            <IndexBtn />
           </div>
         </div>
       </div>
