@@ -99,14 +99,6 @@ button {
   outline: none;
 }
 .IndexBtnContainer {
-}
-.DiaryImage {
-  width: 100%;
-  height: 100%;
-}
-
-/*인덱스 버튼*/
-.DiaryButtonContainer {
   font-family: "crayon";
   position: absolute;
   right: -100px;
@@ -117,7 +109,6 @@ button {
   align-items: "center";
   border: none;
 }
-
 .indexContainer01 {
   display: inline-block;
   vertical-align: top;
