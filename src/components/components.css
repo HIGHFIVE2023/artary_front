@@ -80,3 +80,43 @@ header {
 header > div {
   display: flex;
 }
+
+/*오른쪽 */
+.TextSquareContainer {
+  position: absolute;
+
+  display: flex;
+  flex-wrap: wrap;
+  width: 350px;
+}
+
+.RightBottomDiv {
+  margin: 5px;
+  position: absolute;
+  bottom: 5px;
+  right: 15px;
+}
+
+.RightDivOveray {
+  position: absolute;
+  top: 5px;
+  right: 0px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 350px;
+  height: 85%;
+  margin-right: 30px;
+  margin-top: 30px;
+  border: 1px solid#e2e2e2;
+}
+
+.Right {
+  width: 90%;
+  height: 100%;
+  display: block;
+  margin-left: 10px;
+  margin-top: 10px;
+  position: absolute;
+  border: 1px solid#e2e2e2;
+}
