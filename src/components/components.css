@@ -21,13 +21,21 @@ nav {
   justify-content: flex-end;
 }
 
-ul {
+a {
+  color: white;
+  text-decoration: none;
+}
+
+.downUl {
   position: absolute;
   z-index: 1;
-  background-color: #f1f1f1;
-  padding: 0;
+  background-color: #4caf50;
+  color: white;
+  padding: 5px 0 0 0;
   list-style: none;
-  border: 1px solid #ccc;
+  border: none;
+  width: 100%;
+  border-radius: 1rem;
 }
 
 .navBtn {
@@ -42,6 +50,9 @@ ul {
 
 .dropdown {
   margin-right: 5px;
+}
+li {
+  padding-bottom: 5px;
 }
 
 /*왼쪽 그림 출력 div*/
