@@ -5,6 +5,7 @@ import "./App.css";
 import Diary from "./pages/Diary";
 import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
+import Calenpage from "./pages/Calenpage";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/diary" element={<Diary />}></Route>
+          <Route path="/calenpage" element={<Calenpage />}></Route>
         </Routes>
       </div>
     </BrowserRouter>
