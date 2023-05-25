@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar";
 import Diary from "./pages/Diary";
 import Home from "./pages/Home";
 import New from "./pages/New";
+import Login from "./pages/Login";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         {<Navbar />}
         <Routes>
           <Route path="/" element={<Home />}></Route>
+          <Route path="/login" element={<Login />}></Route>
           <Route path="/diary" element={<Diary />}></Route>
           <Route path="/new" element={<New />}></Route>
         </Routes>

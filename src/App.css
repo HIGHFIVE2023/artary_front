@@ -28,7 +28,6 @@ textarea {
   padding-left: 10px; /* 텍스트와 테두리 간격 설정 */
 }
 
-/*임시^*/
 .App {
   font-family: "kyobo";
 }
@@ -136,6 +135,54 @@ button {
   height: 40px;
   font-size: 15px;
   background-color: #9de24f;
+}
+/*로그인*/
+.LoginIcon {
+  width: 140px;
+  height: 140px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+.id,
+.pwd {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 40px;
+  margin: 0 0 8px;
+  padding: 5px 39px 5px 11px;
+  border: solid 1px #dadada;
+  background: #fff;
+  box-sizing: border-box;
+}
+.loginbtn {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 49px;
+  display: block;
+  width: 100%;
+  height: 49px;
+  margin: 16px 0 7px;
+  cursor: pointer;
+  text-align: center;
+  color: #fff;
+  border: none;
+  border-radius: 0;
+  background-color: #000;
+}
+.login-li-group {
+  align-items: center;
+}
+.findId {
+  margin: 30px;
+}
+.findPwd,
+.SignUp {
+  margin: 20px;
+}
+.kakaoLogin {
+  text-align: center;
 }
 /*왼쪽 그림 출력 div*/
 .LeftDivOveray {
