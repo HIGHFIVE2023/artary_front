@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import IndexBtn from "../components/IndexBtn";
+import Navbar from "../components/Navbar";
 
 const Home = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,6 +24,7 @@ const Home = () => {
           </div>
         </div>
       </div>
+      <Navbar />
     </div>
   );
 };

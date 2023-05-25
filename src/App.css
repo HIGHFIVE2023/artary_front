@@ -30,16 +30,13 @@ textarea {
 
 /*임시^^*/
 
-body {
+.body {
   background-color: #f6f6f6;
   display: flex;
   justify-content: center;
   align-items: center;
   font-family: "kyobo";
-  min-height: 100vh;
-  margin: 0px;
 }
-
 /*홈 기본 틀*/
 .HomeFrame {
   width: 800px;
@@ -98,6 +95,7 @@ body {
 button {
   border: none;
   outline: none;
+  font-family: "crayon";
 }
 .IndexBtnContainer {
   font-family: "crayon";
@@ -144,6 +142,54 @@ button {
   height: 40px;
   font-size: 15px;
   background-color: #9de24f;
+}
+/*로그인*/
+.LoginIcon {
+  width: 140px;
+  height: 140px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+.id,
+.pwd {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 40px;
+  margin: 0 0 8px;
+  padding: 5px 39px 5px 11px;
+  border: solid 1px #dadada;
+  background: #fff;
+  box-sizing: border-box;
+}
+.loginbtn {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 49px;
+  display: block;
+  width: 100%;
+  height: 49px;
+  margin: 16px 0 7px;
+  cursor: pointer;
+  text-align: center;
+  color: #fff;
+  border: none;
+  border-radius: 0;
+  background-color: #000;
+}
+.login-li-group {
+  align-items: center;
+}
+.findId {
+  margin: 30px;
+}
+.findPwd,
+.SignUp {
+  margin: 20px;
+}
+.kakaoLogin {
+  text-align: center;
 }
 /*왼쪽 그림 출력 div*/
 .LeftDivOveray {
@@ -206,11 +252,41 @@ header > div {
 /*오른쪽 구성 -> 묶어서 수정 예정*/
 .TextSquareContainer {
   position: absolute;
-  top: 75px;
-  left: 435px;
+
   display: flex;
   flex-wrap: wrap;
   width: 350px;
+}
+
+.RightBottomDiv {
+  margin: 5px;
+  position: absolute;
+  bottom: 5px;
+  right: 15px;
+}
+
+.RightDivOveray {
+  position: absolute;
+  top: 5px;
+  right: 0px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 350px;
+  height: 85%;
+  margin-right: 30px;
+  margin-top: 30px;
+  border: 1px solid#e2e2e2;
+}
+
+.Right {
+  width: 90%;
+  height: 100%;
+  display: block;
+  margin-left: 10px;
+  margin-top: 10px;
+  position: absolute;
+  border: 1px solid#e2e2e2;
 }
 
 .CalendarPage {
