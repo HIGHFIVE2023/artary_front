@@ -2,10 +2,11 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 
+import Navbar from "./components/Navbar";
 import Diary from "./pages/Diary";
 import Home from "./pages/Home";
-import Navbar from "./components/Navbar";
 import Calenpage from "./pages/Calenpage";
+import New from "./pages/New";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/" element={<Home />}></Route>
           <Route path="/diary" element={<Diary />}></Route>
           <Route path="/calenpage" element={<Calenpage />}></Route>
+          <Route path="/new" element={<New />}></Route>
         </Routes>
       </div>
     </BrowserRouter>

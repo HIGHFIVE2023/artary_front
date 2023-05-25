@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import IndexBtn from "../components/IndexBtn";
 import BottomBtn from "../components/BottomBtn";
-import DrawingDiary from "../components/DrawingDiary";
 
-const Diary = () => {
+const DiaryEditor = () => {
+  const [text, setText] = useState("");
+  const [letterSpacing, setLetterSpacing] = useState("23px");
   const str = "";
 
+  //원고지 작성
   const numRows = 9;
   const numCols = 8;
   const squares = [];
@@ -35,6 +37,20 @@ const Diary = () => {
     );
   }
 
+  //띄어쓰기 letter-spacing 다르게
+  const textareaRef = useRef(null);
+
+  useEffect(() => {
+    if (textareaRef.current) {
+      textareaRef.current.scrollLeft = textareaRef.current.scrollWidth;
+    }
+  }, [letterSpacing]);
+
+  function handleTextareaChange(event) {
+    setText(event.target.value);
+    setLetterSpacing(event.target.value.indexOf(" ") > -1 ? "27px" : "5px");
+  }
+
   return (
     <div className="Diary">
       <div className="DiaryFrame">
@@ -48,8 +64,15 @@ const Diary = () => {
             <IndexBtn />
           </div>
         </div>
+
         <div className="LeftDivOveray">
-          <DrawingDiary />
+          <div className="Left">
+            <header>
+              <div className="theDate">{"날짜"}</div>
+              <div className="Emotion">오늘의 기분</div>
+              <div className="todayEmotion">이모지</div>
+            </header>
+          </div>
           <div className="LeftBottomDiv">
             <BottomBtn text={"하단버튼1"}></BottomBtn>
             <BottomBtn text={"하단버튼2"}></BottomBtn>
@@ -59,13 +82,25 @@ const Diary = () => {
           <div className="Right">
             <header>
               <div className="title">제목: </div>
+              <input
+                type="text"
+                id="my-input"
+                value={text}
+                onChange={(event) => setText(event.target.value)}
+              />
               <div className="작성자">오늘의 기분</div>
             </header>
 
-            <div className="TextSquareContainer">{squares}</div>
+            <div className="TextSquareContainer">
+              <div class="textarea-container">
+                <textarea
+                  style={{ letterSpacing: letterSpacing }}
+                  onChange={handleTextareaChange}
+                ></textarea>
+              </div>
+            </div>
             <div className="RightBottomDiv">
-              <BottomBtn text={"수정하기"}></BottomBtn>
-              <BottomBtn text={"삭제하기"}></BottomBtn>
+              <BottomBtn text={"저장하기"}></BottomBtn>
             </div>
           </div>
         </div>
@@ -74,4 +109,4 @@ const Diary = () => {
   );
 };
 
-export default Diary;
+export default DiaryEditor;
