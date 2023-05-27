@@ -11,11 +11,12 @@ const Login = ({}) => {
   const handleLogin = () => {
     // 로그인 요청을 보내는 함수
     axios
-      .post("/users/login", { email, password })
+      .post("http://localhost:8080/users/login", { email, password })
       .then((response) => {
         // 로그인 성공 시 처리
         console.log(response.data); // 응답 데이터 확인
         // 로그인 성공 후 필요한 작업 수행
+        document.location.href = "/";  
       })
       .catch((error) => {
         // 로그인 실패 시 처리
