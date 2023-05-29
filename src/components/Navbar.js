@@ -17,12 +17,11 @@ const Navbar = () => {
     }
   }, []);
 
-  //로그아웃안됨 ㅅㅂ
   const handleLogout = async () => {
     try {
-      await logout();
       setIsLoggedIn(false);
       setNickname("");
+      localStorage.removeItem("user");
       window.location.href = "/"; // 또는 리다이렉트할 경로 설정
     } catch (error) {
       console.error(error); // 에러 처리
