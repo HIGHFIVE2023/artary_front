@@ -10,13 +10,14 @@ const Login = () => {
   const handleLogin = () => {
     const userDto = {
       email: email,
-      password: password,
+      password: password, 
     };
 
     login(userDto)
       .then((response) => {
         console.log(response); // 응답 데이터 확인
         // 로그인 성공 후 필요한 작업 수행
+        localStorage.setItem("user", JSON.stringify(response));
         window.location.href = "/"; // 로그인 후 리다이렉트할 경로 설정
       })
       .catch((error) => {
