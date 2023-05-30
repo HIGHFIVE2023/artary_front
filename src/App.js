@@ -1,10 +1,11 @@
-import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import "./App.css";
 
 import Navbar from "./components/Navbar";
 import Diary from "./pages/Diary";
 import Home from "./pages/Home";
+import Calenpage from "./pages/Calenpage";
 import New from "./pages/New";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
@@ -16,9 +17,10 @@ function App() {
         {<Navbar />}
         <Routes>
           <Route path="/" element={<Home />}></Route>
-          <Route path="/login" element={<Login />}></Route>
           <Route path="/signup" element={<SignUp />}></Route>
+          <Route path="users/login" element={<Login />}></Route>
           <Route path="/diary" element={<Diary />}></Route>
+          <Route path="/calenpage" element={<Calenpage />}></Route>
           <Route path="/new" element={<New />}></Route>
         </Routes>
       </div>

@@ -21,13 +21,21 @@ nav {
   justify-content: flex-end;
 }
 
-ul {
+a {
+  color: white;
+  text-decoration: none;
+}
+
+.downUl {
   position: absolute;
   z-index: 1;
-  background-color: #f1f1f1;
-  padding: 0;
+  background-color: #4caf50;
+  color: white;
+  padding: 5px 0 0 0;
   list-style: none;
-  border: 1px solid #ccc;
+  border: none;
+  width: 100%;
+  border-radius: 1rem;
 }
 
 .navBtn {
@@ -43,20 +51,12 @@ ul {
 .dropdown {
   margin-right: 5px;
 }
+li {
+  padding-bottom: 5px;
+}
 
 /*왼쪽 그림 출력 div*/
-.LeftDivOveray {
-  position: absolute;
-  top: 5px;
-  left: 0px;
-  display: flex;
-  flex-wrap: wrap;
-  width: 350px;
-  height: 85%;
-  margin-left: 30px;
-  margin-top: 30px;
-  border: 1px solid#e2e2e2;
-}
+
 .Left {
   background-color: yellow;
   width: 90%;
