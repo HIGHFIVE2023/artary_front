@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-
 import IndexBtn from "../components/IndexBtn";
 
 const Login = ({}) => {
@@ -44,9 +43,9 @@ const Login = ({}) => {
             <btn className="findPwd" onClick={() => alert("잘 기억해보세요.")}>
               비밀번호 찾기
             </btn>
-            <btn className="SignUp" onClick={() => alert("안껴줄거지롱")}>
-              회원가입
-            </btn>
+            <Link to="/signup">
+              <btn className="GoSignUp">회원가입</btn>
+            </Link>
           </div>
           <div className="kakaologinContainer">
             <img
