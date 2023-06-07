@@ -1,25 +1,28 @@
-import { Link } from "react-router-dom";
 import { useState } from "react";
-import axios from "axios";
+import { login } from "../service/ApiService";
 import IndexBtn from "../components/IndexBtn";
 
-const Login = ({}) => {
+const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  
 
   const handleLogin = () => {
-    // 로그인 요청을 보내는 함수
-    axios
-      .post("/users/login", { email, password })
+    const userDto = {
+      email: email,
+      password: password, 
+    };
+
+    login(userDto)
       .then((response) => {
-        // 로그인 성공 시 처리
-        console.log(response.data); // 응답 데이터 확인
+        console.log(response); // 응답 데이터 확인
         // 로그인 성공 후 필요한 작업 수행
+        localStorage.setItem("user", JSON.stringify(response));
+        window.location.href = "/"; // 로그인 후 리다이렉트할 경로 설정
       })
       .catch((error) => {
-        // 로그인 실패 시 처리
-        console.error(error.response.data); // 에러 응답 데이터 확인
+        console.error(error); // 에러 응답 데이터 확인
         setError("이메일 또는 비밀번호가 틀렸습니다."); // 에러 메시지 설정
       });
   };
