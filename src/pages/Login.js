@@ -1,17 +1,19 @@
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
 import axios from "axios";
 import IndexBtn from "../components/IndexBtn";
 
-const Login = ({}) => {
+const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
-  const handleLogin = () => {
+  const handleLogin = (e) => {
+    e.preventDefault(); //새로고침 방지
     // 로그인 요청을 보내는 함수
     axios
-      .post("/users/login", { email, password })
+      .post("http://localhost:8080/users/login", { email, password })
       .then((response) => {
         // 로그인 성공 시 처리
         console.log(response.data); // 응답 데이터 확인

@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import Calenpage from "./pages/Calenpage";
 import New from "./pages/New";
 import Login from "./pages/Login";
+import Register from "./components/Register";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/diary" element={<Diary />}></Route>
           <Route path="/calenpage" element={<Calenpage />}></Route>
           <Route path="/new" element={<New />}></Route>
+          <Route path="/users/signup" element={<Register />}></Route>
         </Routes>
       </div>
     </BrowserRouter>
