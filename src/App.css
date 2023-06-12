@@ -9,7 +9,6 @@
 }
 
 .textarea-container {
-  background-image: url("../public/img/square_.png");
   background-repeat: repeat-y;
   background-size: contain;
   padding: 3px;
@@ -21,7 +20,7 @@ textarea {
   border: none;
   font-size: 19px;
   height: 270px;
-  width: 360px;
+  width: 330px;
   resize: none;
 
   line-height: 1.75; /* 줄간격 설정 */
@@ -198,7 +197,7 @@ button {
   border: 1px solid#e2e2e2;
 }
 .Left {
-  background-color: yellow;
+  /* background-color: yellow; */
   width: 90%;
   height: 85%;
   display: block;
@@ -240,4 +239,40 @@ header > div {
   position: absolute;
   bottom: 5px;
   right: 15px;
+}
+
+/*작성자*/
+.writer {
+  margin-left: 12px;
+}
+/*이모티콘*/
+.Emotion {
+  margin-left: 12px;
+}
+.EmotionItem {
+  margin-left: 4px;
+}
+.EmotionItem img {
+  width: 30px;
+  margin: 0px;
+}
+.EmotionItem-on-1 {
+  background-color: #64c964;
+  color: white;
+}
+.EmotionItem-on-2 {
+  background-color: #9dd772;
+  color: white;
+}
+.EmotionItem-on-3 {
+  background-color: #fdce17;
+  color: white;
+}
+.EmotionItem-on-4 {
+  background-color: #fd8446;
+  color: white;
+}
+.EmotionItem-on-5 {
+  background-color: #fd565f;
+  color: white;
 }
