@@ -7,7 +7,7 @@ const Navbar = () => {
 
   const Dropdown = () => {
     return (
-      <ul>
+      <ul className="downUl">
         <li>
           <NavLink exact="true" to="/" activeclassname="active">
             Home
@@ -16,6 +16,11 @@ const Navbar = () => {
         <li>
           <NavLink to="/diary" activeclassname="active">
             Diary
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/calenpage" activeclassname="active">
+            Calendar
           </NavLink>
         </li>
       </ul>
