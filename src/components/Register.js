@@ -132,10 +132,8 @@ const Register = () => {
   };
 
   return (
-    <>
-      <h3>Sign Up</h3>
+    <div className="input-group">
       <form onSubmit={handleSubmit}>
-        <label>name</label> <br />
         <input
           id="name"
           name="name"
@@ -144,8 +142,6 @@ const Register = () => {
           placeholder="이름을 입력해주세요"
         />
         <p className="message"> {nameMessage} </p>
-        <br />
-        <label>Nick Name</label> <br />
         <input
           id="nickname"
           name="name"
@@ -154,19 +150,18 @@ const Register = () => {
           placeholder="닉네임을 입력해주세요"
         />
         <p className="message"> {nicknameMessage} </p>
-        <br />
-        <label>Email:</label>
         <input
           type="email"
           name="email"
           value={email || ""}
           onChange={onChangeEmail}
           required
+          placeholder="이메일을 입력해주세요"
         />
+        <button className="checkEmail" onClick={onCheckEmail}>
+          이메일 중복 검사
+        </button>
         <p className="message">{emailMsg}</p>
-        <button onClick={onCheckEmail}>이메일 중복 검사</button>
-        <br />
-        <label>Password:</label>
         <input
           type="password"
           value={password}
@@ -175,9 +170,11 @@ const Register = () => {
           required
         />
         <p className="message">{pwdMsg}</p>
-        <button type="submit">Sign Up</button>
+        <button className="signupBtn" type="submit">
+          Sign Up
+        </button>
       </form>
-    </>
+    </div>
   );
 };
 
