@@ -15,8 +15,4 @@ export const emotionList = [
     emotion_id: 4,
     emotion_img: process.env.PUBLIC_URL + `../img/emotion04.png`,
   },
-  {
-    emotion_id: 5,
-    emotion_img: process.env.PUBLIC_URL + `../img/emotion05.png`,
-  },
 ];
