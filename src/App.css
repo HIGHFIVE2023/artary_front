@@ -93,6 +93,7 @@ textarea {
   padding: 10px;
 }
 button {
+  cursor: pointer;
   border: none;
   outline: none;
   font-family: "crayon";
@@ -232,17 +233,6 @@ header > div {
 .LeftBottomDiv {
   margin: 5px;
 }
-.Index01 {
-  display: inline-block; /* 수정 */
-  vertical-align: top; /* 추가 */
-  margin-bottom: 3px;
-}
-.Index02 {
-  margin-bottom: 3px;
-}
-.Index03 {
-  margin-bottom: 3px;
-}
 
 .LeftBottomDiv {
   margin: 5px;
@@ -254,7 +244,6 @@ header > div {
 /*오른쪽 구성 -> 묶어서 수정 예정*/
 .TextSquareContainer {
   position: absolute;
-
   display: flex;
   flex-wrap: wrap;
   width: 350px;
@@ -339,4 +328,36 @@ header > div {
   background: none;
   font-size: 16px;
   margin-top: 8px;
+}
+/*회원가입*/
+.message {
+  color: #ff6666;
+  font-size: 13px;
+}
+.input-group {
+  position: relative;
+  top: -20px; /* 위로 이동할 픽셀 값 */
+}
+.input-group input {
+  position: relative;
+  overflow: hidden;
+  width: 350px;
+  height: 35px;
+  border: solid 1px #dadada;
+  background: #fff;
+}
+.checkEmail {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  float: right;
+  font-size: 15px;
+  background-color: lightgray;
+}
+.signupIcon {
+  width: 100px;
+  height: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  top: -15px;
 }
