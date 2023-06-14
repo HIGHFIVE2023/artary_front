@@ -1,10 +1,10 @@
-const BottomBtn = ({ text, type }) => {
+const BottomBtn = ({ image }) => {
   const handlingClick = () => {
     console.log("하단버튼 성공");
   };
   return (
     <button className="BottomBtn" onClick={handlingClick}>
-      {text}
+      <img src={image} alt="Button Image" />
     </button>
   );
 };

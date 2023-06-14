@@ -21,15 +21,14 @@ const Diary = () => {
         <div className="LeftDivOveray">
           <DrawingDiary />
           <div className="LeftBottomDiv">
-            <BottomBtn text={"하단버튼1"}></BottomBtn>
-            <BottomBtn text={"하단버튼2"}></BottomBtn>
+            <BottomBtn image="../img/share.png"></BottomBtn>
           </div>
         </div>
         <div className="RightDivOveray">
           <WritingDiary />
           <div className="RightBottomDiv">
-            <BottomBtn text={"수정하기"}></BottomBtn>
-            <BottomBtn text={"삭제하기"}></BottomBtn>
+            <BottomBtn image="../img/edit.png"></BottomBtn>
+            <BottomBtn image="../img/delete.png"></BottomBtn>
           </div>
         </div>
       </div>

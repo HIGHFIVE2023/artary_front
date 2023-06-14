@@ -9,7 +9,6 @@
 }
 
 .textarea-container {
-  background-image: url("../public/img/square_.png");
   background-repeat: repeat-y;
   background-size: contain;
   padding: 3px;
@@ -21,7 +20,7 @@ textarea {
   border: none;
   font-size: 19px;
   height: 270px;
-  width: 360px;
+  width: 330px;
   resize: none;
 
   line-height: 1.75; /* 줄간격 설정 */
@@ -65,6 +64,7 @@ textarea {
 
 /*다이어리 기본 틀*/
 .DiaryFrame {
+  font-family: "kyobo";
   width: 800px;
   height: 500px;
   display: block;
@@ -101,7 +101,7 @@ button {
 .IndexBtnContainer {
   font-family: "crayon";
   position: absolute;
-  right: -100px;
+  right: -60px;
   top: 44px;
   padding: 10px;
   display: "flex";
@@ -121,28 +121,35 @@ button {
   margin-bottom: 3px;
 }
 .Index01 {
-  width: 90px;
+  cursor: pointer;
+  width: 50px;
   height: 40px;
   font-size: 15px;
-  background-color: #ff6666;
+  background-color: #fbb2b5;
+}
+.Index01 .active {
+  width: 100px;
 }
 .Index02 {
-  width: 90px;
+  cursor: pointer;
+  width: 50px;
   height: 40px;
   font-size: 15px;
-  background-color: #ffbd55;
+  background-color: #f5d960;
 }
 .Index03 {
-  width: 90px;
+  cursor: pointer;
+  width: 50px;
   height: 40px;
   font-size: 15px;
-  background-color: #ffff66;
+  background-color: #b8e08b;
 }
 .Index04 {
-  width: 90px;
+  cursor: pointer;
+  width: 50px;
   height: 40px;
   font-size: 15px;
-  background-color: #9de24f;
+  background-color: #89e5fb;
 }
 /*로그인*/
 .LoginIcon {
@@ -208,7 +215,7 @@ button {
   border: 1px solid#e2e2e2;
 }
 .Left {
-  background-color: yellow;
+  /* background-color: yellow; */
   width: 90%;
   height: 85%;
   display: block;
@@ -241,6 +248,39 @@ header > div {
   right: 15px;
 }
 
+/*작성자*/
+.writer {
+  margin-left: 12px;
+}
+.title {
+  margin-right: 12px;
+}
+/*이모티콘*/
+.Emotion {
+  margin-left: 12px;
+}
+.EmotionItem {
+  margin-left: 4px;
+}
+.EmotionItem img {
+  width: 30px;
+  margin: 0px;
+}
+.EmotionItem-on-1 {
+  background-color: #64c964;
+}
+.EmotionItem-on-2 {
+  background-color: #9dd772;
+}
+.EmotionItem-on-3 {
+  background-color: #fdce17;
+}
+.EmotionItem-on-4 {
+  background-color: #fd8446;
+}
+.EmotionItem-on-5 {
+  background-color: #fd565f;
+}
 /*오른쪽 구성 -> 묶어서 수정 예정*/
 .TextSquareContainer {
   position: absolute;
@@ -329,6 +369,7 @@ header > div {
   font-size: 16px;
   margin-top: 8px;
 }
+
 /*회원가입*/
 .message {
   color: #ff6666;
@@ -360,4 +401,12 @@ header > div {
   margin-right: auto;
   position: relative;
   top: -15px;
+
+.BottomBtn {
+  margin-left: 5px;
+  cursor: pointer;
+  background: none;
+}
+.BottomBtn img {
+  width: 40px;
 }
