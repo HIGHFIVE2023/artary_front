@@ -9,7 +9,6 @@ import Calenpage from "./pages/Calenpage";
 import New from "./pages/New";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
-import Register from "./components/Register";
 
 function App() {
   return (
@@ -18,7 +17,7 @@ function App() {
         {<Navbar />}
         <Routes>
           <Route path="/" element={<Home />}></Route>
-          <Route path="users/login" element={<Login />}></Route>
+          <Route path="/users/login" element={<Login />}></Route>
           <Route path="/diary" element={<Diary />}></Route>
           <Route path="/calenpage" element={<Calenpage />}></Route>
           <Route path="/new" element={<New />}></Route>

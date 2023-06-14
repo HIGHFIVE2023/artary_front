@@ -1,14 +1,12 @@
-import { useNavigate } from "react-router";
-import { useState } from "react";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const IndexBtn = ({}) => {
   //페이지 이동
   const navigate = useNavigate();
-  const [activeButton, setActiveButton] = useState(""); // 현재 활성화된 버튼을 추적하는 상태
 
   const navigateToDiary = () => {
     navigate("/diary");
-    setActiveButton("index01"); // 다른 페이지로 이동할 때 index01 버튼 활성화
   };
 
   const navigateToCalen = () => {
@@ -19,7 +17,8 @@ const IndexBtn = ({}) => {
     <section>
       <div className="indexContainer01">
         <button
-          className={`Index01 ${activeButton === "index01" ? "active" : ""}`}
+          className="Index01"
+          activeClassName="selected"
           id="btn"
           onClick={navigateToDiary}
         >
