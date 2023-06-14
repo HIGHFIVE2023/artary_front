@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import moment from "moment/moment";
+import IndexBtn from "../components/IndexBtn";
 import Chart from "./Chart";
 
 function Calenpage() {
@@ -17,6 +18,9 @@ function Calenpage() {
             src="/img/diary.png"
             alt="diary background"
           />
+          <div className="IndexBtnContainer">
+            <IndexBtn />
+          </div>
           <Calendar
             onChange={setDate}
             formatDay={(locale, date) => moment(date).format("DD")}

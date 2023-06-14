@@ -83,7 +83,7 @@ const DiaryEditor = ({ isEdit, originData }) => {
             </header>
           </div>
           <div className="LeftBottomDiv">
-            <BottomBtn text={"그림 불러오기"}></BottomBtn>
+            <button>그림 불러오기</button>
           </div>
         </div>
         <div className="RightDivOveray">
@@ -111,7 +111,7 @@ const DiaryEditor = ({ isEdit, originData }) => {
               </div>
             </div>
             <div className="RightBottomDiv">
-              <BottomBtn text={"저장하기"} onClick={handleSubmit}></BottomBtn>
+              <button>저장하기</button>
             </div>
           </div>
         </div>

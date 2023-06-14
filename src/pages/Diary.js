@@ -22,7 +22,6 @@ const Diary = () => {
           <DrawingDiary />
           <div className="LeftBottomDiv">
             <BottomBtn image="../img/share.png"></BottomBtn>
-            <BottomBtn image="../img/save.png"></BottomBtn>
           </div>
         </div>
         <div className="RightDivOveray">

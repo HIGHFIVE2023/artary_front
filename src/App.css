@@ -126,7 +126,9 @@ button {
   font-size: 15px;
   background-color: #fbb2b5;
 }
-
+.Index01 .active {
+  width: 100px;
+}
 .Index02 {
   cursor: pointer;
   width: 50px;
@@ -234,17 +236,6 @@ header > div {
 
 .LeftBottomDiv {
   margin: 5px;
-}
-.Index01 {
-  display: inline-block; /* 수정 */
-  vertical-align: top; /* 추가 */
-  margin-bottom: 3px;
-}
-.Index02 {
-  margin-bottom: 3px;
-}
-.Index03 {
-  margin-bottom: 3px;
 }
 
 .LeftBottomDiv {
