@@ -8,20 +8,39 @@
   src: url("../public/font/Typo_CrayonM.ttf");
 }
 
+.textarea-container {
+  background-repeat: repeat-y;
+  background-size: contain;
+  padding: 3px;
+}
+
+textarea {
+  font-family: "kyobo";
+  background-color: transparent;
+  border: none;
+  font-size: 19px;
+  height: 270px;
+  width: 330px;
+  resize: none;
+
+  line-height: 1.75; /* 줄간격 설정 */
+  padding-left: 10px; /* 텍스트와 테두리 간격 설정 */
+}
+
+/*임시^^*/
+
 .body {
   background-color: #f6f6f6;
   display: flex;
   justify-content: center;
   align-items: center;
   font-family: "kyobo";
-  min-height: 100vh;
-  margin: 0px;
 }
-
 /*홈 기본 틀*/
 .HomeFrame {
   width: 800px;
   height: 500px;
+  top: -15px;
   display: block;
   margin: 50px auto;
   position: relative;
@@ -35,15 +54,24 @@
   width: 55%;
   height: 100%;
 }
+.HomeFrame .MainIcon {
+  position: absolute;
+  top: 100px;
+  left: 270px;
+  width: 270px;
+  height: 250px;
+}
 
 /*다이어리 기본 틀*/
 .DiaryFrame {
+  font-family: "kyobo";
   width: 800px;
   height: 500px;
   display: block;
   margin: 50px auto;
   position: relative;
 }
+
 .DiaryImageContainer {
   position: relative;
   top: 0;
@@ -51,31 +79,125 @@
   width: 100%;
   height: 100%;
 }
+
 .DiaryImage {
   width: 100%;
   height: 100%;
 }
-
 /*인덱스 버튼*/
-.DiaryButtonContainer {
+.HomeButtonContainer {
   font-family: "crayon";
   position: absolute;
-  right: -100px;
-  top: 44px;
+  right: 115px;
+  top: 70px;
   padding: 10px;
 }
-.Index01 {
-  display: inline-block; /* 수정 */
-  vertical-align: top; /* 추가 */
+button {
+  border: none;
+  outline: none;
+  font-family: "crayon";
+}
+.IndexBtnContainer {
+  font-family: "crayon";
+  position: absolute;
+  right: -60px;
+  top: 44px;
+  padding: 10px;
+  display: "flex";
+  justify-content: "center";
+  align-items: "center";
+  border: none;
+}
+.indexContainer01 {
+  display: inline-block;
+  vertical-align: top;
   margin-bottom: 3px;
+}
+.indexContainer02 {
+  margin-bottom: 3px;
+}
+.indexContainer03 {
+  margin-bottom: 3px;
+}
+.Index01 {
+  cursor: pointer;
+  width: 50px;
+  height: 40px;
+  font-size: 15px;
+  background-color: #fbb2b5;
+}
+.Index01 .active {
+  width: 100px;
 }
 .Index02 {
-  margin-bottom: 3px;
+  cursor: pointer;
+  width: 50px;
+  height: 40px;
+  font-size: 15px;
+  background-color: #f5d960;
 }
 .Index03 {
-  margin-bottom: 3px;
+  cursor: pointer;
+  width: 50px;
+  height: 40px;
+  font-size: 15px;
+  background-color: #b8e08b;
 }
-
+.Index04 {
+  cursor: pointer;
+  width: 50px;
+  height: 40px;
+  font-size: 15px;
+  background-color: #89e5fb;
+}
+/*로그인*/
+.LoginIcon {
+  width: 140px;
+  height: 140px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+.id,
+.pwd {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 40px;
+  margin: 0 0 8px;
+  padding: 5px 39px 5px 11px;
+  border: solid 1px #dadada;
+  background: #fff;
+  box-sizing: border-box;
+}
+.loginbtn {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 49px;
+  display: block;
+  width: 100%;
+  height: 49px;
+  margin: 16px 0 7px;
+  cursor: pointer;
+  text-align: center;
+  color: #fff;
+  border: none;
+  border-radius: 0;
+  background-color: #000;
+}
+.login-li-group {
+  align-items: center;
+}
+.findId {
+  margin: 30px;
+}
+.findPwd,
+.SignUp {
+  margin: 20px;
+}
+.kakaoLogin {
+  text-align: center;
+}
 /*왼쪽 그림 출력 div*/
 .LeftDivOveray {
   position: absolute;
@@ -90,7 +212,7 @@
   border: 1px solid#e2e2e2;
 }
 .Left {
-  background-color: yellow;
+  /* background-color: yellow; */
   width: 90%;
   height: 85%;
   display: block;
@@ -103,7 +225,6 @@
 /*기분 이모지랑 기분 날짜 출력*/
 header {
   padding: 5px;
-
   display: flex;
   align-items: center;
   border-bottom: 1px solid #e2e2e2;
@@ -115,15 +236,51 @@ header > div {
 
 .LeftBottomDiv {
   margin: 5px;
+}
+
+.LeftBottomDiv {
+  margin: 5px;
   position: absolute;
   bottom: 5px;
   right: 15px;
 }
 
+/*작성자*/
+.writer {
+  margin-left: 12px;
+}
+.title {
+  margin-right: 12px;
+}
+/*이모티콘*/
+.Emotion {
+  margin-left: 12px;
+}
+.EmotionItem {
+  margin-left: 4px;
+}
+.EmotionItem img {
+  width: 30px;
+  margin: 0px;
+}
+.EmotionItem-on-1 {
+  background-color: #64c964;
+}
+.EmotionItem-on-2 {
+  background-color: #9dd772;
+}
+.EmotionItem-on-3 {
+  background-color: #fdce17;
+}
+.EmotionItem-on-4 {
+  background-color: #fd8446;
+}
+.EmotionItem-on-5 {
+  background-color: #fd565f;
+}
 /*오른쪽 구성 -> 묶어서 수정 예정*/
 .TextSquareContainer {
   position: absolute;
-
   display: flex;
   flex-wrap: wrap;
   width: 350px;
@@ -158,4 +315,62 @@ header > div {
   margin-top: 10px;
   position: absolute;
   border: 1px solid#e2e2e2;
+}
+
+.CalendarPage {
+  position: absolute;
+  top: 50px;
+  left: 54%;
+  display: flex;
+  flex-wrap: wrap;
+  height: 80%;
+  justify-content: center;
+
+  .react-calendar__tile {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    font: inherit;
+    width: 120px; /* 원하는 가로 크기 */
+    height: 60px; /* 원하는 세로 크기 */
+    position: relative;
+  }
+
+  .react-calendar__viewContainer {
+    height: 100%;
+  }
+
+  /* 날짜 타일 내의 텍스트 스타일 */
+  .react-calendar__tile .react-calendar__tileText {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(0, -50%);
+    margin-left: 0.25rem;
+  }
+}
+
+.dot {
+  height: 10px;
+  width: 10px;
+  right: 30%;
+  bottom: 15%;
+  background-color: #63a1ff;
+  border-radius: 50%;
+  position: absolute;
+}
+
+.react-calendar__navigation {
+  min-width: 44px;
+  background: none;
+  font-size: 16px;
+  margin-top: 8px;
+}
+.BottomBtn {
+  margin-left: 5px;
+  cursor: pointer;
+  background: none;
+}
+.BottomBtn img {
+  width: 40px;
 }

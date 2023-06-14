@@ -4,17 +4,23 @@ import "../components/components.css";
 
 const Navbar = () => {
   const [view, setView] = useState(false);
+
   const Dropdown = () => {
     return (
-      <ul>
+      <ul className="downUl">
         <li>
-          <NavLink exact to="/" activeClassName="active">
+          <NavLink exact="true" to="/" activeclassname="active">
             Home
           </NavLink>
         </li>
         <li>
-          <NavLink to="/diary" activeClassName="active">
+          <NavLink to="/diary" activeclassname="active">
             Diary
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/calenpage" activeclassname="active">
+            Calendar
           </NavLink>
         </li>
       </ul>
@@ -24,14 +30,15 @@ const Navbar = () => {
   return (
     <nav>
       <div className="dropdown">
-        <ul
+        <button
+          className="navBtn"
           onClick={() => {
             setView(!view);
           }}
         >
-          반가워요, nickname 님! {view ? "⌃" : "⌄"}
+          프로필 nickname 님!
           {view && <Dropdown />}
-        </ul>
+        </button>
       </div>
     </nav>
   );
