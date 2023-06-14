@@ -91,6 +91,7 @@ const DiaryEditor = ({ isEdit, originData }) => {
             <header>
               <div className="title">제목: </div>
               <input
+                placeholder="제목을 입력하세요."
                 type="text"
                 id="my-input"
                 value={title}

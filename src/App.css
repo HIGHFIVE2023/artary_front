@@ -64,6 +64,7 @@ textarea {
 
 /*다이어리 기본 틀*/
 .DiaryFrame {
+  font-family: "kyobo";
   width: 800px;
   height: 500px;
   display: block;
@@ -99,7 +100,7 @@ button {
 .IndexBtnContainer {
   font-family: "crayon";
   position: absolute;
-  right: -100px;
+  right: -60px;
   top: 44px;
   padding: 10px;
   display: "flex";
@@ -119,28 +120,33 @@ button {
   margin-bottom: 3px;
 }
 .Index01 {
-  width: 90px;
+  cursor: pointer;
+  width: 50px;
   height: 40px;
   font-size: 15px;
-  background-color: #ff6666;
+  background-color: #fbb2b5;
 }
+
 .Index02 {
-  width: 90px;
+  cursor: pointer;
+  width: 50px;
   height: 40px;
   font-size: 15px;
-  background-color: #ffbd55;
+  background-color: #f5d960;
 }
 .Index03 {
-  width: 90px;
+  cursor: pointer;
+  width: 50px;
   height: 40px;
   font-size: 15px;
-  background-color: #ffff66;
+  background-color: #b8e08b;
 }
 .Index04 {
-  width: 90px;
+  cursor: pointer;
+  width: 50px;
   height: 40px;
   font-size: 15px;
-  background-color: #9de24f;
+  background-color: #89e5fb;
 }
 /*로그인*/
 .LoginIcon {
@@ -252,6 +258,9 @@ header > div {
 .writer {
   margin-left: 12px;
 }
+.title {
+  margin-right: 12px;
+}
 /*이모티콘*/
 .Emotion {
   margin-left: 12px;
@@ -265,27 +274,22 @@ header > div {
 }
 .EmotionItem-on-1 {
   background-color: #64c964;
-  color: white;
 }
 .EmotionItem-on-2 {
   background-color: #9dd772;
-  color: white;
 }
 .EmotionItem-on-3 {
   background-color: #fdce17;
-  color: white;
 }
 .EmotionItem-on-4 {
   background-color: #fd8446;
-  color: white;
 }
 .EmotionItem-on-5 {
   background-color: #fd565f;
-  color: white;
+}
 /*오른쪽 구성 -> 묶어서 수정 예정*/
 .TextSquareContainer {
   position: absolute;
-
   display: flex;
   flex-wrap: wrap;
   width: 350px;
@@ -370,4 +374,12 @@ header > div {
   background: none;
   font-size: 16px;
   margin-top: 8px;
+}
+.BottomBtn {
+  margin-left: 5px;
+  cursor: pointer;
+  background: none;
+}
+.BottomBtn img {
+  width: 40px;
 }
