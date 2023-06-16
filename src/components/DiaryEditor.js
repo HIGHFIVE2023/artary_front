@@ -13,8 +13,10 @@ import EmotionItem from "../components/EmotionItem";
 
 import { getStringDate } from "../util/date.js";
 import { emotionList } from "../util/emotion.js";
+import { call } from "../service/ApiService";
 
 const DiaryEditor = ({ isEdit, originData }) => {
+  const user = JSON.parse(localStorage.getItem("user"));
   const contentRef = useRef();
   const [content, setContent] = useState("");
   const [title, setTitle] = useState("");
@@ -33,6 +35,36 @@ const DiaryEditor = ({ isEdit, originData }) => {
       contentRef.current.focus(); // 한 글자도 안 썼을때 textarea에 포커스.
       return;
     }
+
+    const emotionName = {
+      1: "HAPPY",
+      2: "SOSO",
+      3: "SAD",
+      4: "ANGRY"
+    };
+
+    const req = {
+      title,
+      content,
+      emotion: emotionName[emotion]
+    };
+    console.log(user.email);
+    console.log(user.password);
+
+    const token = btoa(`${user.email}:${user.password}`);
+    const headers = {
+      "Authorization": `Basic ${token}`
+    }
+    const config = {
+      headers: headers
+    };
+    console.log(req);
+
+    call("/diary/write", "POST", req, config).then((response) => {
+      console.log(response);
+      const diaryId = response.diary_id;
+      window.location.href = "/diary/${diaryId}";
+    })
   };
 
   useEffect(() => {
@@ -97,7 +129,7 @@ const DiaryEditor = ({ isEdit, originData }) => {
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
               />
-              <div className="writer">{"작성자: 차덕새"}</div>
+              <div className="writer">작성자: {user.nickname}</div>
             </header>
 
             <div className="TextSquareContainer">
@@ -111,7 +143,7 @@ const DiaryEditor = ({ isEdit, originData }) => {
               </div>
             </div>
             <div className="RightBottomDiv">
-              <button>저장하기</button>
+              <button onClick={handleSubmit}>저장하기</button>
             </div>
           </div>
         </div>

@@ -1,9 +1,15 @@
 const API_BASE_URL = "http://localhost:8080";
 
-export function call(api, method, request) {
+export function call(api, method, request, config) {
   let headers = new Headers({
     "Content-Type": "application/json",
   });
+
+  if (config && config.headers) {
+    Object.keys(config.headers).forEach((key) => {
+      headers.append(key, config.headers[key]);
+    });
+  }
 
   let options = {
     headers: headers,
