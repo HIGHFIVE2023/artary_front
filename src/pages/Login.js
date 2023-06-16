@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
-import axios from "axios";
 import { login } from "../service/ApiService";
 import IndexBtn from "../components/IndexBtn";
 
@@ -10,31 +9,29 @@ const Login = () => {
   const [error, setError] = useState("");
 
   const navigate = useNavigate();
-
   const handleLogin = (e) => {
+    
     e.preventDefault(); //새로고침 방지
-    // 로그인 요청을 보내는 함수
-    axios.post("http://localhost:8080/users/login", { email, password });
 
-    const handleLogin = () => {
-      const userDto = {
-        email: email,
-        password: password,
-      };
-
-      login(userDto)
-        .then((response) => {
-          console.log(response); // 응답 데이터 확인
-          // 로그인 성공 후 필요한 작업 수행
-          localStorage.setItem("user", JSON.stringify(response));
-          window.location.href = "/"; // 로그인 후 리다이렉트할 경로 설정
-        })
-        .catch((error) => {
-          console.error(error); // 에러 응답 데이터 확인
-          setError("이메일 또는 비밀번호가 틀렸습니다."); // 에러 메시지 설정
-        });
+    const userDto = {
+      email: email,
+      password: password, 
     };
+
+    login(userDto)
+      .then((response) => {
+        console.log(response); // 응답 데이터 확인
+        // 로그인 성공 후 필요한 작업 수행
+        localStorage.setItem("user", JSON.stringify(response));
+        window.location.href = "/"; // 로그인 후 리다이렉트할 경로 설정
+      })
+      .catch((error) => {
+        console.error(error); // 에러 응답 데이터 확인
+        setError("이메일 또는 비밀번호가 틀렸습니다."); // 에러 메시지 설정
+      });
   };
+
+
   const navigateToSignUp = () => {
     navigate("/users/signup");
   };

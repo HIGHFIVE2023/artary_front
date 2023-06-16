@@ -25,15 +25,6 @@ const Register = () => {
   const onChangeName = (e) => {
     const currentId = e.target.value;
     setName(currentId);
-    const idRegExp = /^[a-zA-z0-9]{4,12}$/;
-
-    if (!idRegExp.test(currentId)) {
-      setNameMessage("4-12사이 대소문자 또는 숫자만 입력해 주세요!");
-      setIsName(false);
-    } else {
-      setNameMessage("사용가능한 아이디 입니다.");
-      setIsName(true);
-    }
   };
 
   const onChangeNickname = async (e) => {

@@ -21,10 +21,11 @@ const Navbar = () => {
     try {
       setIsLoggedIn(false);
       setNickname("");
-      localStorage.removeItem("user");
-      window.location.href = "/"; // 또는 리다이렉트할 경로 설정
+      localStorage.clear();
+      await logout(); 
+      window.location.href = "/";
     } catch (error) {
-      console.error(error); // 에러 처리
+      console.error(error);
     }
   };
 
