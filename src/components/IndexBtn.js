@@ -6,7 +6,7 @@ const IndexBtn = ({}) => {
   const navigate = useNavigate();
 
   const navigateToDiary = () => {
-    navigate("/new");
+    navigate("/diary/write");
   };
 
   const navigateToCalen = () => {
