@@ -51,7 +51,9 @@ const Login = () => {
             <IndexBtn />
           </div>
         </div>
-        <div className="LeftDivOveray"></div>
+        <div className="LeftDivOveray">
+          <img className="DiaryIntro" src="/img/intro.png" />
+        </div>
         <div className="RightDivOveray">
           <img className="LoginIcon" src="/img/icon.png" alt="login icon" />
           <div className="input-group">
