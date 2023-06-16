@@ -15,7 +15,9 @@ const SignUp = ({}) => {
             <IndexBtn />
           </div>
         </div>
-        <div className="LeftDivOveray"></div>
+        <div className="LeftDivOveray">
+          <img className="DiaryIntro" src="/img/intro.png" />
+        </div>
         <div className="RightDivOveray">
           <img className="signupIcon" src="/img/icon.png" alt="login icon" />
           <Register />
