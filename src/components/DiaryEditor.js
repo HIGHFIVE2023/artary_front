@@ -58,10 +58,14 @@ const DiaryEditor = ({ isEdit, originData }) => {
     call("/diary/write", "POST", req).then((response) => {
       console.log(response);
       setDiaryId(response.id);
-      console.log(diaryId);
 
       return call(`/diary/${response.id}/picture`, "GET", null);
-    });
+    }).then((response) => {
+      console.log(response);
+      const url = URL.createObjectURL(response);
+      console.log(url);
+      setImageSrc(url);
+    })
   };
 
   const handleClick = () => {
@@ -74,6 +78,7 @@ const DiaryEditor = ({ isEdit, originData }) => {
       setDate(getStringDate(new Date(parseInt(originData.date))));
       setEmotion(originData.emotion);
       setContent(originData.content);
+      
     }
   }, [isEdit, originData]);
 
