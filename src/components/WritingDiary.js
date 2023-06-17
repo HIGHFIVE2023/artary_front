@@ -4,7 +4,7 @@ import { call } from "../service/ApiService";
 
 const WritingDiary = () => {
   const { diaryId } = useParams();
-  const [diary, setDiary] = useState({ title: "", content: "", image: "" });
+  const [diary, setDiary] = useState({ title: "", content: "" });
 
   let [inputCount, setInputCount] = useState(0);
 
@@ -19,7 +19,7 @@ const WritingDiary = () => {
       });
   }, [diaryId]);
 
-  const { title, content, image } = diary;
+  const { title, content } = diary;
 
   const numRows = 9;
   let numCols = 8;

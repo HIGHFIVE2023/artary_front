@@ -51,10 +51,6 @@ const DiaryEditor = ({ isEdit, originData }) => {
       content,
       emotion: emotionName[emotion],
     };
-    console.log(user.email);
-    console.log(user.password);
-
-    console.log(req);
 
     setLoading(true);
 
@@ -63,10 +59,12 @@ const DiaryEditor = ({ isEdit, originData }) => {
       setDiaryId(response.id);
 
       return call(`/diary/${response.id}/picture`, "GET", null);
-    }).then((response) => {
-      console.log(response);
+    }).then((imgResponse) => {
+      console.log(imgResponse.imageUrl);
       setLoading(false);
+      setImageSrc(imgResponse.imageUrl);
     }).catch((error) => {
+      console.error(error);
       setLoading(false);
     });
   };
@@ -103,7 +101,7 @@ const DiaryEditor = ({ isEdit, originData }) => {
             alt="diary background"
           />
           <div className="IndexBtnContainer">
-            <IndexBtn type={"diary"} text1={"다이어리"} />
+            <IndexBtn />
           </div>
         </div>
 
@@ -132,7 +130,7 @@ const DiaryEditor = ({ isEdit, originData }) => {
             </header>
             <div>
               {isLoading && <div>로딩 중...</div>}
-              {imageSrc && <img src={imageSrc} alt="Diary Image" />}
+              {!imageSrc ? null : <img src={imageSrc} alt="Diary Image" />}
             </div>
           </div>
           <div className="LeftBottomDiv">
