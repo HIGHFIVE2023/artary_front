@@ -100,7 +100,7 @@ button {
 .IndexBtnContainer {
   font-family: "crayon";
   position: absolute;
-  right: -60px;
+  right: -110px;
   top: 44px;
   padding: 10px;
   display: "flex";
@@ -123,18 +123,24 @@ button {
   cursor: pointer;
   width: 50px;
   height: 40px;
-  font-size: 15px;
+  font-size: 16px;
   background-color: #fbb2b5;
 }
-.Index01active {
+.Index01_diary {
   width: 100px;
 }
 .Index02 {
   cursor: pointer;
   width: 50px;
   height: 40px;
-  font-size: 15px;
+  font-size: 16px;
   background-color: #f5d960;
+}
+.Index02_calendar {
+  width: 100px;
+}
+.indexContainer02 img {
+  margin-right: 5px;
 }
 .Index03 {
   cursor: pointer;

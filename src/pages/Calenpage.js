@@ -19,7 +19,7 @@ function Calenpage() {
             alt="diary background"
           />
           <div className="IndexBtnContainer">
-            <IndexBtn />
+            <IndexBtn type={"calendar"} text2={"캘린더"} />
           </div>
           <Calendar
             onChange={setDate}
