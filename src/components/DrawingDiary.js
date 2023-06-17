@@ -27,8 +27,8 @@ const DrawingDiary = () => {
           <div className="Emotion">오늘의 기분</div>
           <div className="todayEmotion">이모지</div>
         </header>
-        <div>
-          <img src={image} alt="Diary Image" />
+        <div className="imageContainer">
+          <img className="diaryImage" src={image} alt="Diary Image" />
         </div>
       </div>
       <div className="LeftBottomDiv"></div>
