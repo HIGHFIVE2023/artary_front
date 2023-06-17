@@ -22,7 +22,7 @@ const Navbar = () => {
       setIsLoggedIn(false);
       setNickname("");
       localStorage.clear();
-      await logout(); 
+      await logout();
       window.location.href = "/";
     } catch (error) {
       console.error(error);
@@ -69,8 +69,7 @@ const Navbar = () => {
         >
           {isLoggedIn ? (
             <>
-              {nickname} 님
-              {view && <Dropdown />}
+              {nickname} 님{view && <Dropdown />}
             </>
           ) : (
             <a href="/users/login">로그인</a>
