@@ -94,7 +94,7 @@ const DiaryEditor = ({ isEdit, originData }) => {
             alt="diary background"
           />
           <div className="IndexBtnContainer">
-            <IndexBtn />
+            <IndexBtn type={"diary"} text1={"다이어리"} />
           </div>
         </div>
 

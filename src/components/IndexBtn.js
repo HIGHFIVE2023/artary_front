@@ -1,7 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const IndexBtn = ({ type }) => {
+const IndexBtn = ({ type, text1, text2 }) => {
+  //버튼 타입
+  const btnType = ["diary", "calendar", "default"].includes(type)
+    ? type
+    : "default";
+
   //페이지 이동
   const navigate = useNavigate();
 
@@ -17,17 +22,22 @@ const IndexBtn = ({ type }) => {
     <section>
       <div className="indexContainer01">
         <button
-          className="Index01"
+          className={["Index01", `Index01_${btnType}`].join(" ")}
           activeClassName="selected"
           id="btn"
           onClick={navigateToDiary}
         >
           <img src="../img/pencil.png" height="20px" width="20px" />
+          {text1}
         </button>
       </div>
       <div className="indexContainer02">
-        <button className="Index02" onClick={navigateToCalen}>
+        <button
+          className={["Index02", `Index02_${btnType}`].join(" ")}
+          onClick={navigateToCalen}
+        >
           <img src="../img/calendar.png" height="20px" width="20px" />
+          {text2}
         </button>
       </div>
       <div className="indexContainer03">
@@ -45,5 +55,9 @@ const IndexBtn = ({ type }) => {
       </div>
     </section>
   );
+};
+
+IndexBtn.defaultProps = {
+  type: "default",
 };
 export default IndexBtn;
