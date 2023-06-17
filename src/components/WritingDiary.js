@@ -62,7 +62,6 @@ const WritingDiary = () => {
         <div className="작성자"></div>
       </header>
       <div className="TextSquareContainer">{squares}</div>
-      <img src={image} alt="Diary Image" />
     </div>
   );
 };
