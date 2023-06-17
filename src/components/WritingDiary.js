@@ -1,5 +1,23 @@
+import { useEffect, useState } from "react";
+import { useParams } from "react-router";
+import { call } from "../service/ApiService";
+
 const WritingDiary = () => {
-  const str = "안녕하세요 우리 팀은 하이파이브예요! 만나서 반가워요";
+  const { diaryId } = useParams();
+  const [diary, setDiary] = useState({ title: "", content: "" });
+
+  useEffect(() => {
+    call(`/diary/${diaryId}`, "GET", null)
+      .then((response)=> {
+        console.log(response);
+        setDiary(response);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  }, [diaryId]);
+
+  const { title, content } = diary;
 
   const numRows = 9;
   const numCols = 8;
@@ -8,7 +26,7 @@ const WritingDiary = () => {
   for (let i = 0; i < numRows; i++) {
     for (let j = 0; j < numCols; j++) {
       const idx = i * numCols + j;
-      const char = idx < str.length ? str[idx] : "";
+      const char = idx < content.length ? content[idx] : "";
       squares.push(<TextSquare key={idx} text={char} />);
     }
   }
@@ -32,7 +50,7 @@ const WritingDiary = () => {
   return (
     <div className="Right">
       <header>
-        <div className="title">제목: </div>
+        <div className="title">제목: {title}</div>
         <div className="작성자"></div>
       </header>
       <div className="TextSquareContainer">{squares}</div>

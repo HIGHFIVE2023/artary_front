@@ -51,19 +51,14 @@ const DiaryEditor = ({ isEdit, originData }) => {
     console.log(user.email);
     console.log(user.password);
 
-    const token = btoa(`${user.email}:${user.password}`);
-    const headers = {
-      Authorization: `Basic ${token}`,
-    };
-    const config = {
-      headers: headers,
-    };
     console.log(req);
 
-    call("/diary/write", "POST", req, config).then((response) => {
+    call("/diary/write", "POST", req).then((response) => {
       console.log(response);
-      const diaryId = response.diary_id;
-      window.location.href = "/diary/${diaryId}";
+      const diaryId = response.id;
+      console.log(diaryId);
+
+      navigate(`/diary/${diaryId}`);
     });
   };
 
@@ -123,7 +118,7 @@ const DiaryEditor = ({ isEdit, originData }) => {
             </header>
           </div>
           <div className="LeftBottomDiv">
-            <button>그림 불러오기</button>
+            <button onClick={handleSubmit}>그림 불러오기</button>
           </div>
         </div>
         <div className="RightDivOveray">
