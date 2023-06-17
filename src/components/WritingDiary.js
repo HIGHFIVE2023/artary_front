@@ -62,10 +62,7 @@ const WritingDiary = () => {
         <div className="작성자"></div>
       </header>
       <div className="TextSquareContainer">{squares}</div>
-<<<<<<< HEAD
       <img src={image} alt="Diary Image" />
-=======
->>>>>>> 2c4df77faa6480b0227780314c718f4534bbf344
     </div>
   );
 };
