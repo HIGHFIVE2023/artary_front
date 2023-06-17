@@ -56,35 +56,38 @@ li {
 }
 
 /*왼쪽 그림 출력 div*/
-
+.LeftDivOveray {
+  position: absolute;
+  top: 5px;
+  left: 0px;
+  display: flex;
+  flex-wrap: wrap;
+  width: 350px;
+  height: 85%;
+  margin-left: 30px;
+  margin-top: 30px;
+}
 .Left {
-  background-color: yellow;
-  width: 90%;
+  /* background-color: yellow; */
+  width: 94%;
   height: 85%;
   display: block;
   margin-left: 10px;
-  margin-top: 10px;
+  margin-top: 8px;
   position: absolute;
-  border: 1px solid#e2e2e2;
+  border: 3px solid#212121;
+  border-radius: 10px;
+}
+.LeftBottomDiv {
+  margin: 5px;
+  position: absolute;
+  bottom: 5px;
+  right: 15px;
 }
 
-/*기분 이모지랑 기분 날짜 출력*/
-header {
-  padding: 5px;
-
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid #e2e2e2;
-}
-
-header > div {
-  display: flex;
-}
-
-/*오른쪽 */
+/*오른쪽 구성 -> 묶어서 수정 예정*/
 .TextSquareContainer {
   position: absolute;
-
   display: flex;
   flex-wrap: wrap;
   width: 350px;
@@ -108,15 +111,35 @@ header > div {
   height: 85%;
   margin-right: 30px;
   margin-top: 30px;
-  border: 1px solid#e2e2e2;
 }
 
 .Right {
-  width: 90%;
-  height: 100%;
+  width: 95%;
+  height: 85%;
   display: block;
-  margin-left: 10px;
-  margin-top: 10px;
+  margin-left: 15px;
+  margin-bottom: 40px;
   position: absolute;
-  border: 1px solid#e2e2e2;
+  border: 3px solid#212121;
+  border-radius: 10px;
+}
+
+/*기분 이모지랑 기분 날짜 출력*/
+header {
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  border-bottom: 3px solid #212121;
+}
+
+header > div {
+  display: flex;
+}
+
+/*작성자*/
+.writer {
+  margin-left: 12px;
+}
+.title {
+  margin: 7px 12px 7px 6px;
 }

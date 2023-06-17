@@ -13,11 +13,15 @@ import EmotionItem from "../components/EmotionItem";
 
 import { getStringDate } from "../util/date.js";
 import { emotionList } from "../util/emotion.js";
+import { call } from "../service/ApiService";
 
 const DiaryEditor = ({ isEdit, originData }) => {
+  const user = JSON.parse(localStorage.getItem("user"));
   const contentRef = useRef();
   const [content, setContent] = useState("");
   const [title, setTitle] = useState("");
+  const [diaryId, setDiaryId] = useState("");
+  const [imageSrc, setImageSrc] = useState("");
   const [emotion, setEmotion] = useState(3);
   //기본 선택 감정 3번감정
   const [date, setDate] = useState(getStringDate(new Date()));
@@ -33,6 +37,35 @@ const DiaryEditor = ({ isEdit, originData }) => {
       contentRef.current.focus(); // 한 글자도 안 썼을때 textarea에 포커스.
       return;
     }
+
+    const emotionName = {
+      1: "HAPPY",
+      2: "SOSO",
+      3: "SAD",
+      4: "ANGRY",
+    };
+
+    const req = {
+      title,
+      content,
+      emotion: emotionName[emotion],
+    };
+    console.log(user.email);
+    console.log(user.password);
+
+    console.log(req);
+
+    call("/diary/write", "POST", req).then((response) => {
+      console.log(response);
+      setDiaryId(response.id);
+      console.log(diaryId);
+
+      return call(`/diary/${response.id}/picture`, "GET", null);
+    });
+  };
+
+  const handleClick = () => {
+    navigate(`/diary/${diaryId}`);
   };
 
   useEffect(() => {
@@ -43,6 +76,14 @@ const DiaryEditor = ({ isEdit, originData }) => {
       setContent(originData.content);
     }
   }, [isEdit, originData]);
+
+  const saveView = () => {
+    if (window.confirm("그림 생성을 완료하셨습니까? 완료 시 저장됩니다.")) {
+      alert("저장되었습니다.");
+    } else {
+      alert("그림 생성 버튼을 눌러 그림 생성을 진행하세요.");
+    }
+  };
 
   return (
     <div className="Diary">
@@ -81,9 +122,12 @@ const DiaryEditor = ({ isEdit, originData }) => {
                 ))}
               </div>
             </header>
+            <div>
+              {imageSrc && <img src={imageSrc} alt="Diary Image" />}
+            </div>
           </div>
           <div className="LeftBottomDiv">
-            <button>그림 불러오기</button>
+            <button onClick={handleSubmit}>그림 불러오기</button>
           </div>
         </div>
         <div className="RightDivOveray">
@@ -97,22 +141,26 @@ const DiaryEditor = ({ isEdit, originData }) => {
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
               />
-              <div className="writer">{"작성자: 차덕새"}</div>
+              <div className="writer">작성자: {user.nickname}</div>
             </header>
-
-            <div className="TextSquareContainer">
-              <div class="textarea-container">
-                <textarea
-                  ref={contentRef}
-                  value={content}
-                  onChange={(e) => setContent(e.target.value)}
-                  placeholder="오늘 하루는 어땠나요?"
-                />
-              </div>
+            <div class="textarea-container">
+              <textarea
+                ref={contentRef}
+                value={content}
+                onChange={(e) => setContent(e.target.value)}
+                placeholder="오늘 하루는 어땠나요?"
+              />
             </div>
-            <div className="RightBottomDiv">
-              <button>저장하기</button>
-            </div>
+          </div>
+          <div className="RightBottomDiv">
+            <button
+              onClick={() => {
+                handleClick();
+                saveView();
+              }}
+            >
+              저장하기
+            </button>
           </div>
         </div>
       </div>
