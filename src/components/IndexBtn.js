@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const IndexBtn = ({}) => {
+const IndexBtn = ({ type }) => {
   //페이지 이동
   const navigate = useNavigate();
 

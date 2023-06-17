@@ -40,23 +40,23 @@ const DiaryEditor = ({ isEdit, originData }) => {
       1: "HAPPY",
       2: "SOSO",
       3: "SAD",
-      4: "ANGRY"
+      4: "ANGRY",
     };
 
     const req = {
       title,
       content,
-      emotion: emotionName[emotion]
+      emotion: emotionName[emotion],
     };
     console.log(user.email);
     console.log(user.password);
 
     const token = btoa(`${user.email}:${user.password}`);
     const headers = {
-      "Authorization": `Basic ${token}`
-    }
+      Authorization: `Basic ${token}`,
+    };
     const config = {
-      headers: headers
+      headers: headers,
     };
     console.log(req);
 
@@ -64,7 +64,7 @@ const DiaryEditor = ({ isEdit, originData }) => {
       console.log(response);
       const diaryId = response.diary_id;
       window.location.href = "/diary/${diaryId}";
-    })
+    });
   };
 
   useEffect(() => {
@@ -75,6 +75,14 @@ const DiaryEditor = ({ isEdit, originData }) => {
       setContent(originData.content);
     }
   }, [isEdit, originData]);
+
+  const saveView = () => {
+    if (window.confirm("그림 생성을 완료하셨습니까? 완료 시 저장됩니다.")) {
+      alert("저장되었습니다.");
+    } else {
+      alert("그림 생성 버튼을 눌러 그림 생성을 진행하세요.");
+    }
+  };
 
   return (
     <div className="Diary">
@@ -131,20 +139,24 @@ const DiaryEditor = ({ isEdit, originData }) => {
               />
               <div className="writer">작성자: {user.nickname}</div>
             </header>
-
-            <div className="TextSquareContainer">
-              <div class="textarea-container">
-                <textarea
-                  ref={contentRef}
-                  value={content}
-                  onChange={(e) => setContent(e.target.value)}
-                  placeholder="오늘 하루는 어땠나요?"
-                />
-              </div>
+            <div class="textarea-container">
+              <textarea
+                ref={contentRef}
+                value={content}
+                onChange={(e) => setContent(e.target.value)}
+                placeholder="오늘 하루는 어땠나요?"
+              />
             </div>
-            <div className="RightBottomDiv">
-              <button onClick={handleSubmit}>저장하기</button>
-            </div>
+          </div>
+          <div className="RightBottomDiv">
+            <button
+              onClick={() => {
+                handleSubmit();
+                saveView();
+              }}
+            >
+              저장하기
+            </button>
           </div>
         </div>
       </div>

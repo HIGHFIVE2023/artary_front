@@ -11,7 +11,7 @@
 .textarea-container {
   background-repeat: repeat-y;
   background-size: contain;
-  padding: 3px;
+  padding: 5px;
 }
 
 textarea {
@@ -19,8 +19,8 @@ textarea {
   background-color: transparent;
   border: none;
   font-size: 19px;
-  height: 270px;
-  width: 330px;
+  height: 300px;
+  width: 310px;
   resize: none;
 
   line-height: 1.75; /* 줄간격 설정 */
@@ -28,7 +28,6 @@ textarea {
 }
 
 /*임시^^*/
-
 .body {
   background-color: #f6f6f6;
   display: flex;
@@ -201,124 +200,6 @@ button {
   display: block;
   margin: 0 auto;
 }
-/*왼쪽 그림 출력 div*/
-.LeftDivOveray {
-  position: absolute;
-  top: 5px;
-  left: 0px;
-  display: flex;
-  flex-wrap: wrap;
-  width: 350px;
-  height: 85%;
-  margin-left: 30px;
-  margin-top: 30px;
-  border: 1px solid#e2e2e2;
-}
-.Left {
-  /* background-color: yellow; */
-  width: 90%;
-  height: 85%;
-  display: block;
-  margin-left: 10px;
-  margin-top: 10px;
-  position: absolute;
-  border: 1px solid#e2e2e2;
-}
-
-/*기분 이모지랑 기분 날짜 출력*/
-header {
-  padding: 5px;
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid #e2e2e2;
-}
-
-header > div {
-  display: flex;
-}
-
-.LeftBottomDiv {
-  margin: 5px;
-}
-
-.LeftBottomDiv {
-  margin: 5px;
-  position: absolute;
-  bottom: 5px;
-  right: 15px;
-}
-
-/*작성자*/
-.writer {
-  margin-left: 12px;
-}
-.title {
-  margin-right: 12px;
-}
-/*이모티콘*/
-.Emotion {
-  margin-left: 12px;
-}
-.EmotionItem {
-  margin-left: 4px;
-}
-.EmotionItem img {
-  width: 30px;
-  margin: 0px;
-}
-.EmotionItem-on-1 {
-  background-color: #64c964;
-}
-.EmotionItem-on-2 {
-  background-color: #9dd772;
-}
-.EmotionItem-on-3 {
-  background-color: #fdce17;
-}
-.EmotionItem-on-4 {
-  background-color: #fd8446;
-}
-.EmotionItem-on-5 {
-  background-color: #fd565f;
-}
-/*오른쪽 구성 -> 묶어서 수정 예정*/
-.TextSquareContainer {
-  position: absolute;
-  display: flex;
-  flex-wrap: wrap;
-  width: 350px;
-}
-
-.RightBottomDiv {
-  margin: 5px;
-  position: absolute;
-  bottom: 5px;
-  right: 15px;
-}
-
-.RightDivOveray {
-  position: absolute;
-  top: 5px;
-  right: 0px;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  width: 350px;
-  height: 85%;
-  margin-right: 30px;
-  margin-top: 30px;
-  border: 1px solid#e2e2e2;
-}
-
-.Right {
-  width: 90%;
-  height: 100%;
-  display: block;
-  margin-left: 10px;
-  margin-top: 10px;
-  position: absolute;
-  border: 1px solid#e2e2e2;
-}
 
 .CalendarPage {
   position: absolute;
@@ -412,4 +293,27 @@ header > div {
 }
 .BottomBtn img {
   width: 40px;
+}
+/*이모티콘*/
+.Emotion {
+  margin-left: 12px;
+}
+.EmotionItem {
+  margin-left: 4px;
+}
+.EmotionItem img {
+  width: 30px;
+  margin: 0px;
+}
+.EmotionItem-on-1 {
+  background-color: #9dd772;
+}
+.EmotionItem-on-2 {
+  background-color: #fdce17;
+}
+.EmotionItem-on-3 {
+  background-color: #fda117;
+}
+.EmotionItem-on-4 {
+  background-color: #fd565f;
 }
