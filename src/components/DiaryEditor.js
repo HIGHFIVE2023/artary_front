@@ -22,6 +22,7 @@ const DiaryEditor = ({ isEdit, originData }) => {
   const [title, setTitle] = useState("");
   const [diaryId, setDiaryId] = useState("");
   const [imageSrc, setImageSrc] = useState("");
+  const [isLoading, setLoading] = useState(false);
   const [emotion, setEmotion] = useState(3);
   //기본 선택 감정 3번감정
   const [date, setDate] = useState(getStringDate(new Date()));
@@ -55,6 +56,8 @@ const DiaryEditor = ({ isEdit, originData }) => {
 
     console.log(req);
 
+    setLoading(true);
+
     call("/diary/write", "POST", req).then((response) => {
       console.log(response);
       setDiaryId(response.id);
@@ -62,10 +65,10 @@ const DiaryEditor = ({ isEdit, originData }) => {
       return call(`/diary/${response.id}/picture`, "GET", null);
     }).then((response) => {
       console.log(response);
-      const url = URL.createObjectURL(response);
-      console.log(url);
-      setImageSrc(url);
-    })
+      setLoading(false);
+    }).catch((error) => {
+      setLoading(false);
+    });
   };
 
   const handleClick = () => {
@@ -128,6 +131,7 @@ const DiaryEditor = ({ isEdit, originData }) => {
               </div>
             </header>
             <div>
+              {isLoading && <div>로딩 중...</div>}
               {imageSrc && <img src={imageSrc} alt="Diary Image" />}
             </div>
           </div>
