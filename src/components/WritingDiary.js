@@ -4,7 +4,7 @@ import { call } from "../service/ApiService";
 
 const WritingDiary = () => {
   const { diaryId } = useParams();
-  const [diary, setDiary] = useState({ title: "", content: "" });
+  const [diary, setDiary] = useState({ title: "", content: "", image: "" });
 
   useEffect(() => {
     call(`/diary/${diaryId}`, "GET", null)
@@ -17,7 +17,7 @@ const WritingDiary = () => {
     });
   }, [diaryId]);
 
-  const { title, content } = diary;
+  const { title, content, image } = diary;
 
   const numRows = 9;
   const numCols = 8;
@@ -54,6 +54,7 @@ const WritingDiary = () => {
         <div className="작성자"></div>
       </header>
       <div className="TextSquareContainer">{squares}</div>
+      <div><img src={image} alt="Diary Image" /></div>
     </div>
   );
 };

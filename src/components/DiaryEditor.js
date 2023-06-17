@@ -20,6 +20,8 @@ const DiaryEditor = ({ isEdit, originData }) => {
   const contentRef = useRef();
   const [content, setContent] = useState("");
   const [title, setTitle] = useState("");
+  const [diaryId, setDiaryId] = useState("");
+  const [imageSrc, setImageSrc] = useState("");
   const [emotion, setEmotion] = useState(3);
   //기본 선택 감정 3번감정
   const [date, setDate] = useState(getStringDate(new Date()));
@@ -55,11 +57,15 @@ const DiaryEditor = ({ isEdit, originData }) => {
 
     call("/diary/write", "POST", req).then((response) => {
       console.log(response);
-      const diaryId = response.id;
+      setDiaryId(response.id);
       console.log(diaryId);
 
-      navigate(`/diary/${diaryId}`);
+      return call(`/diary/${response.id}/picture`, "GET", null);
     });
+  };
+
+  const handleClick = () => {
+    navigate(`/diary/${diaryId}`);
   };
 
   useEffect(() => {
@@ -116,6 +122,9 @@ const DiaryEditor = ({ isEdit, originData }) => {
                 ))}
               </div>
             </header>
+            <div>
+              {imageSrc && <img src={imageSrc} alt="Diary Image" />}
+            </div>
           </div>
           <div className="LeftBottomDiv">
             <button onClick={handleSubmit}>그림 불러오기</button>
@@ -146,7 +155,7 @@ const DiaryEditor = ({ isEdit, originData }) => {
           <div className="RightBottomDiv">
             <button
               onClick={() => {
-                handleSubmit();
+                handleClick();
                 saveView();
               }}
             >
