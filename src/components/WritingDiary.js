@@ -8,13 +8,13 @@ const WritingDiary = () => {
 
   useEffect(() => {
     call(`/diary/${diaryId}`, "GET", null)
-      .then((response)=> {
+      .then((response) => {
         console.log(response);
         setDiary(response);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }, [diaryId]);
 
   const { title, content, image } = diary;
@@ -54,7 +54,6 @@ const WritingDiary = () => {
         <div className="작성자"></div>
       </header>
       <div className="TextSquareContainer">{squares}</div>
-      <div><img src={image} alt="Diary Image" /></div>
     </div>
   );
 };
