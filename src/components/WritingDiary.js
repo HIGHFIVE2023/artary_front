@@ -6,21 +6,28 @@ const WritingDiary = () => {
   const { diaryId } = useParams();
   const [diary, setDiary] = useState({ title: "", content: "", image: "" });
 
+  let [inputCount, setInputCount] = useState(0);
+
   useEffect(() => {
     call(`/diary/${diaryId}`, "GET", null)
-      .then((response)=> {
+      .then((response) => {
         console.log(response);
         setDiary(response);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }, [diaryId]);
 
   const { title, content, image } = diary;
 
   const numRows = 9;
-  const numCols = 8;
+  let numCols = 8;
+
+  if (content.length > 72) {
+    numCols = Math.ceil(content.length / numRows);
+  }
+
   const squares = [];
 
   for (let i = 0; i < numRows; i++) {
@@ -47,6 +54,7 @@ const WritingDiary = () => {
       </div>
     );
   }
+
   return (
     <div className="Right">
       <header>
@@ -54,8 +62,9 @@ const WritingDiary = () => {
         <div className="작성자"></div>
       </header>
       <div className="TextSquareContainer">{squares}</div>
-      <div><img src={image} alt="Diary Image" /></div>
+      <img src={image} alt="Diary Image" />
     </div>
   );
 };
+
 export default WritingDiary;

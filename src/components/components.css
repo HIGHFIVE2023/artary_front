@@ -86,11 +86,14 @@ li {
 }
 
 /*오른쪽 구성 -> 묶어서 수정 예정*/
+
 .TextSquareContainer {
   position: absolute;
   display: flex;
   flex-wrap: wrap;
   width: 350px;
+  overflow: auto;
+  max-height: 310px;
 }
 
 .RightBottomDiv {
@@ -107,7 +110,7 @@ li {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  width: 350px;
+  width: 345px;
   height: 85%;
   margin-right: 30px;
   margin-top: 30px;
@@ -117,7 +120,7 @@ li {
   width: 95%;
   height: 85%;
   display: block;
-  margin-left: 15px;
+  margin-left: 5px;
   margin-bottom: 40px;
   position: absolute;
   border: 3px solid#212121;
@@ -126,6 +129,10 @@ li {
 
 /*기분 이모지랑 기분 날짜 출력*/
 header {
+  position: "fixed";
+  top: 0;
+  left: 0;
+  right: 0;
   padding: 5px;
   display: flex;
   align-items: center;
