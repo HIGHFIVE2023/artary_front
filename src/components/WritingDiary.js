@@ -4,7 +4,9 @@ import { call } from "../service/ApiService";
 
 const WritingDiary = () => {
   const { diaryId } = useParams();
-  const [diary, setDiary] = useState({ title: "", content: "", image: "" });
+  const [diary, setDiary] = useState({ title: "", content: "" });
+
+  let [inputCount, setInputCount] = useState(0);
 
   useEffect(() => {
     call(`/diary/${diaryId}`, "GET", null)
@@ -17,10 +19,15 @@ const WritingDiary = () => {
       });
   }, [diaryId]);
 
-  const { title, content, image } = diary;
+  const { title, content } = diary;
 
   const numRows = 9;
-  const numCols = 8;
+  let numCols = 8;
+
+  if (content.length > 72) {
+    numCols = Math.ceil(content.length / numRows);
+  }
+
   const squares = [];
 
   for (let i = 0; i < numRows; i++) {
@@ -47,6 +54,7 @@ const WritingDiary = () => {
       </div>
     );
   }
+
   return (
     <div className="Right">
       <header>
@@ -57,4 +65,5 @@ const WritingDiary = () => {
     </div>
   );
 };
+
 export default WritingDiary;
