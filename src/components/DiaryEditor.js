@@ -54,19 +54,22 @@ const DiaryEditor = ({ isEdit, originData }) => {
 
     setLoading(true);
 
-    call("/diary/write", "POST", req).then((response) => {
-      console.log(response);
-      setDiaryId(response.id);
+    call("/diary/write", "POST", req)
+      .then((response) => {
+        console.log(response);
+        setDiaryId(response.id);
 
-      return call(`/diary/${response.id}/picture`, "GET", null);
-    }).then((imgResponse) => {
-      console.log(imgResponse.imageUrl);
-      setLoading(false);
-      setImageSrc(imgResponse.imageUrl);
-    }).catch((error) => {
-      console.error(error);
-      setLoading(false);
-    });
+        return call(`/diary/${response.id}/picture`, "GET", null);
+      })
+      .then((imgResponse) => {
+        console.log(imgResponse.imageUrl);
+        setLoading(false);
+        setImageSrc(imgResponse.imageUrl);
+      })
+      .catch((error) => {
+        console.error(error);
+        setLoading(false);
+      });
   };
 
   const handleClick = () => {
@@ -79,7 +82,6 @@ const DiaryEditor = ({ isEdit, originData }) => {
       setDate(getStringDate(new Date(parseInt(originData.date))));
       setEmotion(originData.emotion);
       setContent(originData.content);
-      
     }
   }, [isEdit, originData]);
 
@@ -101,7 +103,7 @@ const DiaryEditor = ({ isEdit, originData }) => {
             alt="diary background"
           />
           <div className="IndexBtnContainer">
-            <IndexBtn />
+            <IndexBtn type={"diary"} text1={"다이어리"} />
           </div>
         </div>
 
