@@ -99,7 +99,7 @@ li {
 .RightBottomDiv {
   margin: 5px;
   position: absolute;
-  bottom: 5px;
+  bottom: -10px;
   right: 15px;
 }
 
@@ -145,7 +145,7 @@ header > div {
 
 /*작성자*/
 .writer {
-  margin-left: 12px;
+  margin-right: 12px;
 }
 .title {
   margin: 7px 12px 7px 6px;

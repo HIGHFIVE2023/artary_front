@@ -3,6 +3,7 @@ import { useParams } from "react-router";
 import { call } from "../service/ApiService";
 
 const WritingDiary = () => {
+  const user = JSON.parse(localStorage.getItem("user"));
   const { diaryId } = useParams();
   const [diary, setDiary] = useState({ title: "", content: "" });
 
@@ -59,7 +60,7 @@ const WritingDiary = () => {
     <div className="Right">
       <header>
         <div className="title">제목: {title}</div>
-        <div className="작성자"></div>
+        <div className="writer">작성자: {user.nickname}</div>
       </header>
       <div className="TextSquareContainer">{squares}</div>
     </div>
