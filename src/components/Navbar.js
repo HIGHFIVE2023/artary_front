@@ -9,6 +9,7 @@ const Navbar = () => {
   const [nickname, setNickname] = useState("");
 
   useEffect(() => {
+    // localStorage에서 사용자 정보를 가져옴
     const userDto = JSON.parse(localStorage.getItem("user"));
     if (userDto) {
       setIsLoggedIn(true);
@@ -18,7 +19,6 @@ const Navbar = () => {
       setNickname("");
     }
   }, []);
-
 
   const handleLogout = async () => {
     try {

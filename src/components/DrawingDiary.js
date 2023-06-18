@@ -20,18 +20,15 @@ const DrawingDiary = () => {
   const { image } = diary;
 
   return (
-    <div className="LeftDivOveray">
-      <div className="Left">
-        <header>
-          <div className="theDate">날짜</div>
-          <div className="Emotion">오늘의 기분</div>
-          <div className="todayEmotion">이모지</div>
-        </header>
-        <div className="imageContainer">
-          <img className="diaryImage" src={image} alt="Diary Image" />
-        </div>
+    <div className="Left">
+      <header>
+        <div className="theDate">날짜</div>
+        <div className="Emotion">오늘의 기분</div>
+        <div className="todayEmotion">이모지</div>
+      </header>
+      <div className="imageContainer">
+        <img className="diaryImage" src={image} alt="Diary Image" />
       </div>
-      <div className="LeftBottomDiv"></div>
     </div>
   );
 };
