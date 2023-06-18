@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { async } from "q";
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -22,9 +23,15 @@ const Register = () => {
   const [isPassword, setIsPassword] = useState(false);
   const [isEmail, setIsEmail] = useState(false);
 
-  const onChangeName = (e) => {
-    const currentId = e.target.value;
-    setName(currentId);
+  const onChangeName = async (e) => {
+    const currentMyname = e.target.value;
+    setName(currentMyname);
+    if (currentMyname == null) {
+      setNameMessage("이름을 입력해주세요.");
+      setIsName(false);
+    } else {
+      setIsName(true);
+    }
   };
 
   const onChangeNickname = async (e) => {
@@ -102,6 +109,10 @@ const Register = () => {
   const handleSubmit = async (e) => {
     // 회원가입 요청을 보내는 함수
     e.preventDefault();
+    if (!name || !nickname || !email || !password) {
+      alert("양식에 맞춰주세요");
+      return;
+    }
     await axios
       .post("http://localhost:8080/users/signup", {
         name,
@@ -124,7 +135,7 @@ const Register = () => {
 
   return (
     <div className="input-group">
-      <form onSubmit={handleSubmit}>
+      <form>
         <input
           id="name"
           name="name"
@@ -161,7 +172,7 @@ const Register = () => {
           required
         />
         <p className="message">{pwdMsg}</p>
-        <button className="signupBtn" type="submit">
+        <button className="signupBtn" onClick={handleSubmit} type="submit">
           Sign Up
         </button>
       </form>
