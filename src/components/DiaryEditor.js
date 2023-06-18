@@ -132,7 +132,9 @@ const DiaryEditor = ({ isEdit, originData }) => {
             </header>
             <div>
               {isLoading && <div>로딩 중...</div>}
-              {!imageSrc ? null : <img src={imageSrc} alt="Diary Image" />}
+              {!imageSrc ? null : (
+                <img src={imageSrc} className="diaryImage" alt="Diary Image" />
+              )}
             </div>
           </div>
           <div className="LeftBottomDiv">

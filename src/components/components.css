@@ -81,7 +81,7 @@ li {
 .LeftBottomDiv {
   margin: 5px;
   position: absolute;
-  bottom: 5px;
+  bottom: -10px;
   right: 15px;
 }
 
@@ -160,6 +160,11 @@ header > div {
 }
 
 .diaryImage {
-  max-width: 100%;
-  max-height: 100%;
+  margin-bottom: 30px;
+  max-height: 85%;
+  width: auto;
+  max-width: 95%;
+  display: block; /* 이미지를 블록 요소로 설정하여 가운데 정렬을 적용합니다 */
+  margin-left: auto; /* 왼쪽 여백을 자동으로 설정하여 가운데 정렬을 적용합니다 */
+  margin-right: auto; /* 오른쪽 여백을 자동으로 설정하여 가운데 정렬을 적용합니다 */
 }
