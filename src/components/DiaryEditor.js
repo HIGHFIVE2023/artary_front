@@ -130,11 +130,17 @@ const DiaryEditor = ({ isEdit, originData }) => {
                 ))}
               </div>
             </header>
+<<<<<<< HEAD
             <div>
               {isLoading && <div>로딩 중...</div>}
               {!imageSrc ? null : (
                 <img src={imageSrc} className="diaryImage" alt="Diary Image" />
               )}
+=======
+            <div className="container">
+              {isLoading && <div className="loading-container"><img className="loadingImg" src="../img/loading.png" />그림 생성 중...</div>}
+              {!imageSrc ? null : <img src={imageSrc} alt="Diary Image" />}
+>>>>>>> 4b1ca008b7ecb709d3a2d590e3c64349c9d7e5d1
             </div>
           </div>
           <div className="LeftBottomDiv">

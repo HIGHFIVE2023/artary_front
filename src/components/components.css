@@ -168,3 +168,29 @@ header > div {
   margin-left: auto; /* 왼쪽 여백을 자동으로 설정하여 가운데 정렬을 적용합니다 */
   margin-right: auto; /* 오른쪽 여백을 자동으로 설정하여 가운데 정렬을 적용합니다 */
 }
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loadingContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-top: 100px;
+}
+
+.loadingImg {
+  display: block;
+  margin: 0 auto;
+  max-width: 100px;
+  max-height: 100px;
+}
+
+.emotionImg {
+  width: 30px;
+  height: 30px;
+}
