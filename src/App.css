@@ -97,6 +97,17 @@ button {
   outline: none;
   font-family: "crayon";
 }
+.LoginIndexBtnContainer {
+  font-family: "crayon";
+  position: absolute;
+  right: -60px;
+  top: 44px;
+  padding: 10px;
+  display: "flex";
+  justify-content: "center";
+  align-items: "center";
+  border: none;
+}
 .IndexBtnContainer {
   font-family: "crayon";
   position: absolute;
@@ -119,6 +130,7 @@ button {
 .indexContainer03 {
   margin-bottom: 3px;
 }
+
 .Index01 {
   cursor: pointer;
   width: 50px;

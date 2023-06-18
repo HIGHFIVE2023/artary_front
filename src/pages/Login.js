@@ -10,14 +10,12 @@ const Login = () => {
 
   const navigate = useNavigate();
   const handleLogin = (e) => {
-    
     e.preventDefault(); //새로고침 방지
 
     const userDto = {
       email: email,
-      password: password, 
+      password: password,
     };
-
 
     login(userDto)
       .then((response) => {
@@ -32,7 +30,6 @@ const Login = () => {
       });
   };
 
-
   const navigateToSignUp = () => {
     navigate("/users/signup");
   };
@@ -45,7 +42,7 @@ const Login = () => {
             src="/img/diary.png"
             alt="diary background"
           />
-          <div className="IndexBtnContainer">
+          <div className="LoginIndexBtnContainer">
             <IndexBtn />
           </div>
         </div>

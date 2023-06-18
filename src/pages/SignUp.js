@@ -11,7 +11,7 @@ const SignUp = ({}) => {
             src="/img/diary.png"
             alt="diary background"
           />
-          <div className="IndexBtnContainer">
+          <div className="LoginIndexBtnContainer">
             <IndexBtn />
           </div>
         </div>
