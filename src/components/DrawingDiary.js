@@ -4,7 +4,7 @@ import { call } from "../service/ApiService";
 
 const DrawingDiary = () => {
   const { diaryId } = useParams();
-  const [diary, setDiary] = useState({ image: "" });
+  const [diary, setDiary] = useState({ emotion: "", image: "", createdAt: "" });
 
   useEffect(() => {
     call(`/diary/${diaryId}`, "GET", null)
@@ -17,14 +17,25 @@ const DrawingDiary = () => {
       });
   }, [diaryId]);
 
-  const { image } = diary;
+  const { emotion, image, createdAt } = diary;
+
+  const emotionImg = {
+    HAPPY: "emotion01.png",
+    SOSO: "emotion02.png",
+    SAD: "emotion03.png",
+    ANGRY: "emotion04.png",
+  };
+
+  const emotionImgSrc = `../img/${emotionImg[emotion]}`;
+
+  const date = createdAt.substring(0, 10);
 
   return (
     <div className="Left">
       <header>
-        <div className="theDate">날짜</div>
-        <div className="Emotion">오늘의 기분</div>
-        <div className="todayEmotion">이모지</div>
+        <div className="theDate">날짜: {date}</div>
+        <div className="Emotion">오늘의 기분: </div>
+        <div className="todayEmotion"><img className="emotionImg" src={emotionImgSrc} /></div>
       </header>
       <div className="imageContainer">
         <img className="diaryImage" src={image} alt="Diary Image" />
