@@ -2,6 +2,8 @@ import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import { login } from "../service/ApiService";
 import IndexBtn from "../components/IndexBtn";
+import Circles from "../components/Circles";
+import Springs from "../components/Springs";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -9,6 +11,7 @@ const Login = () => {
   const [error, setError] = useState("");
 
   const navigate = useNavigate();
+
   const handleLogin = (e) => {
     e.preventDefault(); //새로고침 방지
 
@@ -35,64 +38,69 @@ const Login = () => {
   };
   return (
     <div className="Diary">
-      <div className="DiaryFrame">
-        <div className="DiaryImageContainer">
-          <img
-            className="DiaryImage"
-            src="/img/diary.png"
-            alt="diary background"
-          />
-          <div className="LoginIndexBtnContainer">
+      <div className="DiaryFrameContainer">
+        <div className="DiaryFrame">
+          <div className="IndexBtnContainer">
             <IndexBtn />
           </div>
-        </div>
-        <div className="LeftDivOveray">
-          <img className="DiaryIntro" src="/img/intro.png" />
-        </div>
-        <div className="RightDivOveray">
-          <img className="LoginIcon" src="/img/icon.png" alt="login icon" />
-          <div className="input-group">
-            <input
-              className="id"
-              id="id"
-              name="id"
-              placeholder="아이디를 입력해주세요"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <input
-              className="pwd"
-              id="password"
-              name="password"
-              type="password"
-              placeholder="비밀번호를 입력해주세요"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
+          <div className="LeftDivOveray">
+            <img className="DiaryIntro" src="/img/intro.png" />
           </div>
-          <button className="loginbtn" onClick={handleLogin}>
-            로그인
-          </button>
-          {error && <p className="error-message">{error}</p>}
-          <div className="extra-login-group">
-            <btn className="findId" onClick={() => alert("잘 기억해보세요.")}>
-              아이디 찾기
-            </btn>
-            <btn className="findPwd" onClick={() => alert("잘 기억해보세요.")}>
-              비밀번호 찾기
-            </btn>
-            <btn className="GoSignUp" onClick={navigateToSignUp}>
-              회원가입
-            </btn>
+          <div className="SpringMaker">
+            <Circles style={{ marginRight: "1em" }} />
+            <div className="Spring">
+              <Springs />
+            </div>
+            <Circles style={{ marginLeft: "1em" }} />
           </div>
-          <div className="kakaologinContainer">
-            <a href="http://localhost:8080/oauth2/authorization/kakao">
-              <img
-                className="kakaoLogin"
-                src="/img/kakao_login_medium_narrow.png"
-                alt="kakao-login"
+          <div className="RightDivOveray">
+            <img className="LoginIcon" src="/img/icon.png" alt="login icon" />
+            <div className="input-group">
+              <input
+                className="id"
+                id="id"
+                name="id"
+                placeholder="아이디를 입력해주세요"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
-            </a>
+              <input
+                className="pwd"
+                id="password"
+                name="password"
+                type="password"
+                placeholder="비밀번호를 입력해주세요"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+            <button className="loginbtn" onClick={handleLogin}>
+              로그인
+            </button>
+            {error && <p className="error-message">{error}</p>}
+            <div className="extra-login-group">
+              <btn className="findId" onClick={() => alert("잘 기억해보세요.")}>
+                아이디 찾기
+              </btn>
+              <btn
+                className="findPwd"
+                onClick={() => alert("잘 기억해보세요.")}
+              >
+                비밀번호 찾기
+              </btn>
+              <btn className="GoSignUp" onClick={navigateToSignUp}>
+                회원가입
+              </btn>
+            </div>
+            <div className="kakaologinContainer">
+              <a href="http://localhost:8080/oauth2/authorization/kakao">
+                <img
+                  className="kakaoLogin"
+                  src="/img/kakao_login_medium_narrow.png"
+                  alt="kakao-login"
+                />
+              </a>
+            </div>
           </div>
         </div>
       </div>
