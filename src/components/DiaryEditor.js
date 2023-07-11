@@ -102,7 +102,6 @@ const DiaryEditor = ({ isEdit, originData }) => {
           <div className="IndexBtnContainer">
             <IndexBtn type={"write"} text1={"일기쓰기"} />
           </div>
-
           <div className="LeftDivOveray">
             <div className="Left">
               <header>

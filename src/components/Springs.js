@@ -24,7 +24,7 @@ const Springs = ({ style }) => {
       <Spring style={{ marginTop: "40%", marginBottom: "80%" }} />
       <Spring style={{ marginBottom: "80%" }} />
       <Spring style={{ marginBottom: "80%" }} />
-      <Spring style={{ marginBottom: "82%" }} />
+      <Spring style={{ marginBottom: "80%" }} />
       <Spring style={{ marginBottom: "80%" }} />
       <Spring style={{ marginBottom: "1.6em" }} />
     </SpringContainer>
