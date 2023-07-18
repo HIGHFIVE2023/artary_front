@@ -9,11 +9,6 @@ const Diary = () => {
     <div className="Diary">
       <div className="DiaryFrame">
         <div className="DiaryImageContainer">
-          <img
-            className="DiaryImage"
-            src="/img/diary.png"
-            alt="diary background"
-          />
           <div className="IndexBtnContainer">
             <IndexBtn type={"diary"} text1={"다이어리"} />
           </div>

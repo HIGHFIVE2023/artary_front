@@ -13,11 +13,6 @@ const Home = () => {
     <div className="Home">
       <div className="HomeFrame">
         <div className="HomeImageContainer">
-          <img
-            className="HomeImage"
-            src="/img/home.png"
-            alt="home background"
-          />
           <img className="MainIcon" src="/img/mainicon.png" alt="main icon" />
           <div className="HomeButtonContainer">
             <IndexBtn />

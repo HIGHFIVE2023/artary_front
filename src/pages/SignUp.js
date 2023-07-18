@@ -6,11 +6,6 @@ const SignUp = ({}) => {
     <div className="Diary">
       <div className="DiaryFrame">
         <div className="DiaryImageContainer">
-          <img
-            className="DiaryImage"
-            src="/img/diary.png"
-            alt="diary background"
-          />
           <div className="LoginIndexBtnContainer">
             <IndexBtn />
           </div>

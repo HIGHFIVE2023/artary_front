@@ -35,13 +35,9 @@ const Login = () => {
   };
   return (
     <div className="Diary">
+      <div class="middle"></div>
       <div className="DiaryFrame">
         <div className="DiaryImageContainer">
-          <img
-            className="DiaryImage"
-            src="/img/diary.png"
-            alt="diary background"
-          />
           <div className="LoginIndexBtnContainer">
             <IndexBtn />
           </div>
@@ -49,6 +45,7 @@ const Login = () => {
         <div className="LeftDivOveray">
           <img className="DiaryIntro" src="/img/intro.png" />
         </div>
+
         <div className="RightDivOveray">
           <img className="LoginIcon" src="/img/icon.png" alt="login icon" />
           <div className="input-group">
