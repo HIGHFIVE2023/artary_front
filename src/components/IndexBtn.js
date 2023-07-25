@@ -18,6 +18,10 @@ const IndexBtn = ({ type, text1, text2, text3 }) => {
     navigate("/calenpage");
   };
 
+  const navigateToMypage = () => {
+    navigate("/mypage");
+  };
+
   return (
     <section>
       <div className="indexContainer01">
@@ -51,10 +55,7 @@ const IndexBtn = ({ type, text1, text2, text3 }) => {
         </button>
       </div>
       <div className="indexContainer04">
-        <button
-          className="Index04"
-          onClick={() => alert("마이페이지는 준비 중!")}
-        >
+        <button className="Index04" onClick={navigateToMypage}>
           <img src="../img/mypage.png" height="20px" width="20px" />
         </button>
       </div>
