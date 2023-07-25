@@ -97,7 +97,7 @@ const Register = () => {
       /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,30}$/;
     if (!passwordRegExp.test(currPwd)) {
       setPwdMsg(
-        "비밀번호는 8~30 자리이면서 1개 이상의 알파벳, 숫자, 특수문자를 포함해야합니다."
+        "비밀번호는 8~30 자리이면서 알파벳, 숫자, 특수문자를 포함해야 합니다."
       );
       setIsPassword(false);
     } else {
@@ -131,6 +131,11 @@ const Register = () => {
         console.error(error.response.data); // 에러 응답 데이터 확인
         setError("회원가입에 실패하였습니다."); // 에러 메시지 설정
       });
+  };
+  const handleOnKeyPress = (e) => {
+    if (e.key === "Enter") {
+      handleSubmit(); // Enter 입력이 되면 클릭 이벤트 실행
+    }
   };
 
   return (
@@ -170,6 +175,7 @@ const Register = () => {
           onChange={onChangePwd}
           placeholder="비밀번호를 입력해주세요."
           required
+          onKeyPress={handleOnKeyPress}
         />
         <p className="message">{pwdMsg}</p>
         <button className="signupBtn" onClick={handleSubmit} type="submit">

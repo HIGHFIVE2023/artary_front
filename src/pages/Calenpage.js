@@ -61,22 +61,32 @@ function Calenpage() {
 
   return (
     <div className="Diary">
-      <div className="DiaryFrame">
-        <div className="DiaryImageContainer">
+      <div className="DiaryFrameContainer">
+        <div className="DiaryFrame">
           <div className="IndexBtnContainer">
-            <IndexBtn type={"calendar"} text2={"캘린더"} />
+            <IndexBtn type={"calendar"} text3={"캘린더"} />
           </div>
-          <Calendar
-            onChange={setDate}
-            formatDay={(locale, date) => moment(date).format("DD")}
-            value={date}
-            locale="ko-KO"
-            calendarType="US"
-            className="CalendarPage"
-            tileContent={tileContent} // 이모지를 표시하는 tileContent 함수를 전달
-          />
+
           <div className="LeftDivOveray">
             <Chart />
+          </div>
+          <div className="SpringMaker">
+            <Circles style={{ marginRight: "1em" }} />
+            <div className="Spring">
+              <Springs />
+            </div>
+            <Circles style={{ marginLeft: "1em" }} />
+          </div>
+          <div className="RightDivOveray">
+            <Calendar
+              onChange={setDate}
+              formatDay={(locale, date) => moment(date).format("DD")}
+              value={date}
+              locale="ko-KO"
+              calendarType="US"
+              className="CalendarPage"
+              tileContent={tileContent} // 이모지를 표시하는 tileContent 함수를 전달
+            />
           </div>
         </div>
       </div>

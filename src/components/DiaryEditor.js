@@ -8,6 +8,8 @@ import React, {
 import { useNavigate } from "react-router-dom";
 
 import IndexBtn from "../components/IndexBtn";
+import Circles from "./Circles";
+import Springs from "./Springs";
 import BottomBtn from "../components/BottomBtn";
 import EmotionItem from "../components/EmotionItem";
 
@@ -95,88 +97,93 @@ const DiaryEditor = ({ isEdit, originData }) => {
 
   return (
     <div className="Diary">
-      <div className="DiaryFrame">
-        <div className="DiaryImageContainer">
-          <img
-            className="DiaryImage"
-            src="/img/diary.png"
-            alt="diary background"
-          />
+      <div className="DiaryFrameContainer">
+        <div className="DiaryFrame">
           <div className="IndexBtnContainer">
-            <IndexBtn type={"diary"} text1={"다이어리"} />
+            <IndexBtn type={"write"} text1={"일기쓰기"} />
           </div>
-        </div>
-
-        <div className="LeftDivOveray">
-          <div className="Left">
-            <header>
-              <div className="theDate">
+          <div className="LeftDivOveray">
+            <div className="Left">
+              <header>
+                <div className="theDate">
+                  <input
+                    className="input-date"
+                    value={date}
+                    onChange={(e) => setDate(e.target.value)}
+                    type="date"
+                  />
+                </div>
+                <div className="Emotion">
+                  {"기분"}
+                  {emotionList.map((it) => (
+                    <EmotionItem
+                      key={it.emotion_id}
+                      {...it}
+                      onClick={handleClickEmote}
+                      isSelected={it.emotion_id === emotion}
+                    />
+                  ))}
+                </div>
+              </header>
+              <div className="container">
+                {isLoading && (
+                  <div className="loading-container">
+                    <img className="loadingImg" src="../img/loading.png" />
+                    그림 생성 중...
+                  </div>
+                )}
+                {!imageSrc ? null : (
+                  <img
+                    src={imageSrc}
+                    className="diaryImage"
+                    alt="Diary Image"
+                  />
+                )}
+              </div>
+            </div>
+            <div className="LeftBottomDiv">
+              <button onClick={handleSubmit}>그림 불러오기</button>
+            </div>
+          </div>
+          <div className="SpringMaker">
+            <Circles style={{ marginRight: "1em" }} />
+            <div className="Spring">
+              <Springs />
+            </div>
+            <Circles style={{ marginLeft: "1em" }} />
+          </div>
+          <div className="RightDivOveray">
+            <div className="Right">
+              <header>
+                <div className="title">제목: </div>
                 <input
-                  className="input-date"
-                  value={date}
-                  onChange={(e) => setDate(e.target.value)}
-                  type="date"
+                  placeholder="제목을 입력하세요."
+                  type="text"
+                  id="my-input"
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
+                />
+                <div className="writer">작성자: {user.nickname}</div>
+              </header>
+              <div class="textarea-container">
+                <textarea
+                  ref={contentRef}
+                  value={content}
+                  onChange={(e) => setContent(e.target.value)}
+                  placeholder="오늘 하루는 어땠나요?"
                 />
               </div>
-              <div className="Emotion">
-                {"기분"}
-                {emotionList.map((it) => (
-                  <EmotionItem
-                    key={it.emotion_id}
-                    {...it}
-                    onClick={handleClickEmote}
-                    isSelected={it.emotion_id === emotion}
-                  />
-                ))}
-              </div>
-            </header>
-            <div className="container">
-              {isLoading && (
-                <div className="loading-container">
-                  <img className="loadingImg" src="../img/loading.png" />
-                  그림 생성 중...
-                </div>
-              )}
-              {!imageSrc ? null : (
-                <img src={imageSrc} className="diaryImage" alt="Diary Image" />
-              )}
             </div>
-          </div>
-          <div className="LeftBottomDiv">
-            <button onClick={handleSubmit}>그림 불러오기</button>
-          </div>
-        </div>
-        <div className="RightDivOveray">
-          <div className="Right">
-            <header>
-              <div className="title">제목: </div>
-              <input
-                placeholder="제목을 입력하세요."
-                type="text"
-                id="my-input"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-              />
-              <div className="writer">작성자: {user.nickname}</div>
-            </header>
-            <div class="textarea-container">
-              <textarea
-                ref={contentRef}
-                value={content}
-                onChange={(e) => setContent(e.target.value)}
-                placeholder="오늘 하루는 어땠나요?"
-              />
+            <div className="RightBottomDiv">
+              <button
+                onClick={() => {
+                  handleClick();
+                  saveView();
+                }}
+              >
+                저장하기
+              </button>
             </div>
-          </div>
-          <div className="RightBottomDiv">
-            <button
-              onClick={() => {
-                handleClick();
-                saveView();
-              }}
-            >
-              저장하기
-            </button>
           </div>
         </div>
       </div>

@@ -34,8 +34,10 @@ const DrawingDiary = () => {
     <div className="Left">
       <header>
         <div className="theDate">날짜: {date}</div>
-        <div className="Emotion">오늘의 기분: </div>
-        <div className="todayEmotion"><img className="emotionImg" src={emotionImgSrc} /></div>
+        <div className="todayEmotion">
+          <div className="Emotion">{"오늘의 기분:"} </div>
+          <img className="emotionImg" src={emotionImgSrc} />
+        </div>
       </header>
       <div className="imageContainer">
         <img className="diaryImage" src={image} alt="Diary Image" />
