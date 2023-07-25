@@ -63,6 +63,15 @@ export function login(userDTO) {
       throw error; // 수정된 부분: 오류 던지기
     });
 }
+
 export function logout() {
   return call("/users/logout", "POST");
+}
+
+export function updateDiary(diaryId, diaryDto) {
+  return call(`/diary/${diaryId}`, "PUT", diaryDto);
+}
+
+export function deleteDiary(diaryId) {
+  return call(`/diary/${diaryId}`, "DELETE");
 }
