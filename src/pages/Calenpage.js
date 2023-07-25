@@ -7,6 +7,8 @@ import Chart from "./Chart";
 import { useParams } from "react-router";
 import { call } from "../service/ApiService";
 import axios from "axios";
+import Circles from "../components/Circles";
+import Springs from "../components/Springs";
 
 function Calenpage() {
   const [date, setDate] = useState(new Date());

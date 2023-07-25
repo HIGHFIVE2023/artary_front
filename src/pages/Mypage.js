@@ -1,25 +1,28 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { call } from "../service/ApiService";
+import { deleteUser, call} from "../service/ApiService";
 import Friends from "./Friends";
 import Circles from "../components/Circles";
 import Springs from "../components/Springs";
 
 const Mypage = () => {
-  const userId = JSON.parse(localStorage.getItem("userId"));
+  const userDto = JSON.parse(localStorage.getItem("user"));
+  const [userId, setUserId] = useState(null);
+  const [name, setName] = useState(null);
   const [nickname, setNickname] = useState(null);
   const [email, setEmail] = useState(null);
+  const [image, setImage] = useState(null);
   const [newEmail, setNewEmail] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
-    // localStorage에서 사용자 정보를 가져옴
-    const userDto = JSON.parse(localStorage.getItem("user"));
     if (userDto) {
-      console.log(userDto.nickname);
+      setUserId(userDto.userId);
+      setName(userDto.name);
       setNickname(userDto.nickname);
       setEmail(userDto.email);
+      setImage(userDto.image);
+      
     }
   }, []);
 
@@ -37,30 +40,47 @@ const Mypage = () => {
       });
   };
 
+  const handleDeleteUser = () => {
+    const userPassword = window.prompt("회원 탈퇴를 위해 비밀번호를 입력해주세요", "");
+  
+    if (userPassword) {
+      deleteUser(userId, userPassword)
+        .then((response) => {
+          console.log(response);
+          setSuccessMessage("회원 탈퇴가 완료되었습니다.");
+          localStorage.clear();
+          window.location.href = "/";
+        })
+        .catch((error) => {
+          console.error(error);
+          setErrorMessage("회원 탈퇴에 실패하였습니다.");
+        });
+    } else {
+      setErrorMessage("비밀번호를 입력해야 합니다.");
+    }
+  };
+
   return (
     <div className="Diary">
       <div className="DiaryFrameContainer">
         <div className="DiaryFrame">
           <div className="LeftDivOveray">
             <div>
-              <h1>User Information</h1>
+              <h1>마이페이지</h1>
               {nickname && email ? (
                 <div>
+                  <p>Name: {name}</p>
                   <p>Nickname: {nickname}</p>
                   <p>Email: {email}</p>
+                  <p>Image: {image} </p>
                 </div>
               ) : (
                 <p>Loading user information...</p>
               )}
             </div>
             <div>
-              <h1>Change Email</h1>
-              <input
-                type="text"
-                value={newEmail}
-                onChange={(e) => setNewEmail(e.target.value)}
-              />
-              <button onClick={handleUpdateUserInfo}>Update</button>
+              <button onClick={handleUpdateUserInfo}>프로필 수정</button>
+              <button onClick={handleDeleteUser}>회원 탈퇴</button>
               {successMessage && <p>{successMessage}</p>}
               {errorMessage && <p>{errorMessage}</p>}
             </div>
