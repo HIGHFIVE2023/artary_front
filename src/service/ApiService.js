@@ -75,3 +75,4 @@ export function updateUser(userId, userDto) {
 export function deleteUser(userId, password) {
   return call(`/users/delete/${userId}?password=${encodeURIComponent(password)}`, "DELETE");
 }
+

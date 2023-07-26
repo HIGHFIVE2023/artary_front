@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { deleteUser, call} from "../service/ApiService";
+import React, { useState, useEffect, useRef } from "react";
+import { deleteUser} from "../service/ApiService";
 import Friends from "./Friends";
 import Circles from "../components/Circles";
 import Springs from "../components/Springs";
+import { UserOutlined } from '@ant-design/icons';
+import { Avatar} from 'antd';
+import { useNavigate } from "react-router-dom";
 
 const Mypage = () => {
   const userDto = JSON.parse(localStorage.getItem("user"));
@@ -10,10 +13,13 @@ const Mypage = () => {
   const [name, setName] = useState(null);
   const [nickname, setNickname] = useState(null);
   const [email, setEmail] = useState(null);
-  const [image, setImage] = useState(null);
-  const [newEmail, setNewEmail] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [image, setImage] = useState("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png");
+  const navigate = useNavigate();
+  const navigateToMypageUpdate = () => {
+    navigate("/mypage/update");
+  };
 
   useEffect(() => {
     if (userDto) {
@@ -21,24 +27,9 @@ const Mypage = () => {
       setName(userDto.name);
       setNickname(userDto.nickname);
       setEmail(userDto.email);
-      setImage(userDto.image);
-      
+      setImage(userDto.image);  
     }
   }, []);
-
-  const handleUpdateUserInfo = () => {
-    // 서버로 변경된 유저 정보를 보낼 PUT 요청
-    call(`/users/${userId}`, "PUT", { email: newEmail })
-      .then((response) => {
-        console.log(response);
-        setSuccessMessage("유저 정보가 수정되었습니다.");
-        setErrorMessage("");
-      })
-      .catch((error) => {
-        setErrorMessage("유저 정보 수정에 실패하였습니다.");
-        setSuccessMessage("");
-      });
-  };
 
   const handleDeleteUser = () => {
     const userPassword = window.prompt("회원 탈퇴를 위해 비밀번호를 입력해주세요", "");
@@ -69,17 +60,17 @@ const Mypage = () => {
               <h1>마이페이지</h1>
               {nickname && email ? (
                 <div>
-                  <p>Name: {name}</p>
-                  <p>Nickname: {nickname}</p>
-                  <p>Email: {email}</p>
-                  <p>Image: {image} </p>
+                  <Avatar size={200} style={{margin:'20px'}}  icon={<UserOutlined />} src={image} />
+                  <p>이름: {name}</p>
+                  <p>닉네임: {nickname}</p>
+                  <p>이메일: {email}</p>
                 </div>
               ) : (
                 <p>Loading user information...</p>
               )}
             </div>
             <div>
-              <button onClick={handleUpdateUserInfo}>프로필 수정</button>
+              <button onClick={navigateToMypageUpdate}>프로필 수정</button>
               <button onClick={handleDeleteUser}>회원 탈퇴</button>
               {successMessage && <p>{successMessage}</p>}
               {errorMessage && <p>{errorMessage}</p>}
