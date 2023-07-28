@@ -6,9 +6,25 @@ import DrawingDiary from "../components/DrawingDiary";
 import WritingDiary from "../components/WritingDiary";
 import Springs from "../components/Springs";
 import Circles from "../components/Circles";
+import { deleteDiary } from "../service/ApiService";
+import { useParams } from "react-router";
 
 const Diary = () => {
-  const handleEditClick = () => {};
+  const { diaryId } = useParams();
+
+  const handleDeleteDiary = () => {
+    deleteDiary(diaryId)
+      .then((response) => {
+        console.log("다이어리 항목이 성공적으로 삭제되었습니다!");
+        alert("일기가 성공적으로 삭제 되었습니다.");
+        window.location.href = "/";
+      })
+      .catch((error) => {
+        console.log(error);
+        console.error("다이어리 항목 삭제 오류:", error);
+      });
+  };
+
   return (
     <div className="Diary">
       <div className="DiaryFrameContainer">
@@ -38,11 +54,11 @@ const Diary = () => {
             </div>
             <WritingDiary />
             <div className="RightBottomDiv">
+              <BottomBtn image="../img/edit.png"></BottomBtn>
               <BottomBtn
-                image="../img/edit.png"
-                onClick={handleEditClick}
+                image="../img/delete.png"
+                onClick={handleDeleteDiary}
               ></BottomBtn>
-              <BottomBtn image="../img/delete.png"></BottomBtn>
             </div>
           </div>
         </div>
