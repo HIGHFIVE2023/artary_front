@@ -6,15 +6,13 @@ import React, {
   useState,
 } from "react";
 import { useNavigate } from "react-router-dom";
-
 import IndexBtn from "../components/IndexBtn";
-import Circles from "./Circles";
 import Springs from "./Springs";
-import BottomBtn from "../components/BottomBtn";
+import Circles from "./Circles";
 import EmotionItem from "../components/EmotionItem";
-
 import { getStringDate } from "../util/date.js";
 import { emotionList } from "../util/emotion.js";
+import Popup from "./Popup";
 import { call } from "../service/ApiService";
 
 const DiaryEditor = ({ isEdit, originData }) => {
@@ -26,6 +24,7 @@ const DiaryEditor = ({ isEdit, originData }) => {
   const [imageSrc, setImageSrc] = useState("");
   const [isLoading, setLoading] = useState(false);
   const [emotion, setEmotion] = useState(3);
+  const [diary, setDiary] = useState({ image: "" });
   //기본 선택 감정 3번감정
   const [date, setDate] = useState(getStringDate(new Date()));
 
@@ -35,6 +34,28 @@ const DiaryEditor = ({ isEdit, originData }) => {
 
   const navigate = useNavigate();
 
+  //팝업
+  const [isPopupOpen, setPopupOpen] = useState(false);
+  const [isButtonVisible, setButtonVisible] = useState(true);
+
+  // 팝업 열기 이벤트 핸들러
+  const openPopup = () => {
+    if (content.length < 1) {
+      contentRef.current.focus(); // 한 글자도 안 썼을때 textarea에 포커스.
+      return;
+    }
+
+    setPopupOpen(true);
+    setButtonVisible(false);
+  };
+
+  // 팝업 닫기 이벤트 핸들러
+  const closePopup = () => {
+    setPopupOpen(false);
+    setButtonVisible(true);
+  };
+
+  //그림 생성 버튼
   const handleSubmit = () => {
     if (content.length < 1) {
       contentRef.current.focus(); // 한 글자도 안 썼을때 textarea에 포커스.
@@ -60,13 +81,6 @@ const DiaryEditor = ({ isEdit, originData }) => {
       .then((response) => {
         console.log(response);
         setDiaryId(response.id);
-
-        return call(`/diary/${response.id}/picture`, "GET", null);
-      })
-      .then((imgResponse) => {
-        console.log(imgResponse.imageUrl);
-        setLoading(false);
-        setImageSrc(imgResponse.imageUrl);
       })
       .catch((error) => {
         console.error(error);
@@ -74,19 +88,26 @@ const DiaryEditor = ({ isEdit, originData }) => {
       });
   };
 
+  //그림 생성 이후, 그림 띄우기
+  const { image } = diary;
+
+  const handleSubmitClick = () => {
+    setPopupOpen(false);
+
+    call(`/diary/${diaryId}`, "GET", null)
+      .then((response) => {
+        console.log(response);
+        setDiary(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  //저장
   const handleClick = () => {
     navigate(`/diary/${diaryId}`);
   };
-
-  useEffect(() => {
-    if (isEdit) {
-      // new에서 렌더하는 DiaryEditor가 아니라 Edit에서 렌더하는 DiaryEditor
-      setDate(getStringDate(new Date(parseInt(originData.date))));
-      setEmotion(originData.emotion);
-      setContent(originData.content);
-    }
-  }, [isEdit, originData]);
-
   const saveView = () => {
     if (window.confirm("그림 생성을 완료하셨습니까? 완료 시 저장됩니다.")) {
       alert("저장되었습니다.");
@@ -126,23 +147,34 @@ const DiaryEditor = ({ isEdit, originData }) => {
                 </div>
               </header>
               <div className="container">
-                {isLoading && (
-                  <div className="loading-container">
-                    <img className="loadingImg" src="../img/loading.png" />
-                    그림 생성 중...
-                  </div>
-                )}
-                {!imageSrc ? null : (
+                {!image ? null : (
                   <img
-                    src={imageSrc}
-                    className="diaryImage"
+                    src={image}
+                    className="getDiaryImage"
                     alt="Diary Image"
                   />
                 )}
               </div>
             </div>
             <div className="LeftBottomDiv">
-              <button onClick={handleSubmit}>그림 불러오기</button>
+              {isButtonVisible && (
+                <button
+                  className="drawBtn"
+                  onClick={() => {
+                    openPopup();
+                    handleSubmit();
+                  }}
+                >
+                  그림 생성
+                </button>
+              )}
+              {isPopupOpen && (
+                <Popup
+                  diaryId={diaryId}
+                  onClose={closePopup}
+                  onSubmitClick={handleSubmitClick}
+                />
+              )}
             </div>
           </div>
           <div className="SpringMaker">
@@ -159,7 +191,7 @@ const DiaryEditor = ({ isEdit, originData }) => {
                 <input
                   placeholder="제목을 입력하세요."
                   type="text"
-                  id="my-input"
+                  className="inputTitle"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                 />
@@ -176,6 +208,7 @@ const DiaryEditor = ({ isEdit, originData }) => {
             </div>
             <div className="RightBottomDiv">
               <button
+                className="saveBtn"
                 onClick={() => {
                   handleClick();
                   saveView();

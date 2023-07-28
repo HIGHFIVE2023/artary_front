@@ -9,6 +9,7 @@ import Calenpage from "./pages/Calenpage";
 import New from "./pages/New";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
+import Edit from "./pages/Edit";
 
 function App() {
   return (
@@ -16,12 +17,13 @@ function App() {
       <div className="App">
         {<Navbar />}
         <Routes>
-          <Route path="/" element={<Home />}></Route>
-          <Route path="/users/login" element={<Login />}></Route>
-          <Route path="/diary/:diaryId" element={<Diary />}></Route>
-          <Route path="/calenpage" element={<Calenpage />}></Route>
-          <Route path="/diary/write" element={<New />}></Route>
-          <Route path="/users/signup" element={<SignUp />}></Route>
+          <Route path="/" element={<Home />} />
+          <Route path="/users/login" element={<Login />} />
+          <Route path="/diary/:diaryId" element={<Diary />} />
+          <Route path="/diary/:diaryId/edit" element={<Edit />} />
+          <Route path="/calenpage" element={<Calenpage />} />
+          <Route path="/diary/write" element={<New />} />
+          <Route path="/users/signup" element={<SignUp />} />
         </Routes>
       </div>
     </BrowserRouter>

@@ -63,6 +63,10 @@ const WritingDiary = () => {
         <div className="writer">작성자: {user.nickname}</div>
       </header>
       <div className="TextSquareContainer">{squares}</div>
+      <footer>
+        <div className="stampHeader">{"<도장을 찍어요!>"}</div>
+        <button className="selectStamp">도장 선택하기</button>
+      </footer>
     </div>
   );
 };

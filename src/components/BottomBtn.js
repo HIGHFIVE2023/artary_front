@@ -1,9 +1,7 @@
-const BottomBtn = ({ image }) => {
-  const handlingClick = () => {
-    console.log("하단버튼 성공");
-  };
+const BottomBtn = ({ image, onClick, text }) => {
   return (
-    <button className="BottomBtn" onClick={handlingClick}>
+    <button className="BottomBtn" onClick={onClick}>
+      {text}
       <img src={image} alt="Button Image" />
     </button>
   );

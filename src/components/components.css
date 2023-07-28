@@ -71,7 +71,7 @@ li {
   width: 80%;
   height: 80%;
   display: block;
-  margin: 5% 14% 0 5%;
+  margin: 7% 14% 0 5%;
   position: absolute;
   border: 3px solid#212121;
   border-radius: 10px;
@@ -94,6 +94,11 @@ li {
   margin-left: auto; /* 왼쪽 여백을 자동으로 설정하여 가운데 정렬을 적용합니다 */
   margin-right: auto; /* 오른쪽 여백을 자동으로 설정하여 가운데 정렬을 적용합니다 */
 }
+.getDiaryImage {
+  margin-top: 10%;
+  width: auto;
+  max-width: 95%;
+}
 .container {
   display: flex;
   align-items: center;
@@ -113,12 +118,7 @@ li {
   max-width: 100px;
   max-height: 100px;
 }
-.LeftBottomDiv {
-  margin: 5px;
-  position: absolute;
-  bottom: 5%;
-  right: 12%;
-}
+
 .CircleContainer {
   display: flex;
   flex-direction: column; /* Added property */
@@ -143,28 +143,39 @@ li {
 .Right {
   width: 80%;
   height: 80%;
-  display: block;
+  display: flex;
+  flex-direction: column;
   margin: 2% 2% 0 14%;
   margin-bottom: 15%;
-  position: relative;
-  border: 3px solid#212121;
+  border: 3px solid #212121;
   border-radius: 10px;
-}
-.TextSquareContainer {
-  position: absolute;
-  display: flex;
-  flex-wrap: wrap;
-  width: 106%;
-  overflow: auto;
-  max-height: 85%;
-}
-.RightBottomDiv {
-  margin: 0.3em;
-  position: absolute;
-  bottom: 5%;
-  right: 7%;
+  position: relative;
 }
 
+.TextSquareContainer {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  overflow: auto;
+  max-height: 85%;
+  width: 106%;
+  margin-left: 0.5%;
+}
+
+/*푸터*/
+footer {
+  height: 20%;
+  border-top: 1px solid #ccc;
+  border-radius: 0 0 10px 10px;
+  margin-top: 5px;
+  border-top: 3px solid #212121;
+}
+.stampHeader {
+  float: left;
+}
+.selectStamp {
+  float: right;
+}
 /*헤더 : 기분 이모지랑 기분 날짜 출력*/
 header {
   position: "fixed";
@@ -199,8 +210,6 @@ header > div {
 }
 .EmotionItem-on-1 {
   background-color: #9dd772;
-  width: 65%;
-  height: 6vh;
 }
 .EmotionItem-on-2 {
   background-color: #fdce17;
