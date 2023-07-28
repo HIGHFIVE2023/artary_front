@@ -22,7 +22,7 @@ const IndexBtn = ({ type, text1, text2, text3 }) => {
   const navigateToMypage = () => {
     navigate("/mypage");
   };
-  
+
   // 상세 페이지 이동
   const { diaryId } = useParams();
   const [diary, setDiary] = useState({ diary_id: "" });
