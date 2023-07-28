@@ -238,3 +238,70 @@ header > div {
 .Spring {
   position: absolute;
 }
+
+.tab-menu {
+  width: 80%;
+  height: 80%;
+  margin-left: 20%;
+  position: absolute;
+  top: 0;
+}
+
+.tab-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.tab-item {
+  flex: 1;
+  text-align: center;
+  padding: 12px 0;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.tab-item.active {
+  background-color: #61dafb;
+  color: #fff;
+}
+
+.tab-content {
+  height: 90%;
+  width: 90%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  position: absolute;
+  display: flex;
+}
+
+.tab-content-inner {
+  position: relative; /* 변경 */
+  top: 5%; /* 변경 */
+  left: 5%; /* 변경 */
+  right: 0; /* 변경 */
+  bottom: 0; /* 변경 */
+  width: 90%;
+}
+
+.searchingResult {
+  width: 100%;
+  display: flex; /* 변경 */
+  top: 0; /* 변경 */
+  left: 0; /* 변경 */
+  right: 0; /* 변경 */
+  bottom: 0; /* 변경 */
+}
+
+.friendImage {
+  flex: 1;
+  left: 0;
+}
+
+.friendInfo {
+  flex: 3;
+}
