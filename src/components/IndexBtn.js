@@ -19,7 +19,10 @@ const IndexBtn = ({ type, text1, text2, text3 }) => {
   const navigateToCalen = () => {
     navigate("/calenpage");
   };
-
+  const navigateToMypage = () => {
+    navigate("/mypage");
+  };
+  
   // 상세 페이지 이동
   const { diaryId } = useParams();
   const [diary, setDiary] = useState({ diary_id: "" });
@@ -82,10 +85,7 @@ const IndexBtn = ({ type, text1, text2, text3 }) => {
         </button>
       </div>
       <div className="indexContainer04">
-        <button
-          className="Index04"
-          onClick={() => alert("마이페이지는 준비 중!")}
-        >
+        <button className="Index04" onClick={navigateToMypage}>
           <img src="../img/mypage.png" height="20px" width="20px" />
         </button>
       </div>

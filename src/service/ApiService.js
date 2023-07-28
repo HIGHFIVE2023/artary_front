@@ -64,6 +64,7 @@ export function login(userDTO) {
     });
 }
 
+
 export function logout() {
   return call("/users/logout", "POST");
 }
@@ -75,3 +76,12 @@ export function updateDiary(diaryId, diaryDto) {
 export function deleteDiary(diaryId) {
   return call(`/diary/${diaryId}`, "DELETE");
 }
+
+export function updateUser(userId, userDto) {
+  return call(`/users/${userId}`, "PUT", userDto);
+}
+
+export function deleteUser(userId, password) {
+  return call(`/users/delete/${userId}?password=${encodeURIComponent(password)}`, "DELETE");
+}
+

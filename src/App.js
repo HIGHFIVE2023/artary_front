@@ -10,6 +10,9 @@ import New from "./pages/New";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Edit from "./pages/Edit";
+import Mypage from "./pages/Mypage";
+import ProfileUpdate from "./pages/ProfileUpdate";
+
 
 function App() {
   return (
@@ -24,6 +27,8 @@ function App() {
           <Route path="/calenpage" element={<Calenpage />} />
           <Route path="/diary/write" element={<New />} />
           <Route path="/users/signup" element={<SignUp />} />
+          <Route path="/mypage" element={<Mypage />}></Route>
+          <Route path="/mypage/update" element={<ProfileUpdate />}></Route>
         </Routes>
       </div>
     </BrowserRouter>
