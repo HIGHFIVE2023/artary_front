@@ -1,15 +1,22 @@
 import React, { useState } from "react";
 import { call } from "../service/ApiService";
+import { UserOutlined } from '@ant-design/icons';
+import { Avatar} from 'antd';
 
 const SearchFriend = () => {
+  const defaultImageURL = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png";
+  const user = JSON.parse(localStorage.getItem("user"));
   const [searchEmail, setSearchEmail] = useState("");
   const [searchResult, setSearchResult] = useState({
     nickname: "",
     email: "",
-    profileImage: "",
+    image: "",
   });
+  const [isFriend, setIsFriend] = useState(false);
+  const [sendRequest, setSendRequest] = useState(false);
+  const [getRequest, setGetRequest] = useState(false);
 
-  const { nickname, email, profileImage } = searchResult;
+  const { nickname, email, image } = searchResult;
 
   const handleSearch = async () => {
     try {
@@ -21,29 +28,57 @@ const SearchFriend = () => {
       setSearchResult({
         nickname: response.nickname,
         email: response.email,
-        profileImage: response.profileImage,
+        image: response.image,
       });
+
+      setGetRequest(false);
+      setSendRequest(false);
+      handleCheckFriend(response.email);
+      handleCheckRequest(response.email);
     } catch (error) {
       console.error("친구 검색 오류:", error);
-      setSearchResult({ nickname: "", email: "", profileImage: "" }); // 에러 발생 시 결과를 빈 배열로 초기화
+      setSearchResult({ nickname: "", email: "", image: "" }); // 에러 발생 시 결과를 빈 배열로 초기화
     }
   };
 
   const handleAddFriend = async () => {
     try {
-      const response = await call(`/friend/${email}`, "POST", {
-        email: searchEmail,
-      });
+      const response = await call(`/friend/${email}`, "POST", null);
       console.log(response);
       // 친구 추가 성공 메시지를 화면에 표시
       alert("친구 요청 성공~");
-      // 검색 결과 초기화
-      setSearchResult({ nickname: "", email: "" });
+      setSendRequest(true);
     } catch (error) {
       console.error("친구 추가 오류:", error);
-      alert("친구 추가에 실패하였습니다.");
+      alert("친구 추가에 실패하였습니다. : " + error.message);
     }
   };
+
+  const handleCheckFriend = async (checkEmail) => {
+    try {
+      const response = await call(`/friend/checkFriend/${checkEmail}`, "GET", null);
+      console.log(response);
+      setIsFriend(response);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleCheckRequest = async (checkEmail) => {
+    try {
+      const response = await call(`/friend/checkRequest/${checkEmail}`, "GET", null);
+      console.log(response);
+      if (response && response.length > 0) {
+        if (response[0].fromUserId.id === user.userId) {
+          setSendRequest(true);
+        } else if (response[0].toUserId.id === user.userId) {
+          setGetRequest(true);
+        }
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   return (
     <div>
@@ -59,23 +94,30 @@ const SearchFriend = () => {
         {nickname !== "" && email !== "" ? (
           <div>
             <div className="searchingResult">
-              {profileImage && (
-                <img
-                  className="friendImage"
-                  src={profileImage}
-                  alt="프로필 이미지"
-                  style={{ width: "100px", height: "100px" }}
-                />
+              {image && (
+                <Avatar size={50} icon={<UserOutlined />} src={image} />
+              )}
+              {!image && (
+                <Avatar size={50} icon={<UserOutlined />} src={defaultImageURL} />
               )}
               <div className="friendInfo">
                 <p>{nickname}</p>
                 <p>{email}</p>
               </div>
-
               {/* 친구 검색 결과에 따라 다른 정보를 표시할 수 있습니다 */}
-              <button onClick={handleAddFriend} className="requestButton">
-                친구 요청
-              </button>
+              {isFriend ? (
+                <button disabled>친구</button>
+              ) : (
+                <>
+                  {getRequest ? (
+                    <button disabled>요청 확인</button>
+                  ) : (
+                    <button onClick={handleAddFriend} className="requestButton" disabled={sendRequest}>
+                      {sendRequest ? "친구요청 완료" : "친구 요청"}
+                    </button>
+                  )}
+                </>
+              )}
             </div>
           </div>
         ) : (

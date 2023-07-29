@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import SearchFriend from "../components/SearchFriend";
+import FriendsList from "../components/FriendsList";
+import FriendRequest from "../components/FriendRequest";
 
 const Friends = () => {
-  const tabs = ["Search", "List", "Request"];
-  const contents = [<SearchFriend />, "Content for Tab 2", "Content for Tab 3"];
+  const tabs = ["친구 목록", "친구 요청"];
+  const contents = [<FriendsList />, <FriendRequest />];
   const [activeTab, setActiveTab] = useState(0);
 
   const handleTabClick = (index) => {
@@ -12,6 +14,7 @@ const Friends = () => {
 
   return (
     <div className="tab-menu">
+      <SearchFriend />
       <ul className="tab-list">
         {tabs.map((tab, index) => (
           <li
