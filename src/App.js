@@ -16,16 +16,9 @@ import ProfileUpdate from "./pages/ProfileUpdate";
 
 function App() {
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  useEffect(() => {
-    const userDto = JSON.parse(localStorage.getItem("user"));
-    setIsLoggedIn(!!userDto);
-  }, []);
   return (
     <BrowserRouter>
       <div className="App">
-        {<Navbar isLoggedIn={isLoggedIn} />}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/users/login" element={<Login />} />

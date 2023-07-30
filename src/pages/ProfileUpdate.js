@@ -4,6 +4,7 @@ import { UserOutlined } from '@ant-design/icons';
 import { Avatar } from 'antd';
 import Circles from "../components/Circles";
 import Springs from "../components/Springs";
+import imageCompression from 'browser-image-compression';
 
 const ProfileUpdate = () => {
   // 로컬 스토리지에서 사용자 정보를 읽어옵니다.
@@ -54,20 +55,32 @@ const ProfileUpdate = () => {
       });
   };
 
-  const handleFileChange = (e) => {
+  const handleFileChange = async (e) => {
     if (e.target.files[0]) {
-      const file = e.target.files[0];
-      setFile(file);
+      let file = e.target.files[0]; // 입력받은 file 객체
   
-      const reader = new FileReader();
-      reader.onload = () => {
-        if (reader.readyState === 2) {
-          setImage(reader.result);
-        }
+      // 이미지 resize 옵션 설정
+      const options = {
+        maxSizeMB: 2,
+        maxWidthOrHeight: 300,
       };
-      reader.readAsDataURL(file); // 파일을 Data URL로 변환하여 이미지를 업데이트
+  
+      try {
+        const compressedFile = await imageCompression(file, options);
+        setFile(compressedFile);
+  
+        // resize된 이미지의 url을 받아 이미지 업데이트
+        const promise = imageCompression.getDataUrlFromFile(compressedFile);
+        promise.then((result) => {
+          setImage(result);
+        });
+      } catch (error) {
+        console.log(error);
+      }
     } else {
-      setImage("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png");
+      setImage(
+        "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+      );
     }
   };
 
