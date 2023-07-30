@@ -15,7 +15,7 @@ import { emotionList } from "../util/emotion.js";
 import Popup from "./Popup";
 import { call } from "../service/ApiService";
 
-const DiaryEditor = ({ isEdit, originData }) => {
+const DiaryEditor = ({ isEdit, originData}) => {
   const user = JSON.parse(localStorage.getItem("user"));
   const contentRef = useRef();
   const [content, setContent] = useState("");

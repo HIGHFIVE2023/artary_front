@@ -3,9 +3,8 @@ import { useParams } from "react-router";
 import { call } from "../service/ApiService";
 
 const WritingDiary = () => {
-  const user = JSON.parse(localStorage.getItem("user"));
   const { diaryId } = useParams();
-  const [diary, setDiary] = useState({ title: "", content: "" });
+  const [diary, setDiary] = useState({ title: "", content: "", user: { nickname: "" } });
 
   let [inputCount, setInputCount] = useState(0);
 
@@ -20,7 +19,8 @@ const WritingDiary = () => {
       });
   }, [diaryId]);
 
-  const { title, content } = diary;
+  const { title, content, user } = diary;
+  const { nickname } = user;
 
   const numRows = 9;
   let numCols = 8;
@@ -60,7 +60,7 @@ const WritingDiary = () => {
     <div className="Right">
       <header>
         <div className="title">제목: {title}</div>
-        <div className="writer">작성자: {user.nickname}</div>
+        <div className="writer">작성자: {nickname}</div>
       </header>
       <div className="TextSquareContainer">{squares}</div>
       <footer>
