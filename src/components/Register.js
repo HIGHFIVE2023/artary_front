@@ -58,6 +58,7 @@ const Register = () => {
         console.log(error);
       });
   };
+  
   const onChangeEmail = async (e) => {
     const currEmail = e.target.value;
     setEmail(currEmail);

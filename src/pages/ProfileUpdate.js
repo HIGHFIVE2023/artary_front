@@ -4,11 +4,10 @@ import { UserOutlined } from '@ant-design/icons';
 import { Avatar } from 'antd';
 import Circles from "../components/Circles";
 import Springs from "../components/Springs";
-//엄청난 수정이 필요해 
+
 const ProfileUpdate = () => {
   // 로컬 스토리지에서 사용자 정보를 읽어옵니다.
   const userDto = JSON.parse(localStorage.getItem("user"));
-  const [userId, setUserId] = useState(null);
   const [nickname, setNickname] = useState("");
   const [password, setPassword] = useState("");
   const [image, setImage] = useState("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png");
@@ -16,27 +15,33 @@ const ProfileUpdate = () => {
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const fileInput = useRef(null);
-
-  useEffect(() => {
-    if (userDto) {
-      setUserId(userDto.userId);
-      setNickname(userDto.nickname);
-      setImage(userDto.image);
-    }
-  }, [userDto]);
-
+  
 
   const handleUpdateProfile = (e) => {
     e.preventDefault(); // 폼 제출 기본 동작 방지
 
-    const updatedUserDto = {
-      userId,
+    //업데이트
+    const updateUserDto = {
+      token: userDto.token,
+      email: userDto.email,
+      name: userDto.name,
+      userId: userDto.userId,
       nickname,
       image,
       password,
     };
 
-    updateUser(userId, updatedUserDto)
+    //localSotrage에 담길 값 (보안상 password 제외)
+    const updatedUserDto = {
+      token: userDto.token,
+      email: userDto.email,
+      name: userDto.name,
+      userId: userDto.userId,
+      nickname,
+      image,
+    };
+
+    updateUser(userDto.userId, updateUserDto)
       .then((response) => {
         console.log(response);
         setSuccessMessage("프로필이 성공적으로 업데이트되었습니다.");
@@ -60,7 +65,7 @@ const ProfileUpdate = () => {
           setImage(reader.result);
         }
       };
-      reader.readAsDataURL(file);
+      reader.readAsDataURL(file); // 파일을 Data URL로 변환하여 이미지를 업데이트
     } else {
       setImage("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png");
     }
@@ -81,10 +86,10 @@ const ProfileUpdate = () => {
               <div>
                 <form onSubmit={handleUpdateProfile}>
                   <label>프로필 사진:</label>
-                  <input type="file" accept='image/jpg,impge/png,image/jpeg' ref={fileInput} onChange={handleFileChange} />
+                  <input type="file" accept="image/jpg,image/png,image/jpeg" ref={fileInput} onChange={handleFileChange} />
                   <br />
                   <label>닉네임:</label>
-                  <input type="text" value={nickname} onChange={(e) => setNickname(e.target.value)} />
+                  <input type="text" value={nickname} onChange={(e) => setNickname(e.target.value) } />
                   <br />
                   <label>비밀번호:</label>
                   <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
