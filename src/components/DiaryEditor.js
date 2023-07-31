@@ -80,7 +80,7 @@ const DiaryEditor = ({ isEdit, originData}) => {
     call("/diary/write", "POST", req)
       .then((response) => {
         console.log(response);
-        setDiaryId(response.id);
+        setDiaryId(response);
       })
       .catch((error) => {
         console.error(error);
@@ -94,7 +94,7 @@ const DiaryEditor = ({ isEdit, originData}) => {
   const handleSubmitClick = () => {
     setPopupOpen(false);
 
-    call(`/diary/${diaryId}`, "GET", null)
+    call(`/diary/temporary/${diaryId}`, "GET", null)
       .then((response) => {
         console.log(response);
         setDiary(response);
@@ -106,6 +106,13 @@ const DiaryEditor = ({ isEdit, originData}) => {
 
   //저장
   const handleClick = () => {
+    call(`/diary/${diaryId}/save`, "POST", null)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
     navigate(`/diary/${diaryId}`);
   };
   const saveView = () => {
