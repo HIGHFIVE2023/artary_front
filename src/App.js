@@ -9,9 +9,9 @@ import Calenpage from "./pages/Calenpage";
 import New from "./pages/New";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
-import Edit from "./pages/Edit";
 import Mypage from "./pages/Mypage";
 import ProfileUpdate from "./pages/ProfileUpdate";
+import EditDiary from "./components/EditDiary";
 
 
 function App() {
@@ -23,7 +23,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/users/login" element={<Login />} />
           <Route path="/diary/:diaryId" element={<Diary />} />
-          <Route path="/diary/:diaryId/edit" element={<Edit />} />
+          <Route path="/diary/:diaryId/edit" element={<EditDiary />} />
           <Route path="/calenpage" element={<Calenpage />} />
           <Route path="/diary/write" element={<New />} />
           <Route path="/users/signup" element={<SignUp />} />

@@ -61,7 +61,7 @@ const IndexBtn = ({ type, text1, text2, text3 }) => {
           id="btn"
           onClick={navigateToWrite}
         >
-          <img src="../img/pencil.png" height="20px" width="20px" />
+          <img src="/img/pencil.png" height="20px" width="20px" />
           {text1}
         </button>
       </div>
@@ -70,7 +70,7 @@ const IndexBtn = ({ type, text1, text2, text3 }) => {
           className={["Index02", `Index02_${btnType}`].join(" ")}
           onClick={navigateToDiary}
         >
-          <img src="../img/diary.png" height="20px" width="20px" />
+          <img src="/img/diary.png" height="20px" width="20px" />
           {text2}
         </button>
       </div>
@@ -80,13 +80,13 @@ const IndexBtn = ({ type, text1, text2, text3 }) => {
           className={["Index03", `Index03_${btnType}`].join(" ")}
           onClick={navigateToCalen}
         >
-          <img src="../img/calendar.png" height="20px" width="20px" />
+          <img src="/img/calendar.png" height="20px" width="20px" />
           {text3}
         </button>
       </div>
       <div className="indexContainer04">
         <button className="Index04" onClick={navigateToMypage}>
-          <img src="../img/mypage.png" height="20px" width="20px" />
+          <img src="/img/mypage.png" height="20px" width="20px" />
         </button>
       </div>
     </section>

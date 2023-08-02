@@ -32,6 +32,7 @@ const Popup = ({ diaryId, onClose, onSubmitClick }) => {
   const handleSubmitPaint = () => {
     // 그림 가져오는 함수 호출
     getPaint(diaryId);
+    console.log(typeof diaryId);
   };
 
   //색연필
@@ -47,13 +48,13 @@ const Popup = ({ diaryId, onClose, onSubmitClick }) => {
       <div className="selectStyle">
         {btnVisible && (
           <button className="pencilStyle" onClick={handleSubmitPencil}>
-            <img src="../img/style_pencil.png" />
+            <img src="/img/style_pencil.png" />
             색연필
           </button>
         )}
         {btnVisible && (
           <button className="paintStyle" onClick={handleSubmitPaint}>
-            <img src="../img/style_paint.png" />
+            <img src="/img/style_paint.png" />
             수채화
           </button>
         )}
@@ -61,7 +62,7 @@ const Popup = ({ diaryId, onClose, onSubmitClick }) => {
           <div className="container">
             {isLoading && (
               <div className="loading-container">
-                <img className="loadingImg" src="../img/loading.png" />
+                <img className="loadingImg" src="/img/loading.png" />
                 그림 생성 중...
               </div>
             )}

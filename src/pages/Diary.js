@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
 import IndexBtn from "../components/IndexBtn";
 import BottomBtn from "../components/BottomBtn";
 import DrawingDiary from "../components/DrawingDiary";
@@ -54,7 +54,9 @@ const Diary = () => {
             </div>
             <WritingDiary />
             <div className="RightBottomDiv">
-              <BottomBtn image="../img/edit.png"></BottomBtn>
+              <Link to={`/diary/${diaryId}/edit`}>
+                <BottomBtn image="../img/edit.png"></BottomBtn>
+              </Link>
               <BottomBtn
                 image="../img/delete.png"
                 onClick={handleDeleteDiary}
