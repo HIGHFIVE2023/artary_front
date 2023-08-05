@@ -7,8 +7,8 @@ export function call(api, method, request) {
   });
 
   const accessToken = localStorage.getItem("ACCESS_TOKEN");
-  if( accessToken && accessToken !== null ) {
-      headers.append("Authorization", "Bearer " + accessToken);
+  if (accessToken && accessToken !== null) {
+    headers.append("Authorization", "Bearer " + accessToken);
   }
 
   let options = {
@@ -64,7 +64,6 @@ export function login(userDTO) {
     });
 }
 
-
 export function logout() {
   return call("/users/logout", "POST");
 }
@@ -82,6 +81,12 @@ export function updateUser(userId, userDto) {
 }
 
 export function deleteUser(userId, password) {
-  return call(`/users/delete/${userId}?password=${encodeURIComponent(password)}`, "DELETE");
+  return call(
+    `/users/delete/${userId}?password=${encodeURIComponent(password)}`,
+    "DELETE"
+  );
 }
 
+export function deleteSticker(diaryId, stickerId) {
+  return call(`/diary/${diaryId}/sticker/${stickerId}`, "DELETE");
+}

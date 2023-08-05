@@ -279,14 +279,21 @@ button {
 .LoginIcon {
   width: 30%;
   text-align: center;
-  margin-left: 40%;
+  margin-left: 35%;
   margin-right: auto;
 }
 .id {
   margin-bottom: 1%;
 }
+.loginContainer {
+  margin-left: 5%;
+  width: 100%;
+
+  justify-content: center;
+  align-items: center;
+}
 .loginbtn {
-  margin-left: 15%;
+  bottom: 30%;
 }
 .loginbtn,
 .signupBtn {
@@ -305,7 +312,8 @@ button {
   background-color: #424242;
 }
 .extra-login-group {
-  margin-left: 10%;
+  margin-left: 5%;
+  width: 100%;
   align-items: center;
   display: flex;
   width: 150%;
@@ -478,4 +486,28 @@ button {
 .popupImage {
   width: 55%;
   height: 55%;
+}
+
+/*스티커*/
+.selectStamp {
+  width: 100%;
+  height: 33%;
+  background-color: #f9f0d4;
+  opacity: 1;
+  position: absolute;
+  top: 83%; /* 예시로 가운데에 위치하도록 설정 */
+  left: 50%; /* 예시로 가운데에 위치하도록 설정 */
+  transform: translate(-50%, -50%); /* 예시로 가운데에 위치하도록 설정 */
+}
+.selectStamp p {
+  font-size: 80%;
+}
+.stamps {
+  display: flex;
+}
+.stamps img {
+  width: 80%;
+}
+.stamps button {
+  background-color: transparent;
 }

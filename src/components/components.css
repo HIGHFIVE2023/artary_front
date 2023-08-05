@@ -164,18 +164,85 @@ li {
 
 /*푸터*/
 footer {
-  height: 20%;
+  height: 30%;
   border-top: 1px solid #ccc;
   border-radius: 0 0 10px 10px;
   margin-top: 5px;
   border-top: 3px solid #212121;
 }
 .stampHeader {
+  position: relative;
+  z-index: 0;
   float: left;
+  height: 10%;
 }
-.selectStamp {
+.selectStampBtn {
   float: right;
 }
+.GetSticker {
+  height: 65%;
+  display: flex;
+  overflow: auto; /* 세로 스크롤 */
+}
+.scrollContainer {
+  flex: 1;
+  max-height: 100%;
+}
+
+.row {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.sticker {
+  height: 100%;
+  margin-top: 5%;
+  margin-right: 2.5%;
+}
+.sticker img {
+  width: 100%;
+}
+.stickerWrapper {
+  position: relative;
+}
+.userNicknamePopup {
+  position: absolute;
+  font-size: 80%;
+  top: -30%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #fff;
+  padding: 5%;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  white-space: nowrap;
+  display: none; /* 처음에는 닉네임 팝업 안보이게 */
+}
+/* 마우스 올렸을 때 닉네임 팝업 */
+.stickerWrapper:hover .userNicknamePopup {
+  display: block;
+}
+.stickerContainer {
+  position: relative;
+}
+/*마우스 올렸을 때 삭제 버튼*/
+.deleteStickerBtn {
+  display: none;
+  position: absolute;
+  width: 20%;
+  top: 1%;
+  left: 50%;
+  background-color: transparent;
+  cursor: pointer;
+  z-index: 99;
+}
+.stickerWrapper:hover .deleteStickerBtn {
+  display: flex;
+}
+.deleteStickerBtn img {
+}
+
 /*헤더 : 기분 이모지랑 기분 날짜 출력*/
 header {
   position: "fixed";

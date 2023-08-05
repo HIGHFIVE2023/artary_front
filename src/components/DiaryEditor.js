@@ -15,7 +15,7 @@ import { emotionList } from "../util/emotion.js";
 import Popup from "./Popup";
 import { call } from "../service/ApiService";
 
-const DiaryEditor = ({ isEdit, originData}) => {
+const DiaryEditor = ({ isEdit, originData }) => {
   const user = JSON.parse(localStorage.getItem("user"));
   const contentRef = useRef();
   const [content, setContent] = useState("");
@@ -153,13 +153,9 @@ const DiaryEditor = ({ isEdit, originData}) => {
                   ))}
                 </div>
               </header>
-              <div className="container">
+              <div className="imageContainer">
                 {!image ? null : (
-                  <img
-                    src={image}
-                    className="getDiaryImage"
-                    alt="Diary Image"
-                  />
+                  <img src={image} className="diaryImage" alt="Diary Image" />
                 )}
               </div>
             </div>

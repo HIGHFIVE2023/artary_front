@@ -74,10 +74,13 @@ const Login = () => {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
-            <button className="loginbtn" onClick={handleLogin}>
-              로그인
-            </button>
-            {error && <p className="error-message">{error}</p>}
+            <div className="loginContainer">
+              <button className="loginbtn" onClick={handleLogin}>
+                로그인
+              </button>
+              {error && <p className="error-message">{error}</p>}
+            </div>
+
             <div className="extra-login-group">
               <btn className="findId" onClick={() => alert("잘 기억해보세요.")}>
                 아이디 찾기
@@ -91,15 +94,6 @@ const Login = () => {
               <btn className="GoSignUp" onClick={navigateToSignUp}>
                 회원가입
               </btn>
-            </div>
-            <div className="kakaologinContainer">
-              <a href="http://localhost:8080/oauth2/authorization/kakao">
-                <img
-                  className="kakaoLogin"
-                  src="/img/kakao_login_medium_narrow.png"
-                  alt="kakao-login"
-                />
-              </a>
             </div>
           </div>
         </div>
