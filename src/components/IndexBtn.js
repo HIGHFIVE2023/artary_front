@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { call } from "../service/ApiService";
 
 const IndexBtn = ({ type, text1, text2, text3 }) => {
+  const user = JSON.parse(localStorage.getItem("user"));
+
   // 버튼 타입
   const btnType = ["write", "diary", "calendar", "default"].includes(type)
     ? type
@@ -15,42 +17,15 @@ const IndexBtn = ({ type, text1, text2, text3 }) => {
   const navigateToWrite = () => {
     navigate("/diary/write");
   };
-
+  const navigateToDiary = () => {
+    navigate(`/diary/list/${user.nickname}`);
+  }
   const navigateToCalen = () => {
     navigate("/calenpage");
   };
   const navigateToMypage = () => {
     navigate("/mypage");
   };
-
-  // 상세 페이지 이동
-  const { diaryId } = useParams();
-  const [diary, setDiary] = useState({ diary_id: "" });
-  const { diary_id } = diary;
-
-  const navigateToDiary = () => {
-    navigate(`/diary/${diaryId}`);
-  };
-
-  useEffect(() => {
-    const fetchDiary = async () => {
-      try {
-        const response = await call(`/diary/${diary.diary_id}`, "GET", null);
-        console.log(response);
-        setDiary(response);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    fetchDiary();
-  }, []);
-
-  useEffect(() => {
-    if (diary && diary.diary_id) {
-      navigateToDiary();
-    }
-  }, [diary]);
 
   return (
     <section>
