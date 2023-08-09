@@ -13,6 +13,8 @@ const FindPw = () => {
 
   const handleFindPw = () => {
 
+    setError("");
+
     const data = new URLSearchParams();
     data.append("email", email);
 

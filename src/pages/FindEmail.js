@@ -9,7 +9,6 @@ import axios from 'axios';
 const FindEmail = () => {
   const [name, setName] = useState("");
   const [nickname, setNickname] = useState("");
-  const [foundEmail, setFoundEmail] = useState("");
   const [error, setError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
 
