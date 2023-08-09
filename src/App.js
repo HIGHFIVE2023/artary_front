@@ -12,6 +12,8 @@ import SignUp from "./pages/SignUp";
 import Mypage from "./pages/Mypage";
 import ProfileUpdate from "./pages/ProfileUpdate";
 import EditDiary from "./components/EditDiary";
+import FindEmail from "./pages/FindEmail";
+import FindPw from "./pages/FindPw";
 
 
 function App() {
@@ -22,6 +24,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/users/login" element={<Login />} />
+          <Route path="/users/email" element={<FindEmail/>} />
+          <Route path="/users/password" element={<FindPw/>} />
           <Route path="/diary/:diaryId" element={<Diary />} />
           <Route path="/diary/:diaryId/edit" element={<EditDiary />} />
           <Route path="/calenpage" element={<Calenpage />} />
