@@ -47,10 +47,6 @@ export function checkNicknameDuplicate(nickname) {
   return call(`/users/signup/nickname/${nickname}/exists`, "GET");
 }
 
-export function sendMailConfirm(email) {
-  return call("/users/password/mailConfirm", "POST", { email });
-}
-
 export function login(userDTO) {
   return call("/users/login", "POST", userDTO)
     .then((response) => {
@@ -63,7 +59,6 @@ export function login(userDTO) {
       throw error; // 수정된 부분: 오류 던지기
     });
 }
-
 
 export function logout() {
   return call("/users/logout", "POST");
@@ -84,4 +79,5 @@ export function updateUser(userId, userDto) {
 export function deleteUser(userId, password) {
   return call(`/users/delete/${userId}?password=${encodeURIComponent(password)}`, "DELETE");
 }
+
 
