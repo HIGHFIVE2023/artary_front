@@ -18,7 +18,7 @@ const Popup = ({ diaryId, onClose, onSubmitClick }) => {
     setPicVisible(true);
     setLoading(true);
 
-    call(`/diary/${diaryId}/picture`, "GET", null)
+    call(`/diary/${diaryId}/picture/paint`, "GET", null)
       .then((imgResponse) => {
         console.log(imgResponse.imageUrl);
         setLoading(false);
@@ -29,6 +29,25 @@ const Popup = ({ diaryId, onClose, onSubmitClick }) => {
         setLoading(false);
       });
   };
+
+  //연필
+  const getPencil = async (diaryId) => {
+    setBtnVisible(false);
+    setPicVisible(true);
+    setLoading(true);
+
+    call(`/diary/${diaryId}/picture/pencil`, "GET", null)
+      .then((imgResponse) => {
+        console.log(imgResponse.imageUrl);
+        setLoading(false);
+        setImageSrc(imgResponse.imageUrl);
+      })
+      .catch((error) => {
+        console.error(error);
+        setLoading(false);
+      });
+  };
+
   const handleSubmitPaint = () => {
     // 그림 가져오는 함수 호출
     getPaint(diaryId);
@@ -37,8 +56,9 @@ const Popup = ({ diaryId, onClose, onSubmitClick }) => {
 
   //색연필
   const handleSubmitPencil = () => {
-    setBtnVisible(false);
-    setPicVisible(true);
+    // 그림 가져오는 함수 호출
+    getPencil(diaryId);
+    console.log(typeof diaryId);
   };
 
   return (
