@@ -14,7 +14,7 @@ import ProfileUpdate from "./pages/ProfileUpdate";
 import EditDiary from "./components/EditDiary";
 import FindEmail from "./pages/FindEmail";
 import FindPw from "./pages/FindPw";
-
+import DiaryList from "./pages/DiaryList";
 
 function App() {
 
@@ -33,6 +33,7 @@ function App() {
           <Route path="/users/signup" element={<SignUp />} />
           <Route path="/mypage" element={<Mypage />}></Route>
           <Route path="/mypage/update" element={<ProfileUpdate />}></Route>
+          <Route path="/diary/list/:nickname" element={<DiaryList />} />
         </Routes>
       </div>
     </BrowserRouter>

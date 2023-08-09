@@ -2,6 +2,7 @@ import React, { useEffect, useState, useCallback } from "react";
 import { call } from "../service/ApiService";
 import { UserOutlined } from '@ant-design/icons';
 import { Avatar} from 'antd';
+import { Link } from "react-router-dom";
 
 const FriendsList = () => {
   const defaultImageURL = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png";
@@ -38,10 +39,12 @@ const FriendsList = () => {
           const profileImage = friend.image !== null ? friend.image : defaultImageURL;
           return (
             <li key={index}>
-              <Avatar size={40} style={{margin:'20px'}}  icon={<UserOutlined />} src={profileImage} />
-              <p>{friend.nickname}</p>
-              <p>{friend.email}</p>
-              <button onClick={() => deleteFriend(friend.email)}>삭제</button>
+              <Link key={index} to={`/diary/list/${friend.nickname}`} style={{ color: "black" }}>
+                <Avatar size={40} style={{margin:'20px'}}  icon={<UserOutlined />} src={profileImage} />
+                <p>{friend.nickname}</p>
+                <p>{friend.email}</p>
+                <button onClick={() => deleteFriend(friend.email)}>삭제</button>
+              </Link>
             </li>
           );
         })}
