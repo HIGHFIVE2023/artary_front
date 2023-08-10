@@ -13,12 +13,11 @@ import Edit from "./pages/Edit";
 import Mypage from "./pages/Mypage";
 import ProfileUpdate from "./pages/ProfileUpdate";
 
-
 function App() {
-
   return (
     <BrowserRouter>
       <div className="App">
+        <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/users/login" element={<Login />} />
