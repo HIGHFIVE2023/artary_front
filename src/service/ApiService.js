@@ -47,10 +47,6 @@ export function checkNicknameDuplicate(nickname) {
   return call(`/users/signup/nickname/${nickname}/exists`, "GET");
 }
 
-export function sendMailConfirm(email) {
-  return call("/users/password/mailConfirm", "POST", { email });
-}
-
 export function login(userDTO) {
   return call("/users/login", "POST", userDTO)
     .then((response) => {
@@ -87,6 +83,10 @@ export function deleteUser(userId, password) {
   );
 }
 
+<<<<<<< HEAD
 export function deleteSticker(diaryId, stickerId) {
   return call(`/diary/${diaryId}/sticker/${stickerId}`, "DELETE");
 }
+=======
+
+>>>>>>> f999358fb98bb29e41a036b11910c8ed611e07c3

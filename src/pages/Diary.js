@@ -34,9 +34,6 @@ const Diary = () => {
             <IndexBtn type={"diary"} text2={"다이어리"} />
           </div>
           <div className="LeftDivOveray">
-            <div className="preContainer">
-              <button className="preDiary">{"< 이전 글"}</button>
-            </div>
             <DrawingDiary />
             <div className="LeftBottomDiv">
               <BottomBtn image="../img/share.png"></BottomBtn>
@@ -50,12 +47,11 @@ const Diary = () => {
             <Circles style={{ marginLeft: "1em" }} />
           </div>
           <div className="RightDivOveray">
-            <div className="nextContainer">
-              <button className="nextDiary">{"다음 글 >"}</button>
-            </div>
             <WritingDiary />
             <div className="RightBottomDiv">
-              <BottomBtn image="../img/edit.png"></BottomBtn>
+              <Link to={`/diary/${diaryId}/edit`}>
+                <BottomBtn image="../img/edit.png"></BottomBtn>
+              </Link>
               <BottomBtn
                 image="../img/delete.png"
                 onClick={handleDeleteDiary}
