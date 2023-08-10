@@ -240,8 +240,8 @@ header > div {
 }
 
 .tab-menu {
-  width: 80%;
-  height: 80%;
+  width: 70%;
+  height: 85%;
   margin-left: 20%;
   position: absolute;
   top: 0;
@@ -260,7 +260,7 @@ header > div {
 .tab-item {
   flex: 1;
   text-align: center;
-  padding: 12px 0;
+  padding: 5% 0;
   cursor: pointer;
   transition: background-color 0.3s;
 }
@@ -276,25 +276,29 @@ header > div {
   border: 1px solid #ccc;
   border-radius: 4px;
   position: absolute;
-  display: flex;
 }
 
 .tab-content-inner {
   position: relative; /* 변경 */
-  top: 5%; /* 변경 */
+  top: 0; /* 변경 */
   left: 5%; /* 변경 */
   right: 0; /* 변경 */
   bottom: 0; /* 변경 */
   width: 90%;
 }
 
-.searchingResult {
-  width: 100%;
-  display: flex; /* 변경 */
-  top: 0; /* 변경 */
-  left: 0; /* 변경 */
-  right: 0; /* 변경 */
-  bottom: 0; /* 변경 */
+.requestButton {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  height: 50%;
+  width: 20%;
+  right: 1em;
+}
+
+.searchingBar {
+  margin-bottom: 0.5em;
+  margin-top: 0.5em;
 }
 
 .friendImage {
@@ -304,4 +308,64 @@ header > div {
 
 .friendInfo {
   flex: 3;
+}
+
+.user-list-container {
+  height: 75%;
+}
+
+.user-list {
+  list-style: none;
+  padding: 0;
+}
+
+.user-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2%;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.username {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  font-weight: bold;
+}
+
+.email {
+  color: #888;
+  margin-top: 0;
+  margin-bottom: 0.5em;
+}
+
+.button-container {
+  display: flex;
+  gap: 3em; /* 버튼 사이의 간격 설정 */
+}
+
+.accept-button,
+.reject-button {
+  justify-content: center;
+  align-items: center;
+  padding: 0.3em 0.5em;
+  border: none;
+  cursor: pointer;
+  width: 40%;
+}
+
+.accept-button {
+  background-color: #3cb371;
+  color: white;
+}
+
+.reject-button {
+  background-color: #e34234;
+  color: white;
 }

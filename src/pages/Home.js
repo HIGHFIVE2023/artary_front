@@ -39,7 +39,6 @@ const Home = () => {
           <IndexBtn />
         </div>
       </div>
-      <Navbar />
     </div>
   );
 };

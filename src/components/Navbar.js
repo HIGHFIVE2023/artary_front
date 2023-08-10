@@ -35,21 +35,6 @@ const Navbar = () => {
   const Dropdown = () => {
     return (
       <ul className="downUl">
-        <li>
-          <NavLink exact to="/" activeClassName="active">
-            Home
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/diary" activeClassName="active">
-            Diary
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/calenpage" activeClassName="active">
-            Calendar
-          </NavLink>
-        </li>
         {isLoggedIn && (
           <li>
             <a href="/" onClick={handleLogout}>
