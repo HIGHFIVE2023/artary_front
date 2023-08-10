@@ -9,10 +9,12 @@ import { call } from "../service/ApiService";
 import axios from "axios";
 import Circles from "../components/Circles";
 import Springs from "../components/Springs";
+import { useNavigate } from "react-router-dom";
 
 function Calenpage() {
   const [date, setDate] = useState(new Date());
   const [mark, setMark] = useState([]);
+  const navigate = useNavigate();
 
   const emotionImg = {
     HAPPY: "emotion01.png",
@@ -27,6 +29,7 @@ function Calenpage() {
         console.log(response);
         const markList = response.map((diary) => {
           return {
+            id: diary.id,
             date: diary.createdAt.substring(0, 10),
             emotion: diary.emotion, // 이모지 데이터가 어떤 프로퍼티에 저장되어 있는지에 따라 변경
           };
@@ -61,6 +64,17 @@ function Calenpage() {
     );
   };
 
+  const handleTileClick = (clickedDate) => {
+    const formattedDate = moment(clickedDate).format("YYYY-MM-DD");
+    const diaryData = mark.find((item) => item.date === formattedDate);
+
+    if (diaryData) {
+      navigate(`/diary/${diaryData.id}`);
+    } else {
+      alert(`클릭한 날짜에 저장된 다이어리가 없습니다.`);
+    }
+  };
+
   return (
     <div className="Diary">
       <div className="DiaryFrameContainer">
@@ -88,6 +102,7 @@ function Calenpage() {
               calendarType="US"
               className="CalendarPage"
               tileContent={tileContent} // 이모지를 표시하는 tileContent 함수를 전달
+              onClickDay={handleTileClick}
             />
           </div>
         </div>
