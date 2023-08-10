@@ -1,6 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router";
-import Navbar from "../components/Navbar";
+import { Link } from "react-router-dom";
 import IndexBtn from "../components/IndexBtn";
 import BottomBtn from "../components/BottomBtn";
 import DrawingDiary from "../components/DrawingDiary";
