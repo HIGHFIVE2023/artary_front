@@ -1,10 +1,17 @@
 import React, { useState } from "react";
 import { call } from "../service/ApiService";
-import { UserOutlined } from '@ant-design/icons';
-import { Avatar} from 'antd';
+import { UserOutlined } from "@ant-design/icons";
+import { Avatar } from "antd";
+
+const initialState = {
+  isFriend: false,
+  sendRequest: false,
+  getRequest: false,
+};
 
 const SearchFriend = () => {
-  const defaultImageURL = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png";
+  const defaultImageURL =
+    "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png";
   const user = JSON.parse(localStorage.getItem("user"));
   const [searchEmail, setSearchEmail] = useState("");
   const [searchResult, setSearchResult] = useState({
@@ -15,6 +22,7 @@ const SearchFriend = () => {
   const [isFriend, setIsFriend] = useState(false);
   const [sendRequest, setSendRequest] = useState(false);
   const [getRequest, setGetRequest] = useState(false);
+  const [buttonState, setButtonState] = useState(initialState);
 
   const { nickname, email, image } = searchResult;
 
@@ -41,6 +49,13 @@ const SearchFriend = () => {
     }
   };
 
+  const updateButtonState = (newState) => {
+    setButtonState((prevState) => ({
+      ...prevState,
+      ...newState,
+    }));
+  };
+
   const handleAddFriend = async () => {
     try {
       const response = await call(`/friend/${email}`, "POST", null);
@@ -56,7 +71,11 @@ const SearchFriend = () => {
 
   const handleCheckFriend = async (checkEmail) => {
     try {
-      const response = await call(`/friend/checkFriend/${checkEmail}`, "GET", null);
+      const response = await call(
+        `/friend/checkFriend/${checkEmail}`,
+        "GET",
+        null
+      );
       console.log(response);
       setIsFriend(response);
     } catch (error) {
@@ -66,7 +85,11 @@ const SearchFriend = () => {
 
   const handleCheckRequest = async (checkEmail) => {
     try {
-      const response = await call(`/friend/checkRequest/${checkEmail}`, "GET", null);
+      const response = await call(
+        `/friend/checkRequest/${checkEmail}`,
+        "GET",
+        null
+      );
       console.log(response);
       if (response && response.length > 0) {
         if (response[0].fromUserId.id === user.userId) {
@@ -78,29 +101,42 @@ const SearchFriend = () => {
     } catch (error) {
       console.error(error);
     }
-  }
+  };
 
   return (
     <div>
-      <input
-        type="text"
-        value={searchEmail}
-        onChange={(e) => setSearchEmail(e.target.value)}
-        placeholder="친구 이메일을 입력하세요"
-      />
-      <button onClick={handleSearch}>검색</button>
+      <div className="searchingBar">
+        <input
+          type="text"
+          value={searchEmail}
+          onChange={(e) => setSearchEmail(e.target.value)}
+          placeholder="친구 이메일을 입력하세요"
+        />
+        <button onClick={handleSearch}>검색</button>
+      </div>
+
       <div>
         {/* 검색 결과가 빈 문자열이 아닌 경우에 정보를 표시 */}
         {nickname !== "" && email !== "" ? (
           <div>
-            <div className="searchingResult">
+            <div className="user-item">
               {image && (
-                <Avatar size={50} icon={<UserOutlined />} src={image} />
+                <Avatar
+                  style={{ margin: "0.3em" }}
+                  size={40}
+                  icon={<UserOutlined />}
+                  src={image}
+                />
               )}
               {!image && (
-                <Avatar size={50} icon={<UserOutlined />} src={defaultImageURL} />
+                <Avatar
+                  size={40}
+                  style={{ margin: "0.3em" }}
+                  icon={<UserOutlined />}
+                  src={defaultImageURL}
+                />
               )}
-              <div className="friendInfo">
+              <div>
                 <p>{nickname}</p>
                 <p>{email}</p>
               </div>
@@ -112,7 +148,11 @@ const SearchFriend = () => {
                   {getRequest ? (
                     <button disabled>요청 확인</button>
                   ) : (
-                    <button onClick={handleAddFriend} className="requestButton" disabled={sendRequest}>
+                    <button
+                      onClick={handleAddFriend}
+                      className="requestButton"
+                      disabled={sendRequest}
+                    >
                       {sendRequest ? "친구요청 완료" : "친구 요청"}
                     </button>
                   )}
