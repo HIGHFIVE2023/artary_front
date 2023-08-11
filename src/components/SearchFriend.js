@@ -150,7 +150,7 @@ const SearchFriend = () => {
                   ) : (
                     <button
                       onClick={handleAddFriend}
-                      className="requestButton"
+                      className="frndBtn"
                       disabled={sendRequest}
                     >
                       {sendRequest ? "친구요청 완료" : "친구 요청"}
