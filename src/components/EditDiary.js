@@ -1,6 +1,5 @@
 import React, {
   useCallback,
-  useContext,
   useEffect,
   useRef,
   useState,
@@ -15,18 +14,67 @@ import { emotionList } from "../util/emotion.js";
 import Popup from "./Popup";
 import { call } from "../service/ApiService";
 
-const DiaryEditor = ({ isEdit, originData }) => {
+const EditDiary = () => {
   const user = JSON.parse(localStorage.getItem("user"));
   const contentRef = useRef();
+  const [diary, setDiary] = useState({});
   const [content, setContent] = useState("");
   const [title, setTitle] = useState("");
-  const [diaryId, setDiaryId] = useState("");
-  const [imageSrc, setImageSrc] = useState("");
+  const [emotion, setEmotion] = useState("");
+  const [date, setDate] = useState("");
+  const [isDataLoaded, setDataLoaded] = useState(false);
+
+  // diaryId 지정
+  const pathname = window.location.pathname;
+  const extractDiaryIdFromPathname = (pathname) => {
+    const pathParts = pathname.split("/");
+    const diaryIdIndex = pathParts.indexOf("diary") + 1;
+    if (diaryIdIndex > 0 && diaryIdIndex < pathParts.length) {
+      return pathParts[diaryIdIndex];
+    }
+    return null;
+  };
+  const diaryId = extractDiaryIdFromPathname(pathname);
+
+  useEffect(() => {
+    call(`/diary/${diaryId}`, "GET", null)
+      .then((response) => {
+        console.log(response);
+        setDiary(response);
+        setDataLoaded(true);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [diaryId]);
+
+  useEffect(() => {
+    if (isDataLoaded) {
+      setEmotion(Number(findKeyByValue(emotionName, diary.emotion)));
+      setDate(getStringDate(new Date(diary.createdAt.split("T")[0])));
+      setTitle(diary.title);
+      setContent(diary.content);
+    }
+  }, [isDataLoaded, diary]);
+
   const [isLoading, setLoading] = useState(false);
-  const [emotion, setEmotion] = useState(3);
-  const [diary, setDiary] = useState({ image: "" });
-  //기본 선택 감정 3번감정
-  const [date, setDate] = useState(getStringDate(new Date()));
+
+  // 감정 불러오기
+  const emotionName = {
+    1: "HAPPY",
+    2: "SOSO",
+    3: "SAD",
+    4: "ANGRY",
+  };
+
+  const findKeyByValue = (obj, value) => {
+    for (const key in obj) {
+      if (obj[key] === value) {
+        return key;
+      }
+    }
+    return null; // 해당 값과 일치하는 키를 찾지 못한 경우 null을 반환
+  };
 
   const handleClickEmote = useCallback((emotion) => {
     setEmotion(emotion); // 클릭한 감정(emotion_id)으로 state 변경
@@ -62,13 +110,6 @@ const DiaryEditor = ({ isEdit, originData }) => {
       return;
     }
 
-    const emotionName = {
-      1: "HAPPY",
-      2: "SOSO",
-      3: "SAD",
-      4: "ANGRY",
-    };
-
     const req = {
       title,
       content,
@@ -77,10 +118,9 @@ const DiaryEditor = ({ isEdit, originData }) => {
 
     setLoading(true);
 
-    call("/diary/write", "POST", req)
+    call(`/diary/${diaryId}`, "PUT", req)
       .then((response) => {
         console.log(response);
-        setDiaryId(response);
       })
       .catch((error) => {
         console.error(error);
@@ -104,9 +144,10 @@ const DiaryEditor = ({ isEdit, originData }) => {
       });
   };
 
-  //저장
+  //수정
   const handleClick = () => {
-    call(`/diary/${diaryId}/save`, "POST", null)
+    console.log(diaryId);
+    call(`/diary/${diaryId}/edit`, "PUT", null)
       .then((response) => {
         console.log(response);
       })
@@ -153,9 +194,13 @@ const DiaryEditor = ({ isEdit, originData }) => {
                   ))}
                 </div>
               </header>
-              <div className="imageContainer">
+              <div className="container">
                 {!image ? null : (
-                  <img src={image} className="diaryImage" alt="Diary Image" />
+                  <img
+                    src={image}
+                    className="getDiaryImage"
+                    alt="Diary Image"
+                  />
                 )}
               </div>
             </div>
@@ -217,7 +262,7 @@ const DiaryEditor = ({ isEdit, originData }) => {
                   saveView();
                 }}
               >
-                저장하기
+                수정하기
               </button>
             </div>
           </div>
@@ -227,4 +272,4 @@ const DiaryEditor = ({ isEdit, originData }) => {
   );
 };
 
-export default DiaryEditor;
+export default EditDiary;

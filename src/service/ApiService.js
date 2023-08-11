@@ -7,8 +7,8 @@ export function call(api, method, request) {
   });
 
   const accessToken = localStorage.getItem("ACCESS_TOKEN");
-  if( accessToken && accessToken !== null ) {
-      headers.append("Authorization", "Bearer " + accessToken);
+  if (accessToken && accessToken !== null) {
+    headers.append("Authorization", "Bearer " + accessToken);
   }
 
   let options = {
@@ -47,10 +47,6 @@ export function checkNicknameDuplicate(nickname) {
   return call(`/users/signup/nickname/${nickname}/exists`, "GET");
 }
 
-export function sendMailConfirm(email) {
-  return call("/users/password/mailConfirm", "POST", { email });
-}
-
 export function login(userDTO) {
   return call("/users/login", "POST", userDTO)
     .then((response) => {
@@ -63,7 +59,6 @@ export function login(userDTO) {
       throw error; // 수정된 부분: 오류 던지기
     });
 }
-
 
 export function logout() {
   return call("/users/logout", "POST");
@@ -82,6 +77,12 @@ export function updateUser(userId, userDto) {
 }
 
 export function deleteUser(userId, password) {
-  return call(`/users/delete/${userId}?password=${encodeURIComponent(password)}`, "DELETE");
+  return call(
+    `/users/delete/${userId}?password=${encodeURIComponent(password)}`,
+    "DELETE"
+  );
 }
 
+export function deleteSticker(diaryId, stickerId) {
+  return call(`/diary/${diaryId}/sticker/${stickerId}`, "DELETE");
+}

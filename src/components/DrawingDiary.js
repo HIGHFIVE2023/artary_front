@@ -26,7 +26,7 @@ const DrawingDiary = () => {
     ANGRY: "emotion04.png",
   };
 
-  const emotionImgSrc = `../img/${emotionImg[emotion]}`;
+  const emotionImgSrc = `/img/${emotionImg[emotion]}`;
 
   const date = createdAt.substring(0, 10);
 

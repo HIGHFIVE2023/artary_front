@@ -1,35 +1,36 @@
 import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
-import { login } from "../service/ApiService";
+
 import IndexBtn from "../components/IndexBtn";
 import Circles from "../components/Circles";
 import Springs from "../components/Springs";
+import axios from 'axios';
 
-const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+const FindEmail = () => {
+  const [name, setName] = useState("");
+  const [nickname, setNickname] = useState("");
   const [error, setError] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
 
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
-    e.preventDefault(); //새로고침 방지
-
-    const userDto = {
-      email: email,
-      password: password,
-    };
-
-    login(userDto)
-      .then((response) => {
-        console.log(response); // 응답 데이터 확인
-        // 로그인 성공 후 필요한 작업 수행
-        localStorage.setItem("user", JSON.stringify(response));
-        window.location.href = "/"; // 로그인 후 리다이렉트할 경로 설정
+  
+  const handleFindEmail = (e) => {
+    e.preventDefault();
+    setError("");
+    setSuccessMessage("");
+    
+    const data = new URLSearchParams();
+    data.append("name", name);
+    data.append("nickname", nickname);
+  
+    axios.post("http://localhost:8080/users/email", data)
+      .then(response => {
+        setSuccessMessage("아이디는 " + response.data + " 입니다."); 
       })
-      .catch((error) => {
-        console.error(error); // 에러 응답 데이터 확인
-        setError("이메일 또는 비밀번호가 틀렸습니다."); // 에러 메시지 설정
+      .catch(error => {
+
+        setError("존재하지 않는 사용자이거나 정보가 일치하지 않습니다."); 
       });
   };
 
@@ -41,12 +42,10 @@ const Login = () => {
     navigate("/users/password");
   };
 
-  const navigateToFindEmail = () => {
-    navigate("/users/email");
+  const navigateToLogin = () => {
+    navigate("/users/login");
   };
-
-
-
+  
   return (
     <div className="Diary">
       <div className="DiaryFrameContainer">
@@ -64,36 +63,36 @@ const Login = () => {
             </div>
             <Circles style={{ marginLeft: "1em" }} />
           </div>
+          
           <div className="RightDivOveray">
             <img className="LoginIcon" src="/img/icon.png" alt="login icon" />
             <div className="input-group">
               <input
-                className="id"
-                id="id"
-                name="id"
-                placeholder="아이디를 입력해주세요"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                className="name"
+                id="name"
+                name="name"
+                placeholder="이름을 입력해주세요"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
               />
               <input
-                className="pwd"
-                id="password"
-                name="password"
-                type="password"
-                placeholder="비밀번호를 입력해주세요"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                className="nickname"
+                id="nickname"
+                name="nickname"
+                type="nickname"
+                placeholder="닉네임을 입력해주세요"
+                value={nickname}
+                onChange={(e) => setNickname(e.target.value)}
               />
             </div>
-            <div className="loginContainer">
-              <button className="loginbtn" onClick={handleLogin}>
-                로그인
-              </button>
-              {error && <p className="error-message">{error}</p>}
-            </div>
-
+            <button className="loginbtn" onClick={handleFindEmail}>
+              아이디찾기
+            </button>
+            {error && <p className="error-message">{error}</p>}
+             {successMessage && <p className="success-message">{successMessage}</p>}
+ 
             <div className="extra-login-group">
-              <btn className="findId" onClick={navigateToFindEmail}>
+              <btn className="findId" onClick={navigateToLogin}>
                 아이디 찾기
               </btn>
               <btn className="findPwd" onClick={navigateToFindPw}>
@@ -109,5 +108,4 @@ const Login = () => {
     </div>
   );
 };
-
-export default Login;
+export default FindEmail;
