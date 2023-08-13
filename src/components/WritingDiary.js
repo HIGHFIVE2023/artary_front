@@ -8,6 +8,7 @@ const WritingDiary = () => {
   const [diary, setDiary] = useState({ title: "", content: "", user: { nickname: "" } });
   const loginUser = JSON.parse(localStorage.getItem("user"));
   const [stickers, setStickers] = useState([]);
+  const [hasPermission, setHasPermission] = useState(false);
 
   //팝업
   const [isPopupOpen, setPopupOpen] = useState(false);
@@ -34,9 +35,11 @@ const WritingDiary = () => {
       .then((response) => {
         console.log(response);
         setDiary(response);
+        setHasPermission(true);
       })
       .catch((error) => {
         console.log(error);
+        setHasPermission(false);
       });
   }, [diaryId]);
 
@@ -160,6 +163,13 @@ const WritingDiary = () => {
   function handleMouseLeave() {
     setHoveredUserNickname(null);
   }
+
+  if (!hasPermission) {
+    return (
+      <div></div>
+    );
+  }
+
   return (
     <div className="Right">
       <header>
