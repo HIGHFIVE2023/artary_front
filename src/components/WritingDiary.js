@@ -169,7 +169,7 @@ const WritingDiary = () => {
       <div className="TextSquareContainer">{squares}</div>
       <footer>
         <div className="stampHeader">{"<도장을 찍어요!>"}</div>
-        {isButtonVisible && (
+        {isButtonVisible && nickname !== loginUser.nickname && (
           <button
             className="selectStampBtn"
             onClick={() => {
