@@ -4,9 +4,9 @@ import { call, deleteSticker } from "../service/ApiService";
 import SelectStamp from "./SelectStamp";
 
 const WritingDiary = () => {
-  const user = JSON.parse(localStorage.getItem("user"));
   const { diaryId, stickerId } = useParams();
-  const [diary, setDiary] = useState({ title: "", content: "" });
+  const [diary, setDiary] = useState({ title: "", content: "", user: { nickname: "" } });
+  const loginUser = JSON.parse(localStorage.getItem("user"));
   const [stickers, setStickers] = useState([]);
 
   //팝업
@@ -40,7 +40,8 @@ const WritingDiary = () => {
       });
   }, [diaryId]);
 
-  const { title, content } = diary;
+  const { title, content, user } = diary;
+  const { nickname } = user;
 
   //원고지
   const numRows = 9;
@@ -116,13 +117,15 @@ const WritingDiary = () => {
     const altText =
       sticker.type.charAt(0).toUpperCase() + sticker.type.slice(1);
 
+    const checkStickerUser = loginUser.userId === sticker.user.id;
+
     return (
       <div
         className="stickerContainer"
         onMouseEnter={() => handleMouseEnter(sticker.user.nickname)}
         onMouseLeave={handleMouseLeave}
       >
-        {hoveredUserNickname === sticker.user.nickname && (
+        {checkStickerUser && hoveredUserNickname === sticker.user.nickname && (
           <button
             className="deleteStickerBtn"
             onClick={() => handleDeleteSticker(sticker)}

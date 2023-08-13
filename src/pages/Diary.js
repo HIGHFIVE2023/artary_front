@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState} from "react";
 import { Link } from "react-router-dom";
 import IndexBtn from "../components/IndexBtn";
 import BottomBtn from "../components/BottomBtn";
@@ -8,16 +8,28 @@ import Springs from "../components/Springs";
 import Circles from "../components/Circles";
 import { deleteDiary } from "../service/ApiService";
 import { useParams } from "react-router";
+import { call } from "../service/ApiService";
 
 const Diary = () => {
   const { diaryId } = useParams();
+  const [ diaryUser, setDiaryUser ] = useState("");
+  const user = JSON.parse(localStorage.getItem("user"));
+ 
+  call(`/diary/${diaryId}/findUser`, "GET", null)
+      .then((response) => {
+        console.log(response);
+        setDiaryUser(response);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
 
   const handleDeleteDiary = () => {
     deleteDiary(diaryId)
       .then((response) => {
         console.log("다이어리 항목이 성공적으로 삭제되었습니다!");
         alert("일기가 성공적으로 삭제 되었습니다.");
-        window.location.href = "/";
+        window.location.href = `/diary/list/${user.nickname}`;
       })
       .catch((error) => {
         console.log(error);
@@ -35,7 +47,9 @@ const Diary = () => {
           <div className="LeftDivOveray">
             <DrawingDiary />
             <div className="LeftBottomDiv">
-              <BottomBtn image="../img/share.png"></BottomBtn>
+              {diaryUser === user.userId && (
+                <BottomBtn image="../img/share.png"></BottomBtn>
+              )}
             </div>
           </div>
           <div className="SpringMaker">
@@ -48,13 +62,17 @@ const Diary = () => {
           <div className="RightDivOveray">
             <WritingDiary />
             <div className="RightBottomDiv">
-              <Link to={`/diary/${diaryId}/edit`}>
-                <BottomBtn image="../img/edit.png"></BottomBtn>
-              </Link>
-              <BottomBtn
-                image="../img/delete.png"
-                onClick={handleDeleteDiary}
-              ></BottomBtn>
+              {diaryUser === user.userId && (
+                <>
+                  <Link to={`/diary/${diaryId}/edit`}>
+                    <BottomBtn image="../img/edit.png"></BottomBtn>
+                  </Link>
+                  <BottomBtn
+                    image="../img/delete.png"
+                    onClick={handleDeleteDiary}
+                  ></BottomBtn>
+                </>
+              )}
             </div>
           </div>
         </div>
