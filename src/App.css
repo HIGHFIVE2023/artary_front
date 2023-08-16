@@ -578,3 +578,17 @@ button {
 .stamps button {
   background-color: transparent;
 }
+.not-found-container {
+  text-align: center;
+  margin-left: 30%;
+}
+.not-found-message-heading {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #343a40;
+}
+.not-found-message {
+  font-size: 16px;
+  margin-bottom: 20px;
+  color: #6c757d;
+}

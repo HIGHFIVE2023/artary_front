@@ -14,6 +14,7 @@ import ProfileUpdate from "./pages/ProfileUpdate";
 import EditDiary from "./components/EditDiary";
 import FindEmail from "./pages/FindEmail";
 import FindPw from "./pages/FindPw";
+import NotFound from "./pages/NotFound";
 import DiaryList from "./pages/DiaryList";
 import ProtectedRoutes from "./service/AuthRouter";
 
@@ -28,6 +29,7 @@ function App() {
           <Route path="/users/password" element={<FindPw />} />
           <Route path="/users/signup" element={<SignUp />} />
           <Route path="/" element={<Home />} />
+          <Route path="/*" element={<NotFound />} />
           <Route element={<ProtectedRoutes />}>
             <Route path="/diary/:diaryId" element={<Diary />} />
             <Route path="/diary/:diaryId/edit" element={<EditDiary />} />
