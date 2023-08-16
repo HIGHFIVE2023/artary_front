@@ -62,8 +62,12 @@ const IndexBtn = ({ type, text1, text2, text3, text4 }) => {
         </button>
       </div>
       <div className="indexContainer04">
-        <button className="Index04" onClick={navigateToMypage}>
-          <img src="../img/mypage.png" height="20px" width="20px" />
+        <button
+          className={["Index04", `Index04_${btnType}`].join(" ")}
+          onClick={navigateToMypage}
+        >
+          <img src="/img/mypage.png" height="20px" width="20px" />
+          {text4}
         </button>
       </div>
     </section>
