@@ -6,22 +6,22 @@ import Springs from "../components/Springs";
 function NotFound() {
   return (
     <div className="Diary">
-      <div className="DiaryFrameContainer">
-        <div className="DiaryFrame">
-          <div className="LoginIndexBtnContainer">
-            <IndexBtn />
+    <div className="DiaryFrameContainer">
+      <div className="DiaryFrame">
+        <div className="IndexBtnContainer">
+          <IndexBtn />
+        </div>
+        <div className="LeftDivOveray">
+          <img className="DiaryIntro" src="/img/intro.png" />
+        </div>
+        <div className="SpringMaker">
+          <Circles style={{ marginRight: "1em" }} />
+          <div className="Spring">
+            <Springs />
           </div>
-          <div className="LeftDivOveray">
-            <img className="DiaryIntro" src="/img/intro.png" />
-          </div>
-          <div className="SpringMaker">
-            <Circles style={{ marginRight: "1em" }} />
-            <div className="Spring">
-              <Springs />
-            </div>
-            <Circles style={{ marginLeft: "1em" }} />
-          </div>
-          <div className="RightDivOveray">
+          <Circles style={{ marginLeft: "1em" }} />
+        </div>
+        <div className="RightDivOveray">
             <div className="not-found-container">
               <h1>404 ERROR</h1>
               <h2 className="not-found-heading">잘못된 접근입니다</h2>
@@ -29,10 +29,10 @@ function NotFound() {
                 요청하신 페이지를 찾을 수 없습니다
               </p>
             </div>
-          </div>
         </div>
       </div>
     </div>
+  </div>
   );
 }
 export default NotFound;

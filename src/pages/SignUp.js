@@ -8,7 +8,7 @@ const SignUp = ({}) => {
     <div className="Diary">
       <div className="DiaryFrameContainer">
         <div className="DiaryFrame">
-          <div className="LoginIndexBtnContainer">
+          <div className="IndexBtnContainer">
             <IndexBtn />
           </div>
           <div className="LeftDivOveray">

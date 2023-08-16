@@ -5,6 +5,7 @@ import { Avatar } from 'antd';
 import Circles from "../components/Circles";
 import Springs from "../components/Springs";
 import imageCompression from 'browser-image-compression';
+import IndexBtn from "../components/IndexBtn";
 
 const ProfileUpdate = () => {
   // 로컬 스토리지에서 사용자 정보를 읽어옵니다.
@@ -88,6 +89,9 @@ const ProfileUpdate = () => {
     <div className="Diary">
       <div className="DiaryFrameContainer">
         <div className="DiaryFrame">
+        <div className="IndexBtnContainer">
+            <IndexBtn type={"mypage"} text4={"마이페이지"} />
+          </div>
           <div className="LeftDivOveray">
             <div className="ProfileUpdate">
               <div>
