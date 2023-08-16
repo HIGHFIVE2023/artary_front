@@ -87,20 +87,26 @@ const DiaryList = () => {
           </div>
           <div className="RightDivOveray">
             {hasPermission ? (
-              <div>
+              <div className="DiaryList">
                 {diaries.map((diary) => (
-                  <div key={diary.id} style={{ paddingLeft: "150px" }}>
+                  <div
+                    className="DiaryItem"
+                    key={diary.id}
+                    style={{ paddingLeft: "10%" }}
+                  >
                     <Link
                       key={diary.id}
                       to={`/diary/${diary.id}`}
                       style={{ color: "black" }}
                     >
-                      <img
-                        src={diary.image}
-                        style={{ maxWidth: "80px", maxHeight: "80px" }}
-                      />
-                      {diary.title}
-                      {new Date(diary.createdAt).toISOString().split("T")[0]}
+                      <div className="itemImgContainer">
+                        <img src={diary.image} style={{ maxHeight: "6em" }} />
+                      </div>
+                      <div className="itemTextContainer">
+                        {diary.title}
+                        <br />
+                        {new Date(diary.createdAt).toISOString().split("T")[0]}
+                      </div>
                     </Link>
                   </div>
                 ))}
