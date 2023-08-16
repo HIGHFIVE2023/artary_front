@@ -15,6 +15,7 @@ import EditDiary from "./components/EditDiary";
 import FindEmail from "./pages/FindEmail";
 import FindPw from "./pages/FindPw";
 import DiaryList from "./pages/DiaryList";
+import ProtectedRoutes from "./service/AuthRouter";
 
 function App() {
   return (
@@ -22,18 +23,20 @@ function App() {
       <div className="App">
         <Navbar />
         <Routes>
-          <Route path="/" element={<Home />} />
           <Route path="/users/login" element={<Login />} />
           <Route path="/users/email" element={<FindEmail />} />
           <Route path="/users/password" element={<FindPw />} />
-          <Route path="/diary/:diaryId" element={<Diary />} />
-          <Route path="/diary/:diaryId/edit" element={<EditDiary />} />
-          <Route path="/calenpage" element={<Calenpage />} />
-          <Route path="/diary/write" element={<New />} />
           <Route path="/users/signup" element={<SignUp />} />
-          <Route path="/mypage" element={<Mypage />}></Route>
-          <Route path="/mypage/update" element={<ProfileUpdate />}></Route>
-          <Route path="/diary/list/:nickname" element={<DiaryList />} />
+          <Route element={<ProtectedRoutes />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/diary/:diaryId" element={<Diary />} />
+            <Route path="/diary/:diaryId/edit" element={<EditDiary />} />
+            <Route path="/calenpage" element={<Calenpage />} />
+            <Route path="/diary/write" element={<New />} />
+            <Route path="/mypage" element={<Mypage />}></Route>
+            <Route path="/mypage/update" element={<ProfileUpdate />}></Route>
+            <Route path="/diary/list/:nickname" element={<DiaryList />} />
+          </Route>
         </Routes>
       </div>
     </BrowserRouter>
