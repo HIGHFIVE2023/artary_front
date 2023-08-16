@@ -29,7 +29,6 @@ const FindEmail = () => {
         setSuccessMessage("아이디는 " + response.data + " 입니다."); 
       })
       .catch(error => {
-
         setError("존재하지 않는 사용자이거나 정보가 일치하지 않습니다."); 
       });
   };

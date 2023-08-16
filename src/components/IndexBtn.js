@@ -3,11 +3,13 @@ import { useParams } from "react-router";
 import { useNavigate } from "react-router-dom";
 import { call } from "../service/ApiService";
 
-const IndexBtn = ({ type, text1, text2, text3 }) => {
+const IndexBtn = ({ type, text1, text2, text3, text4 }) => {
   const user = JSON.parse(localStorage.getItem("user"));
 
   // 버튼 타입
-  const btnType = ["write", "diary", "calendar", "default"].includes(type)
+  const btnType = ["write", "diary", "calendar", "mypage", "default"].includes(
+    type
+  )
     ? type
     : "default";
 
@@ -19,7 +21,7 @@ const IndexBtn = ({ type, text1, text2, text3 }) => {
   };
   const navigateToDiary = () => {
     navigate(`/diary/list/${user.nickname}`);
-  }
+  };
   const navigateToCalen = () => {
     navigate("/calenpage");
   };
@@ -60,8 +62,12 @@ const IndexBtn = ({ type, text1, text2, text3 }) => {
         </button>
       </div>
       <div className="indexContainer04">
-        <button className="Index04" onClick={navigateToMypage}>
+        <button
+          className={["Index04", `Index04_${btnType}`].join(" ")}
+          onClick={navigateToMypage}
+        >
           <img src="/img/mypage.png" height="20px" width="20px" />
+          {text4}
         </button>
       </div>
     </section>

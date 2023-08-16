@@ -4,10 +4,11 @@ import { call, deleteSticker } from "../service/ApiService";
 import SelectStamp from "./SelectStamp";
 
 const WritingDiary = () => {
-  const user = JSON.parse(localStorage.getItem("user"));
   const { diaryId, stickerId } = useParams();
-  const [diary, setDiary] = useState({ title: "", content: "" });
+  const [diary, setDiary] = useState({ title: "", content: "", user: { nickname: "" } });
+  const loginUser = JSON.parse(localStorage.getItem("user"));
   const [stickers, setStickers] = useState([]);
+  const [hasPermission, setHasPermission] = useState(false);
 
   //팝업
   const [isPopupOpen, setPopupOpen] = useState(false);
@@ -34,13 +35,16 @@ const WritingDiary = () => {
       .then((response) => {
         console.log(response);
         setDiary(response);
+        setHasPermission(true);
       })
       .catch((error) => {
         console.log(error);
+        setHasPermission(false);
       });
   }, [diaryId]);
 
-  const { title, content } = diary;
+  const { title, content, user } = diary;
+  const { nickname } = user;
 
   //원고지
   const numRows = 9;
@@ -116,13 +120,15 @@ const WritingDiary = () => {
     const altText =
       sticker.type.charAt(0).toUpperCase() + sticker.type.slice(1);
 
+    const checkStickerUser = loginUser.userId === sticker.user.id;
+
     return (
       <div
         className="stickerContainer"
         onMouseEnter={() => handleMouseEnter(sticker.user.nickname)}
         onMouseLeave={handleMouseLeave}
       >
-        {hoveredUserNickname === sticker.user.nickname && (
+        {checkStickerUser && hoveredUserNickname === sticker.user.nickname && (
           <button
             className="deleteStickerBtn"
             onClick={() => handleDeleteSticker(sticker)}
@@ -157,6 +163,13 @@ const WritingDiary = () => {
   function handleMouseLeave() {
     setHoveredUserNickname(null);
   }
+
+  if (!hasPermission) {
+    return (
+      <div></div>
+    );
+  }
+
   return (
     <div className="Right">
       <header>
@@ -166,7 +179,7 @@ const WritingDiary = () => {
       <div className="TextSquareContainer">{squares}</div>
       <footer>
         <div className="stampHeader">{"<도장을 찍어요!>"}</div>
-        {isButtonVisible && (
+        {isButtonVisible && nickname !== loginUser.nickname && (
           <button
             className="selectStampBtn"
             onClick={() => {

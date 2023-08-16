@@ -5,15 +5,18 @@ import { call } from "../service/ApiService";
 const DrawingDiary = () => {
   const { diaryId } = useParams();
   const [diary, setDiary] = useState({ emotion: "", image: "", createdAt: "" });
+  const [hasPermission, setHasPermission] = useState(false);
 
   useEffect(() => {
     call(`/diary/${diaryId}`, "GET", null)
       .then((response) => {
         console.log(response);
         setDiary(response);
+        setHasPermission(true);
       })
       .catch((error) => {
         console.log(error);
+        setHasPermission(false);
       });
   }, [diaryId]);
 
@@ -29,6 +32,12 @@ const DrawingDiary = () => {
   const emotionImgSrc = `/img/${emotionImg[emotion]}`;
 
   const date = createdAt.substring(0, 10);
+
+  if (!hasPermission) {
+    return (
+      <h1 style={{ display: "flex", alignItems: "center", justifyContent: "center", paddingLeft: "10px", color: "red" }}>🚫 접근 권한이 없는 페이지입니다. 🚫</h1>
+    );
+  }
 
   return (
     <div className="Left">

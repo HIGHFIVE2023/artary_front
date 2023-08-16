@@ -4,16 +4,29 @@ import { call } from "../service/ApiService";
 import IndexBtn from "../components/IndexBtn";
 import Springs from "../components/Springs";
 import Circles from "../components/Circles";
+import MostLikes from "../components/MostLikes";
 
 const DiaryList = () => {
   const { nickname } = useParams();
   const [diaries, setDiaries] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
+  const [hasPermission, setHasPermission] = useState(false);
 
   useEffect(() => {
     fetchDiaries(currentPage);
   }, [currentPage]);
+
+  useEffect(() => {
+    call(`/diary/list/${nickname}/checkPermission`, "GET", null)
+      .then((response) => {
+        console.log(response);
+        setHasPermission(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  });
 
   const fetchDiaries = (page) => {
     call(`/diary/pagination/${nickname}?page=${page}`, "GET", null)
@@ -40,7 +53,31 @@ const DiaryList = () => {
           <div className="IndexBtnContainer">
             <IndexBtn type={"diary"} text2={"다이어리"} />
           </div>
-          <div className="LeftDivOveray">{nickname} 님의 일기</div>
+          <div className="LeftDivOveray">
+            <div className="containerOfLeft">
+              <p
+                style={{
+                  width: "100%",
+                  height: "1em",
+                  marginTop: "0",
+                  padding: "1em",
+                }}
+              >
+                {nickname} 님의 일기
+              </p>
+              <h3
+                style={{
+                  width: "100%",
+                  height: "1em",
+                  margin: "0",
+                  padding: "1em",
+                }}
+              >
+                가장 스티커를 많이 받은 일기
+              </h3>
+              <MostLikes />
+            </div>
+          </div>
           <div className="SpringMaker">
             <Circles style={{ marginRight: "1em" }} />
             <div className="Spring">
@@ -49,7 +86,7 @@ const DiaryList = () => {
             <Circles style={{ marginLeft: "1em" }} />
           </div>
           <div className="RightDivOveray">
-            {diaries && diaries.length > 0 ? (
+            {hasPermission ? (
               <div className="DiaryList">
                 {diaries.map((diary) => (
                   <div
