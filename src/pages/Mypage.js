@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
-import { deleteUser} from "../service/ApiService";
+import { deleteUser } from "../service/ApiService";
 import Friends from "./Friends";
 import Circles from "../components/Circles";
 import Springs from "../components/Springs";
-import { UserOutlined } from '@ant-design/icons';
-import { Avatar} from 'antd';
+import IndexBtn from "../components/IndexBtn";
+import { UserOutlined } from "@ant-design/icons";
+import { Avatar } from "antd";
 import { useNavigate } from "react-router-dom";
 
 const Mypage = () => {
@@ -15,7 +16,9 @@ const Mypage = () => {
   const [email, setEmail] = useState(null);
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const [image, setImage] = useState("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png");
+  const [image, setImage] = useState(
+    "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+  );
   const navigate = useNavigate();
   const navigateToMypageUpdate = () => {
     navigate("/mypage/update");
@@ -27,13 +30,16 @@ const Mypage = () => {
       setName(userDto.name);
       setNickname(userDto.nickname);
       setEmail(userDto.email);
-      setImage(userDto.image);  
+      setImage(userDto.image);
     }
   }, []);
 
   const handleDeleteUser = () => {
-    const userPassword = window.prompt("회원 탈퇴를 위해 비밀번호를 입력해주세요", "");
-  
+    const userPassword = window.prompt(
+      "회원 탈퇴를 위해 비밀번호를 입력해주세요",
+      ""
+    );
+
     if (userPassword) {
       deleteUser(userId, userPassword)
         .then((response) => {
@@ -55,12 +61,20 @@ const Mypage = () => {
     <div className="Diary">
       <div className="DiaryFrameContainer">
         <div className="DiaryFrame">
+          <div className="IndexBtnContainer">
+            <IndexBtn type={"mypage"} text4={"마이페이지"} />
+          </div>
           <div className="LeftDivOveray">
             <div>
               <h1>마이페이지</h1>
               {nickname && email ? (
                 <div>
-                  <Avatar size={200} style={{margin:'20px'}}  icon={<UserOutlined />} src={image} />
+                  <Avatar
+                    size={200}
+                    style={{ margin: "20px" }}
+                    icon={<UserOutlined />}
+                    src={image}
+                  />
                   <p>이름: {name}</p>
                   <p>닉네임: {nickname}</p>
                   <p>이메일: {email}</p>

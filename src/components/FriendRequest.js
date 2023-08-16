@@ -1,10 +1,11 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { call } from "../service/ApiService";
-import { UserOutlined } from '@ant-design/icons';
-import { Avatar} from 'antd';
+import { UserOutlined } from "@ant-design/icons";
+import { Avatar } from "antd";
 
 const FriendRequest = () => {
-  const defaultImageURL = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png";
+  const defaultImageURL =
+    "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png";
   const [friends, setFriends] = useState([]);
 
   useEffect(() => {
@@ -19,9 +20,13 @@ const FriendRequest = () => {
   }, []);
 
   const replyFriend = useCallback((friendEmail, reply) => {
-    call(`/friend/${friendEmail}/${reply}`, 'POST', null)
+    call(`/friend/${friendEmail}/${reply}`, "POST", null)
       .then(() => {
-        setFriends((prevfFriends) => prevfFriends.filter((friend) => friend.fromUserId.email !== friendEmail));
+        setFriends((prevfFriends) =>
+          prevfFriends.filter(
+            (friend) => friend.fromUserId.email !== friendEmail
+          )
+        );
       })
       .catch((error) => {
         console.log(error);
@@ -39,40 +44,64 @@ const FriendRequest = () => {
     const diffInDays = Math.floor(diffInHours / 24);
 
     if (diffInMinutes < 1) {
-      return '방금 전';
+      return "방금 전";
     } else if (diffInHours < 1) {
       return `${diffInMinutes}분 전`;
     } else if (diffInDays < 1) {
       return `${diffInHours}시간 전`;
     } else if (diffInDays === 1) {
-      return '어제';
+      return "어제";
     } else {
       return `${diffInDays}일 전`;
     }
   };
 
-
   return (
-    <div>
+    <div
+      className="user-list-container"
+      style={{ height: "80%", overflowY: "auto" }}
+    >
       {friends.length === 0 ? (
         <p>친구 요청이 없습니다.</p>
       ) : (
-        <ul>
-        {friends.map((friend, index) => {
-          const requestFriend = friend.fromUserId;
-          const profileImage = requestFriend.image !== null ? requestFriend.image : defaultImageURL;
-          return (
-            <li key={index}>
-              <Avatar size={40} style={{margin:'20px'}}  icon={<UserOutlined />} src={profileImage} />
-              <p>{requestFriend.nickname}</p>
-              <p>{requestFriend.email}</p>
-              <span>{calculateTime(requestFriend.createdAt)}</span>
-              <button onClick={() => replyFriend(requestFriend.email, true)}>수락</button>
-              <button onClick={() => replyFriend(requestFriend.email, false)}>거절</button>
-            </li>
-          );
-        })}
-      </ul>
+        <ul className="user-list">
+          {friends.map((friend, index) => {
+            const requestFriend = friend.fromUserId;
+            const profileImage =
+              requestFriend.image !== null
+                ? requestFriend.image
+                : defaultImageURL;
+            return (
+              <li key={index} className="user-item">
+                <Avatar
+                  size={40}
+                  style={{ margin: "20px" }}
+                  icon={<UserOutlined />}
+                  src={profileImage}
+                />
+                <div className="user-info">
+                  <p className="username">{requestFriend.nickname}</p>
+                  <p className="email">{requestFriend.email}</p>
+                  <span>{calculateTime(requestFriend.createdAt)}</span>
+                  <div className="button-container">
+                    <button
+                      onClick={() => replyFriend(requestFriend.email, true)}
+                      className="accept-button"
+                    >
+                      수락
+                    </button>
+                    <button
+                      onClick={() => replyFriend(requestFriend.email, false)}
+                      className="reject-button"
+                    >
+                      거절
+                    </button>
+                  </div>
+                </div>
+              </li>
+            );
+          })}
+        </ul>
       )}
     </div>
   );

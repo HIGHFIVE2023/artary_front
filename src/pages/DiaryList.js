@@ -4,6 +4,7 @@ import { call } from "../service/ApiService";
 import IndexBtn from "../components/IndexBtn";
 import Springs from "../components/Springs";
 import Circles from "../components/Circles";
+import MostLikes from "../components/MostLikes";
 
 const DiaryList = () => {
   const { nickname } = useParams();
@@ -53,12 +54,29 @@ const DiaryList = () => {
             <IndexBtn type={"diary"} text2={"다이어리"} />
           </div>
           <div className="LeftDivOveray">
-            {hasPermission ? (
-              <div>{nickname} 님의 일기</div>
-              // 여기 통계 코드 작성
-            ) : (
-              <h1 style={{ display: "flex", alignItems: "center", justifyContent: "center", paddingLeft: "10px", color: "red" }}>🚫 접근 권한이 없는 페이지입니다. 🚫</h1>
-            )}
+            <div className="containerOfLeft">
+              <p
+                style={{
+                  width: "100%",
+                  height: "1em",
+                  marginTop: "0",
+                  padding: "1em",
+                }}
+              >
+                {nickname} 님의 일기
+              </p>
+              <h3
+                style={{
+                  width: "100%",
+                  height: "1em",
+                  margin: "0",
+                  padding: "1em",
+                }}
+              >
+                가장 스티커를 많이 받은 일기
+              </h3>
+              <MostLikes />
+            </div>
           </div>
           <div className="SpringMaker">
             <Circles style={{ marginRight: "1em" }} />
@@ -70,30 +88,37 @@ const DiaryList = () => {
           <div className="RightDivOveray">
             {hasPermission ? (
               <div>
-                {diaries && diaries.length > 0 ? (
-                  <div>
-                    {diaries.map((diary) => (
-                      <div key={diary.id} style={{ paddingLeft: "150px" }}>
-                        <Link key={diary.id} to={`/diary/${diary.id}`} style={{ color: "black" }}>
-                          <img src={diary.image} style={{ maxWidth: "80px", maxHeight: "80px" }}/>
-                          {diary.title}
-                          {new Date(diary.createdAt).toISOString().split("T")[0]}
-                        </Link>
-                      </div>
-                    ))}
+                {diaries.map((diary) => (
+                  <div key={diary.id} style={{ paddingLeft: "150px" }}>
+                    <Link
+                      key={diary.id}
+                      to={`/diary/${diary.id}`}
+                      style={{ color: "black" }}
+                    >
+                      <img
+                        src={diary.image}
+                        style={{ maxWidth: "80px", maxHeight: "80px" }}
+                      />
+                      {diary.title}
+                      {new Date(diary.createdAt).toISOString().split("T")[0]}
+                    </Link>
                   </div>
-                ): (
-                  <div>작성된 일기가 없습니다.</div>
-                )}
-                <div className="Pagination" style={{ paddingLeft: "150px" }}>
-                  <button onClick={() => handlePageChange(currentPage - 1)}>이전</button>
-                  <span>{currentPage} / {totalPages}</span>
-                  <button onClick={() => handlePageChange(currentPage + 1)}>다음</button>
-                </div>
+                ))}
               </div>
             ) : (
-              <div></div>
+              <div>작성된 일기가 없습니다.</div>
             )}
+            <div className="Pagination" style={{ paddingLeft: "150px" }}>
+              <button onClick={() => handlePageChange(currentPage - 1)}>
+                이전
+              </button>
+              <span>
+                {currentPage} / {totalPages}
+              </span>
+              <button onClick={() => handlePageChange(currentPage + 1)}>
+                다음
+              </button>
+            </div>
           </div>
         </div>
       </div>
