@@ -27,8 +27,8 @@ function App() {
           <Route path="/users/email" element={<FindEmail />} />
           <Route path="/users/password" element={<FindPw />} />
           <Route path="/users/signup" element={<SignUp />} />
+          <Route path="/" element={<Home />} />
           <Route element={<ProtectedRoutes />}>
-            <Route path="/" element={<Home />} />
             <Route path="/diary/:diaryId" element={<Diary />} />
             <Route path="/diary/:diaryId/edit" element={<EditDiary />} />
             <Route path="/calenpage" element={<Calenpage />} />
