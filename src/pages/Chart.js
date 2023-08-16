@@ -62,7 +62,12 @@ const Chart = () => {
 
   const percentages = calculatePercentages();
 
-  const COLORS = ["#E34234", "#6495ED", "#FFBB28", "#3CB371"];
+  const COLORS = {
+    ANGRY: "#E34234",
+    SAD: "#6495ED",
+    HAPPY: "#FFBB28",
+    SOSO: "#3CB371",
+  };
 
   const RADIAN = Math.PI / 180;
   const renderCustomizedLabel = ({
@@ -102,7 +107,9 @@ const Chart = () => {
   return (
     <div>
       <div>
-        <h2>Emotion Statistics</h2>
+        <h1>캘린더</h1>
+        <hr />
+        <h3>이번 달은</h3>
         <div className="col-md-8">
           <ResponsiveContainer width={400} height={200} className="text-center">
             <PieChart>
@@ -118,10 +125,7 @@ const Chart = () => {
                 dataKey="value"
               >
                 {numdata.map((entry, index) => (
-                  <Cell
-                    key={`cell-${index}`}
-                    fill={COLORS[index % COLORS.length]}
-                  />
+                  <Cell key={`cell-${index}`} fill={COLORS[entry.name]} />
                 ))}
               </Pie>
             </PieChart>
