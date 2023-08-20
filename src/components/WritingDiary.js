@@ -175,6 +175,9 @@ const WritingDiary = () => {
       <header>
         <div className="title">제목: {title}</div>
         <div className="writer">작성자: {user.nickname}</div>
+        <div className="bgm">
+          <audio src={diary.bgm} controls loop style={{ maxWidth: "300px" }}></audio>
+        </div>
       </header>
       <div className="TextSquareContainer">{squares}</div>
       <footer>
