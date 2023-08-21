@@ -1,13 +1,10 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { call } from "../service/ApiService";
 
-function Event() {
+function Event({ notificationCount }) {
   const user = JSON.parse(localStorage.getItem("user"));
   const [listening, setListening] = useState(false);
   const [notification, setNotification] = useState([]);
-
-  // 알림 갯수 상태
-  const [notificationCount, setNotificationCount] = useState(0);
 
   useEffect(() => {
     let eventSource;
@@ -17,7 +14,7 @@ function Event() {
       call("/notifications", "GET", null)
         .then((data) => {
           setNotification(data.reverse());
-          setNotificationCount(data.length); // 알림 갯수 업데이트
+          notificationCount(data.length); // 알림 갯수 업데이트
         })
         .catch((error) => {
           console.error(error);
@@ -70,7 +67,7 @@ function Event() {
         setNotification((preNotifications) =>
           preNotifications.filter((notification) => notification.id !== alarmId)
         );
-        setNotificationCount((prevCount) => prevCount - 1); // 알림 갯수 업데이트
+        notificationCount((prevCount) => prevCount - 1); // 알림 갯수 업데이트
       })
       .catch((error) => {
         console.log(error);
@@ -101,25 +98,27 @@ function Event() {
   };
 
   return (
-    <ul className="notiList">
-      {notification.map((notification) => (
-        <li className="notiItem" key={notification.id}>
-          <a
-            href={notification.url}
-            onClick={() => checkNotification(notification.id)}
-          >
-            {notification.content}
-            <span>{calculateTime(notification.createdAt)}</span>
-          </a>
-          <button
-            className="deleteNoti"
-            onClick={() => deleteNotification(notification.id)}
-          >
-            ❌
-          </button>
-        </li>
-      ))}
-    </ul>
+    <div>
+      <ul className="notiList">
+        {notification.map((notification) => (
+          <li className="notiItem" key={notification.id}>
+            <a
+              href={notification.url}
+              onClick={() => checkNotification(notification.id)}
+            >
+              {notification.content}
+              <span>{calculateTime(notification.createdAt)}</span>
+            </a>
+            <button
+              className="deleteNoti"
+              onClick={() => deleteNotification(notification.id)}
+            >
+              ❌
+            </button>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
 

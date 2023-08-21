@@ -488,3 +488,18 @@ header > div {
   border: thick double #32a1ce;
   width: 80%;
 }
+
+.notification-badge {
+  position: absolute;
+  top: -5px;
+  right: -10px;
+  width: 20px;
+  height: 20px;
+  background-color: rgb(255, 68, 68);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+}
