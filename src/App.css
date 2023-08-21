@@ -554,6 +554,25 @@ button {
   width: 55%;
   height: 55%;
 }
+.stcpopup {
+  font-family: crayon;
+  z-index: 1;
+  background: #fff;
+  border: 1px solid #dedede;
+  right: -4%;
+  width: 115%;
+  height: 14em;
+  position: absolute;
+  bottom: 11em; /* 적절한 값으로 팝업의 위치를 조절해주세요. */
+  box-shadow: 3px 0px 3px 3px rgba(128, 128, 128, 0.2);
+  position: relative;
+  padding: 10px 10px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+.stcpopup h3 {
+  background: linear-gradient (to right, #fe88ff 0%, #c2a4ff 100%);
+}
 
 /*스티커*/
 .selectStamp {
