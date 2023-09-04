@@ -17,6 +17,8 @@ const Diary = () => {
   const [diaryUser, setDiaryUser] = useState("");
   const user = JSON.parse(localStorage.getItem("user"));
 
+  const { Kakao } = window;
+
   call(`/diary/${diaryId}/findUser`, "GET", null)
     .then((response) => {
       console.log(response);
@@ -39,7 +41,7 @@ const Diary = () => {
       });
   };
 
-  // 추가: 화면 캡처 및 PDF 다운로드
+  //화면 캡처 및 PDF 다운로드
   const handleCreatePDF = () => {
     // A4 가로 방향으로 PDF 초기화
     const pdf = new jsPDF({
@@ -63,8 +65,8 @@ const Diary = () => {
       const pageWidth = pdf.internal.pageSize.getWidth();
       const imgHeight = (canvas.height * imgWidth) / canvas.width;
       const pageHeight = pdf.internal.pageSize.getHeight();
-      const marginLeft = 10; // 좌측 여백
-      const marginTop = 20; // 상단 여백
+      const marginLeft = 10;
+      const marginTop = 20;
 
       // 이미지를 가운데 맞추어 추가
       pdf.addImage(imgData, "PNG", marginLeft, marginTop, imgWidth, imgHeight);
