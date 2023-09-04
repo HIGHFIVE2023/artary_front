@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import IndexBtn from "../components/IndexBtn";
 import BottomBtn from "../components/BottomBtn";
@@ -9,20 +9,22 @@ import Circles from "../components/Circles";
 import { deleteDiary } from "../service/ApiService";
 import { useParams } from "react-router";
 import { call } from "../service/ApiService";
+import html2canvas from "html2canvas"; // 스크린 캡처 라이브러리
+import jsPDF from "jspdf";
 
 const Diary = () => {
   const { diaryId } = useParams();
-  const [ diaryUser, setDiaryUser ] = useState("");
+  const [diaryUser, setDiaryUser] = useState("");
   const user = JSON.parse(localStorage.getItem("user"));
- 
+
   call(`/diary/${diaryId}/findUser`, "GET", null)
-      .then((response) => {
-        console.log(response);
-        setDiaryUser(response);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    .then((response) => {
+      console.log(response);
+      setDiaryUser(response);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 
   const handleDeleteDiary = () => {
     deleteDiary(diaryId)
@@ -37,6 +39,39 @@ const Diary = () => {
       });
   };
 
+  // 추가: 화면 캡처 및 PDF 다운로드
+  const handleCreatePDF = () => {
+    // A4 가로 방향으로 PDF 초기화
+    const pdf = new jsPDF({
+      orientation: "landscape",
+      unit: "mm",
+      format: [297, 210], // A4 가로 방향 크기
+    });
+
+    // 현재 페이지의 전체 내용을 캡처하고 PDF로 저장
+    html2canvas(document.documentElement).then((canvas) => {
+      const imgData = canvas.toDataURL("image/png");
+
+      // BottomBtn 요소를 다시 표시하기 위해 CSS 스타일 제거
+      const bottomBtnElements = document.querySelectorAll(".BottomBtn");
+      bottomBtnElements.forEach((element) => {
+        element.style.display = "none";
+      });
+
+      // 이미지 크기 및 페이지 크기 설정
+      const imgWidth = 280;
+      const pageWidth = pdf.internal.pageSize.getWidth();
+      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+      const pageHeight = pdf.internal.pageSize.getHeight();
+      const marginLeft = 10; // 좌측 여백
+      const marginTop = 20; // 상단 여백
+
+      // 이미지를 가운데 맞추어 추가
+      pdf.addImage(imgData, "PNG", marginLeft, marginTop, imgWidth, imgHeight);
+      pdf.save("diary.pdf");
+    });
+  };
+
   return (
     <div className="Diary">
       <div className="DiaryFrameContainer">
@@ -47,6 +82,12 @@ const Diary = () => {
           <div className="LeftDivOveray">
             <DrawingDiary />
             <div className="LeftBottomDiv">
+              {diaryUser === user.userId && (
+                <BottomBtn
+                  image="../img/makePdf.png"
+                  onClick={handleCreatePDF}
+                ></BottomBtn>
+              )}
               {diaryUser === user.userId && (
                 <BottomBtn image="../img/share.png"></BottomBtn>
               )}
