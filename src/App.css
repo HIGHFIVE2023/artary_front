@@ -623,7 +623,7 @@ button {
   grid-template-columns: repeat(2, 1fr); /* 2x2 그리드로 설정 */
   gap: 20px;
   justify-content: center;
-  margin-left: 20%;
+  margin-left: 22%;
 }
 
 /* DiaryItem 스타일 */
