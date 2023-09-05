@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { call } from "../service/ApiService"; // ApiService 경로에 따라 수정
-import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 const MostLikes = () => {
+  const navigate = useNavigate();
   const { nickname } = useParams();
   const [diaries, setDiaries] = useState([]);
   const [mostStickerDiary, setMostStickerDiary] = useState(null);
@@ -44,6 +44,7 @@ const MostLikes = () => {
             mostStickerDiary = {
               id: diary.id,
               title: diary.title,
+              image: diary.image,
               createdAt: diary.createdAt,
               stickerCount: stickerCount,
             };
@@ -64,23 +65,58 @@ const MostLikes = () => {
     date = mostStickerDiary.createdAt;
   }
 
+  const handleImageClick = () => {
+    // 이미지 클릭 시 페이지 이동 처리
+    navigate(`/diary/${mostStickerDiary.id}`);
+  };
+
   return (
     <div className="mostLikesContainer">
       {mostStickerDiary ? (
-        <div>
-          <p>
-            <span>{nickname}님</span>의 친구들은 <br />
-            <span>
+        <div
+          style={{ display: "flex", alignItems: "center", lineHeight: "1.7" }}
+        >
+          <img
+            src={mostStickerDiary.image}
+            alt="Diary Image"
+            onClick={handleImageClick}
+          />
+
+          <p style={{ marginRight: "2.5%", marginLeft: "2%" }}>
+            <span
+              style={{
+                backgroundColor: "rgb(253, 183, 209, 0.6)",
+                borderRadius: "5px",
+              }}
+            >
+              {nickname}
+            </span>
+            님의 친구들은 <br />
+            <span
+              style={{
+                backgroundColor: "rgb(253, 255, 154, 0.6)",
+                borderRadius: "5px",
+              }}
+            >
               {date.substring(0, 4)}년 {date.substring(5, 7)}월{" "}
               {date.substring(8, 10)}일
             </span>
             에 작성된
-            <br />"{mostStickerDiary.title}" 일기에
             <br />
-            가장 많은 반응을 보였어요.
+            <span
+              style={{
+                fontSize: "1.3em",
+                textDecoration: "underline wavy",
+                textDecorationColor: "rgb(151, 255, 149, 0.8)",
+              }}
+            >
+              일기 "{mostStickerDiary.title}"에
+            </span>
+            <br />
+            <span>총 {mostStickerDiary.stickerCount} 개의 스티커로</span>
+            <br />
+            가장 많이 반응했어요!
           </p>
-
-          <p>스티커 수: {mostStickerDiary.stickerCount} 개</p>
         </div>
       ) : (
         <div>

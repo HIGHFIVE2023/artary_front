@@ -61,24 +61,30 @@ const DiaryList = () => {
             <div className="containerOfLeft">
               <p
                 style={{
-                  width: "100%",
+                  width: "85%",
                   height: "1em",
                   marginTop: "0",
                   padding: "1em",
+                  backgroundColor: "rgb(246, 255, 149)",
+                  borderRadius: "10px",
+                  fontFamily: "crayon",
+                  fontWeight: "bold",
                 }}
               >
                 {nickname} 님의 일기
               </p>
-              <h3
+              <p
                 style={{
-                  width: "100%",
+                  width: "70%",
+                  marginLeft: "10%",
                   height: "1em",
                   margin: "0",
                   padding: "1em",
+                  fontFamily: "crayon",
                 }}
               >
-                가장 스티커를 많이 받은 일기
-              </h3>
+                {"<가장 스티커를 많이 받은 일기>"}
+              </p>
               <MostLikes />
             </div>
           </div>
