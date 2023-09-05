@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { useNavigate } from "react-router-dom";
 import { call } from "../service/ApiService";
+import Friends from "../pages/Friends";
 
 const IndexBtn = ({ type, text1, text2, text3, text4 }) => {
   const user = JSON.parse(localStorage.getItem("user"));
@@ -30,47 +31,50 @@ const IndexBtn = ({ type, text1, text2, text3, text4 }) => {
   };
 
   return (
-    <section>
-      <div className="indexContainer01">
-        <button
-          className={["Index01", `Index01_${btnType}`].join(" ")}
-          activeClassName="selected"
-          id="btn"
-          onClick={navigateToWrite}
-        >
-          <img src="/img/pencil.png" height="20px" width="20px" />
-          {text1}
-        </button>
-      </div>
-      <div className="indexContainer02">
-        <button
-          className={["Index02", `Index02_${btnType}`].join(" ")}
-          onClick={navigateToDiary}
-        >
-          <img src="/img/diary.png" height="20px" width="20px" />
-          {text2}
-        </button>
-      </div>
+    <>
+      <Friends />
+      <section>
+        <div className="indexContainer01">
+          <button
+            className={["Index01", `Index01_${btnType}`].join(" ")}
+            activeClassName="selected"
+            id="btn"
+            onClick={navigateToWrite}
+          >
+            <img src="/img/pencil.png" height="20px" width="20px" />
+            {text1}
+          </button>
+        </div>
+        <div className="indexContainer02">
+          <button
+            className={["Index02", `Index02_${btnType}`].join(" ")}
+            onClick={navigateToDiary}
+          >
+            <img src="/img/diary.png" height="20px" width="20px" />
+            {text2}
+          </button>
+        </div>
 
-      <div className="indexContainer03">
-        <button
-          className={["Index03", `Index03_${btnType}`].join(" ")}
-          onClick={navigateToCalen}
-        >
-          <img src="/img/calendar.png" height="20px" width="20px" />
-          {text3}
-        </button>
-      </div>
-      <div className="indexContainer04">
-        <button
-          className={["Index04", `Index04_${btnType}`].join(" ")}
-          onClick={navigateToMypage}
-        >
-          <img src="/img/mypage.png" height="20px" width="20px" />
-          {text4}
-        </button>
-      </div>
-    </section>
+        <div className="indexContainer03">
+          <button
+            className={["Index03", `Index03_${btnType}`].join(" ")}
+            onClick={navigateToCalen}
+          >
+            <img src="/img/calendar.png" height="20px" width="20px" />
+            {text3}
+          </button>
+        </div>
+        <div className="indexContainer04">
+          <button
+            className={["Index04", `Index04_${btnType}`].join(" ")}
+            onClick={navigateToMypage}
+          >
+            <img src="/img/mypage.png" height="20px" width="20px" />
+            {text4}
+          </button>
+        </div>
+      </section>
+    </>
   );
 };
 

@@ -112,7 +112,9 @@ const SearchFriend = () => {
           onChange={(e) => setSearchEmail(e.target.value)}
           placeholder="친구 이메일을 입력하세요"
         />
-        <button onClick={handleSearch}>검색</button>
+        <button onClick={handleSearch} className="basic-btn">
+          검색
+        </button>
       </div>
 
       <div>

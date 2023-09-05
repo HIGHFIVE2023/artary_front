@@ -53,17 +53,22 @@ const FriendsList = () => {
             friend.image !== null ? friend.image : defaultImageURL;
           return (
             <li key={index} className="user-item">
-              <Avatar
-                style={{ margin: "0.3em" }}
-                size={40}
-                icon={<UserOutlined />}
-                src={profileImage}
-              />
-              <div className="user-info">
-                <p className="username">{friend.nickname}</p>
-                <p className="email">{friend.email}</p>
-              </div>
-
+              <Link
+                key={index}
+                to={`/diary/list/${friend.nickname}`}
+                style={{ color: "black", display: "flex" }}
+              >
+                <Avatar
+                  style={{ margin: "0.3em" }}
+                  size={40}
+                  icon={<UserOutlined />}
+                  src={profileImage}
+                />
+                <div className="user-info">
+                  <p className="username">{friend.nickname}</p>
+                  <p className="email">{friend.email}</p>
+                </div>
+              </Link>
               <button
                 className="frndBtn"
                 onClick={() => deleteFriend(friend.email)}
