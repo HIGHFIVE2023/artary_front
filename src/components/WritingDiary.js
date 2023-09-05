@@ -1,18 +1,24 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { call, deleteSticker } from "../service/ApiService";
+import { call, deleteSticker, getSticker } from "../service/ApiService";
 import SelectStamp from "./SelectStamp";
+import { setSelectionRange } from "@testing-library/user-event/dist/utils";
 
 const WritingDiary = () => {
   const { diaryId, stickerId } = useParams();
-  const [diary, setDiary] = useState({ title: "", content: "", user: { nickname: "" } });
+  const [diary, setDiary] = useState({
+    title: "",
+    content: "",
+    user: { nickname: "" },
+  });
   const loginUser = JSON.parse(localStorage.getItem("user"));
-  const [stickers, setStickers] = useState([]);
+  let [stickers, setStickers] = useState([]);
   const [hasPermission, setHasPermission] = useState(false);
 
   //팝업
   const [isPopupOpen, setPopupOpen] = useState(false);
   const [isButtonVisible, setButtonVisible] = useState(true);
+  const [divVisible, setDivVisible] = useState(true);
 
   //스티커 마우스 핸들러
   const [hoveredUserNickname, setHoveredUserNickname] = useState(null);
@@ -21,12 +27,15 @@ const WritingDiary = () => {
   const openPopup = () => {
     setPopupOpen(true);
     setButtonVisible(false);
+    setDivVisible(false);
   };
 
   // 팝업 닫기 이벤트 핸들러
   const closePopup = () => {
     setPopupOpen(false);
     setButtonVisible(true);
+    setDivVisible(true);
+    window.location.reload();
   };
 
   //다이어리 내용 불러오기
@@ -81,7 +90,6 @@ const WritingDiary = () => {
     );
   }
 
-  //스티커 불러오기
   useEffect(() => {
     call(`/diary/${diaryId}/stickers`, "GET", null)
       .then((response) => {
@@ -94,31 +102,32 @@ const WritingDiary = () => {
   }, [diaryId]);
 
   //칸칸이 배열하기
+  const [chunks, setChunks] = useState([]);
   function chunkArray(arr, chunkSize) {
-    const chunks = [];
     for (let i = 0; i < arr.length; i += chunkSize) {
       chunks.push(arr.slice(i, i + chunkSize));
     }
     return chunks;
   }
-  const chunks = chunkArray(stickers, 5);
+
+  useEffect(() => {
+    const updatedChunks = chunkArray(stickers, 5);
+    setChunks(updatedChunks);
+  }, [stickers]);
 
   //타입별로 사진 연결하기 + 삭제 버튼 띄우기
   function publicUrl(imageFileName) {
     return process.env.PUBLIC_URL + "/img/" + imageFileName;
   }
-
+  const typeToImage = {
+    goodJob: "goodJob.png",
+    goodLuck: "goodLuck.png",
+    perfect: "perfect.png",
+    cheerUp: "cheerUp.png",
+  };
   function renderStickerImage(sticker) {
-    const typeToImage = {
-      goodJob: "goodJob.png",
-      goodLuck: "goodLuck.png",
-      perfect: "perfect.png",
-      cheerUp: "cheerUp.png",
-    };
-
     const imageFileName = typeToImage[sticker.type];
-    const altText =
-      sticker.type.charAt(0).toUpperCase() + sticker.type.slice(1);
+    const altText = sticker.type;
 
     const checkStickerUser = loginUser.userId === sticker.user.id;
 
@@ -165,9 +174,7 @@ const WritingDiary = () => {
   }
 
   if (!hasPermission) {
-    return (
-      <div></div>
-    );
+    return <div></div>;
   }
 
   return (
@@ -191,32 +198,34 @@ const WritingDiary = () => {
         )}
         {isPopupOpen && <SelectStamp diaryId={diaryId} onClose={closePopup} />}
         <br />
-        <div className="GetSticker">
-          {/* 리스트 불러와야 하는 곳 */}
-          <div className="scrollContainer">
-            {chunks.map((chunk, rowIndex) => (
-              <div key={rowIndex} className="row">
-                {chunk.map((sticker, index) => (
-                  <div key={index} className="sticker">
-                    <div className="stickerWrapper">
-                      {/* 타입 사진 연결 */}
-                      {renderStickerImage(sticker)}
-                      {hoveredUserNickname && (
-                        <div className="userNicknamePopup">
-                          {hoveredUserNickname} !
-                        </div>
-                      )}
+        {divVisible && (
+          <div className="GetSticker">
+            {/* 리스트 불러와야 하는 곳 */}
+            <div className="scrollContainer">
+              {chunks.map((chunk, rowIndex) => (
+                <div key={rowIndex} className="row">
+                  {chunk.map((sticker, index) => (
+                    <div key={index} className="sticker">
+                      <div className="stickerWrapper">
+                        {/* 타입 사진 연결 */}
+                        {renderStickerImage(sticker)}
+                        {hoveredUserNickname && (
+                          <div className="userNicknamePopup">
+                            {hoveredUserNickname} !
+                          </div>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                ))}
-                {/* 한 줄에 5칸이 되도록 빈 div로 */}
-                {Array.from({ length: 5 - chunk.length }).map((_, index) => (
-                  <div key={`empty-${index}`} className="sticker"></div>
-                ))}
-              </div>
-            ))}
+                  ))}
+                  {/* 한 줄에 5칸이 되도록 빈 div로 */}
+                  {Array.from({ length: 5 - chunk.length }).map((_, index) => (
+                    <div key={`empty-${index}`} className="sticker"></div>
+                  ))}
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
       </footer>
     </div>
   );

@@ -345,11 +345,10 @@ header > div {
 /*친구리스트*/
 
 .tab-menu {
-  width: 70%;
-  height: 85%;
-  margin-left: 20%;
-  position: absolute;
-  top: 0;
+  width: 20%;
+  position: fixed;
+  top: 4%;
+  transform: translateX(-150%);
 }
 
 .tab-list {
@@ -357,8 +356,7 @@ header > div {
   padding: 0;
   display: flex;
   justify-content: space-between;
-  background-color: #f0f0f0;
-  border: 1px solid #ccc;
+  background-color: hwb(26 97% 0%);
   border-radius: 4px;
 }
 
@@ -372,25 +370,29 @@ header > div {
 
 .tab-item.active {
   background-color: #61dafb;
+  flex: 1;
+  text-align: center;
+  padding: 5% 0;
   color: #fff;
+  border-radius: 4px;
 }
 
 .tab-content {
   height: 90%;
-  width: 100%;
-
-  border: 1px solid #ccc;
+  width: 90%;
+  margin-left: 3em;
   border-radius: 4px;
   position: absolute;
 }
 
 .tab-content-inner {
-  position: relative; /* 변경 */
+  position: absolute; /* 변경 */
   top: 0; /* 변경 */
   left: 5%; /* 변경 */
   right: 0; /* 변경 */
   bottom: 0; /* 변경 */
   width: 90%;
+  z-index: 3;
 }
 
 .frndBtn {

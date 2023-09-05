@@ -86,3 +86,15 @@ export function deleteUser(userId, password) {
 export function deleteSticker(diaryId, stickerId) {
   return call(`/diary/${diaryId}/sticker/${stickerId}`, "DELETE");
 }
+/*
+export function getSticker(diaryId) {
+  return call(`/diary/${diaryId}/stickers`, "GET", null)
+    .then((response) => {
+      console.log(response);
+      return response;
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+}
+*/

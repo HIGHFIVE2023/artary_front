@@ -618,3 +618,13 @@ button {
   margin-bottom: 20px;
   color: #6c757d;
 }
+.mypage {
+  position: absolute;
+  width: 100%;
+}
+.basic-btn {
+  padding: 0.4em 0.5em;
+  width: 7em;
+  margin: 1em;
+  background: hsl(200, 94%, 88%);
+}
