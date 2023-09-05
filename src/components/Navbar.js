@@ -3,12 +3,17 @@ import { logout } from "../service/ApiService";
 import Event from "./Event";
 import "../components/components.css";
 import { notification } from "antd";
+import { call } from "../service/ApiService";
 
 const Navbar = () => {
   const [view, setView] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [nickname, setNickname] = useState("");
   const [activeTab, setActiveTab] = useState(1);
+  const[notificationCount, setNotificationCount] = useState(0);
+  const[isEventRendered, setIsEventRendered] = useState(false);
+  const [listening, setListening] = useState(false);
+  let userDto = null;
 
   const popupRef = useRef(null); // Ref to the popup element
 
@@ -17,14 +22,65 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-    const userDto = JSON.parse(localStorage.getItem("user"));
+    userDto = JSON.parse(localStorage.getItem("user"));
     if (userDto) {
       setIsLoggedIn(true);
       setNickname(userDto.nickname);
+      setIsEventRendered(true);
+
     } else {
       setIsLoggedIn(false);
       setNickname("");
     }
+  }, []);
+
+  useEffect(() => {
+    let eventSource;
+    if (!listening && userDto) {
+      console.log("Subscribing to notifications...");
+
+      call("/notifications", "GET", null)
+        .then((data) => {
+          setNotificationCount(data.length); // 알림 갯수 업데이트
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+
+      eventSource = new EventSource(
+        `http://localhost:8080/notifications/subscribe/${userDto.email}`,
+        {
+          headers: {
+            Accept: "text/event-stream",
+          },
+        }
+      );
+
+      eventSource.addEventListener("sse", (event) => {
+        try {
+          const result = JSON.parse(event.data);
+          console.log("Received notification:", result);
+          setNotificationCount((prevCount) => prevCount + 1);
+        } catch (error) {
+          console.error("Error parsing JSON:", error);
+        }
+      });
+
+      eventSource.onerror = (event) => {
+        if (event.target.readyState === EventSource.CLOSED) {
+          console.log("SSE closed (" + event.target.readyState + ")");
+        }
+        eventSource.close();
+      };
+
+      eventSource.onopen = (event) => {
+        console.log("Connection opened");
+      };
+      setListening(true);
+    }
+    return () => {
+      console.log("Event source closed");
+    };
   }, []);
 
   const handleLogout = async () => {
@@ -84,7 +140,7 @@ const Navbar = () => {
           </button>
         </div>
         <div className="tabContent">
-          {activeTab === 1 && <Event notification={notification} />}
+          {activeTab === 1 && <Event notification={notification} notificationCount={setNotificationCount} />}
           {activeTab === 2 && (
             <div>
               {isLoggedIn && (
@@ -104,6 +160,7 @@ const Navbar = () => {
     <div>
       <button
         className="navBtn"
+        style={{ position: 'relative' }}
         onClick={() => {
           openPopup();
         }}
@@ -111,12 +168,12 @@ const Navbar = () => {
         {isLoggedIn ? (
           <>
             {nickname} 님{view && <Dropdown notification={notification} />}
+            {notificationCount > 0 && <span className="notification-badge">{notificationCount}</span>}
           </>
         ) : (
           <a href="/users/login">로그인</a>
         )}
       </button>
-      <span className="notification-count">{notification.length}</span>
       {isPopupOpen && <Dropdown notification={notification} />}
     </div>
   );

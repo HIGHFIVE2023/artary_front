@@ -1,10 +1,4 @@
-import React, {
-  useCallback,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { useCallback, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import IndexBtn from "../components/IndexBtn";
 import Springs from "./Springs";
@@ -12,19 +6,20 @@ import Circles from "./Circles";
 import EmotionItem from "../components/EmotionItem";
 import { getStringDate } from "../util/date.js";
 import { emotionList } from "../util/emotion.js";
-import Popup from "./Popup";
+import PicPopup from "./PicPopup";
+import StcPopup from "./StcPopup";
 import { call } from "../service/ApiService";
 
-const DiaryEditor = ({ isEdit, originData }) => {
+const DiaryEditor = () => {
   const user = JSON.parse(localStorage.getItem("user"));
   const contentRef = useRef();
   const [content, setContent] = useState("");
   const [title, setTitle] = useState("");
   const [diaryId, setDiaryId] = useState("");
-  const [imageSrc, setImageSrc] = useState("");
   const [isLoading, setLoading] = useState(false);
   const [emotion, setEmotion] = useState(3);
   const [diary, setDiary] = useState({ image: "" });
+
   //기본 선택 감정 3번감정
   const [date, setDate] = useState(getStringDate(new Date()));
 
@@ -34,29 +29,31 @@ const DiaryEditor = ({ isEdit, originData }) => {
 
   const navigate = useNavigate();
 
-  //팝업
-  const [isPopupOpen, setPopupOpen] = useState(false);
-  const [isButtonVisible, setButtonVisible] = useState(true);
+  //그림 생성 팝업
+  const [isPicPopupOpen, setPicPopupOpen] = useState(false);
+  const [isPicButtonVisible, setPicButtonVisible] = useState(true);
 
-  // 팝업 열기 이벤트 핸들러
-  const openPopup = () => {
+  //첫 문장 추천 팝업
+  const [isStcPopupOpen, setStcPopupOpen] = useState(false);
+  const [isStcButtonVisible, setStcButtonVisible] = useState(true);
+
+  // 그림 생성 팝업 오픈 + 닫기
+  const openPicPopup = () => {
     if (content.length < 1) {
       contentRef.current.focus(); // 한 글자도 안 썼을때 textarea에 포커스.
       return;
     }
 
-    setPopupOpen(true);
-    setButtonVisible(false);
+    setPicPopupOpen(true);
+    setPicButtonVisible(false);
+  };
+  const closePicPopup = () => {
+    setPicPopupOpen(false);
+    setPicButtonVisible(true);
   };
 
-  // 팝업 닫기 이벤트 핸들러
-  const closePopup = () => {
-    setPopupOpen(false);
-    setButtonVisible(true);
-  };
-
-  //그림 생성 버튼
-  const handleSubmit = () => {
+  //그림 생성 팝업 오픈 시, 데이터 넘기기
+  const handleSubmitPic = () => {
     if (content.length < 1) {
       contentRef.current.focus(); // 한 글자도 안 썼을때 textarea에 포커스.
       return;
@@ -92,7 +89,7 @@ const DiaryEditor = ({ isEdit, originData }) => {
   const { image } = diary;
 
   const handleSubmitClick = () => {
-    setPopupOpen(false);
+    setPicPopupOpen(false);
 
     call(`/diary/temporary/${diaryId}`, "GET", null)
       .then((response) => {
@@ -102,6 +99,16 @@ const DiaryEditor = ({ isEdit, originData }) => {
       .catch((error) => {
         console.log(error);
       });
+  };
+
+  //첫문장 생성 팝업 오픈 + 닫기
+  const openStcPopup = () => {
+    setStcPopupOpen(true);
+    setStcButtonVisible(false);
+  };
+  const closeStcPopup = () => {
+    setStcPopupOpen(false);
+    setStcButtonVisible(true);
   };
 
   //저장
@@ -160,21 +167,32 @@ const DiaryEditor = ({ isEdit, originData }) => {
               </div>
             </div>
             <div className="LeftBottomDiv">
-              {isButtonVisible && (
+              {isStcButtonVisible && (
+                <button
+                  className="sentenceBtn"
+                  onClick={() => {
+                    openStcPopup();
+                  }}
+                >
+                  첫 문장 추천
+                </button>
+              )}
+              {isStcPopupOpen && <StcPopup onClose={closeStcPopup} />}
+              {isPicButtonVisible && (
                 <button
                   className="drawBtn"
                   onClick={() => {
-                    openPopup();
-                    handleSubmit();
+                    openPicPopup();
+                    handleSubmitPic();
                   }}
                 >
                   그림 생성
                 </button>
               )}
-              {isPopupOpen && (
-                <Popup
+              {isPicPopupOpen && (
+                <PicPopup
                   diaryId={diaryId}
-                  onClose={closePopup}
+                  onClose={closePicPopup}
                   onSubmitClick={handleSubmitClick}
                 />
               )}
