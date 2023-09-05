@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import IndexBtn from "../components/IndexBtn";
 import Circles from "../components/Circles";
 import Springs from "../components/Springs";
-import axios from 'axios';
+import axios from "axios";
 
 const FindEmail = () => {
   const [name, setName] = useState("");
@@ -14,22 +14,22 @@ const FindEmail = () => {
 
   const navigate = useNavigate();
 
-  
   const handleFindEmail = (e) => {
     e.preventDefault();
     setError("");
     setSuccessMessage("");
-    
+
     const data = new URLSearchParams();
     data.append("name", name);
     data.append("nickname", nickname);
-  
-    axios.post("http://localhost:8080/users/email", data)
-      .then(response => {
-        setSuccessMessage("아이디는 " + response.data + " 입니다."); 
+
+    axios
+      .post("http://localhost:8080/users/email", data)
+      .then((response) => {
+        setSuccessMessage("아이디는 " + response.data + " 입니다.");
       })
-      .catch(error => {
-        setError("존재하지 않는 사용자이거나 정보가 일치하지 않습니다."); 
+      .catch((error) => {
+        setError("존재하지 않는 사용자이거나 정보가 일치하지 않습니다.");
       });
   };
 
@@ -44,7 +44,7 @@ const FindEmail = () => {
   const navigateToLogin = () => {
     navigate("/users/login");
   };
-  
+
   return (
     <div className="Diary">
       <div className="DiaryFrameContainer">
@@ -62,7 +62,7 @@ const FindEmail = () => {
             </div>
             <Circles style={{ marginLeft: "1em" }} />
           </div>
-          
+
           <div className="RightDivOveray">
             <img className="LoginIcon" src="/img/icon.png" alt="login icon" />
             <div className="input-group">
@@ -88,11 +88,13 @@ const FindEmail = () => {
               아이디찾기
             </button>
             {error && <p className="error-message">{error}</p>}
-             {successMessage && <p className="success-message">{successMessage}</p>}
- 
+            {successMessage && (
+              <p className="success-message">{successMessage}</p>
+            )}
+
             <div className="extra-login-group">
               <btn className="findId" onClick={navigateToLogin}>
-                아이디 찾기
+                로그인 가기
               </btn>
               <btn className="findPwd" onClick={navigateToFindPw}>
                 비밀번호 찾기

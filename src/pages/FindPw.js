@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import IndexBtn from "../components/IndexBtn";
 import Circles from "../components/Circles";
 import Springs from "../components/Springs";
-import axios from 'axios';
+import axios from "axios";
 
 const FindPw = () => {
   const [email, setEmail] = useState("");
@@ -12,7 +12,6 @@ const FindPw = () => {
   const navigate = useNavigate();
 
   const handleFindPw = () => {
-
     setError("");
 
     const data = new URLSearchParams();
@@ -23,7 +22,8 @@ const FindPw = () => {
       return;
     }
 
-    axios.post('http://localhost:8080/users/password', data)
+    axios
+      .post("http://localhost:8080/users/password", data)
       .then(() => {
         alert("임시 비밀번호를 사용자의 이메일로 발송했습니다.");
       })
@@ -44,7 +44,7 @@ const FindPw = () => {
   const navigateToFindEmail = () => {
     navigate("/users/email");
   };
-  
+
   return (
     <div className="Diary">
       <div className="DiaryFrameContainer">
@@ -64,9 +64,9 @@ const FindPw = () => {
           </div>
           <div className="RightDivOveray">
             <img className="LoginIcon" src="/img/icon.png" alt="login icon" />
-            <div className="input-group">
+            <div className="input-group2">
               <input
-                className="id"
+                className="emailId"
                 id="id"
                 name="id"
                 placeholder="이메일을 입력해주세요"
@@ -83,7 +83,7 @@ const FindPw = () => {
                 아이디 찾기
               </btn>
               <btn className="findPwd" onClick={navigateToFindPw}>
-                비밀번호 찾기
+                로그인 가기
               </btn>
               <btn className="GoSignUp" onClick={navigateToSignUp}>
                 회원가입
