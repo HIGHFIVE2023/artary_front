@@ -1,12 +1,16 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import { deleteUser } from "../service/ApiService";
-import Friends from "./Friends";
 import Circles from "../components/Circles";
 import Springs from "../components/Springs";
 import IndexBtn from "../components/IndexBtn";
 import { UserOutlined } from "@ant-design/icons";
 import { Avatar } from "antd";
 import { useNavigate } from "react-router-dom";
+import { ActiveContext } from "./Friends";
+import SearchFriend from "../components/SearchFriend";
+import FriendsList from "../components/FriendsList";
+import FriendRequest from "../components/FriendRequest";
+import { act } from "react-dom/test-utils";
 
 const Mypage = () => {
   const userDto = JSON.parse(localStorage.getItem("user"));
@@ -19,9 +23,22 @@ const Mypage = () => {
   const [image, setImage] = useState(
     "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
   );
+
+  let contents = [<SearchFriend />, <FriendsList />, <FriendRequest />];
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [password, setPassword] = useState("");
+  const activeTab = useContext(ActiveContext);
+
   const navigate = useNavigate();
   const navigateToMypageUpdate = () => {
     navigate("/mypage/update");
+  };
+
+  const handleOpenPopup = () => {
+    setIsPopupOpen(true);
+  };
+  const handleClosePopup = () => {
+    setIsPopupOpen(false);
   };
 
   useEffect(() => {
@@ -35,13 +52,8 @@ const Mypage = () => {
   }, []);
 
   const handleDeleteUser = () => {
-    const userPassword = window.prompt(
-      "회원 탈퇴를 위해 비밀번호를 입력해주세요",
-      ""
-    );
-
-    if (userPassword) {
-      deleteUser(userId, userPassword)
+    if (password) {
+      deleteUser(userId, password)
         .then((response) => {
           console.log(response);
           setSuccessMessage("회원 탈퇴가 완료되었습니다.");
@@ -65,7 +77,7 @@ const Mypage = () => {
             <IndexBtn type={"mypage"} text4={"마이페이지"} />
           </div>
           <div className="LeftDivOveray">
-            <div>
+            <div className="mypage">
               <h1>마이페이지</h1>
               {nickname && email ? (
                 <div>
@@ -82,12 +94,49 @@ const Mypage = () => {
               ) : (
                 <p>Loading user information...</p>
               )}
-            </div>
-            <div>
-              <button onClick={navigateToMypageUpdate}>프로필 수정</button>
-              <button onClick={handleDeleteUser}>회원 탈퇴</button>
+
+              <button onClick={navigateToMypageUpdate} className="basic-btn">
+                프로필 수정
+              </button>
+              <button onClick={handleOpenPopup} className="basic-btn">
+                회원 탈퇴
+              </button>
+              {isPopupOpen && (
+                <div
+                  className="password-popup"
+                  elevation={2}
+                  style={{
+                    position: "absolute",
+                    top: "35%",
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
+                    width: "100%",
+                    height: "40%",
+                    maxHeight: "90%",
+                    overflowY: "auto",
+                    backgroundColor: "white",
+                  }}
+                >
+                  <div className="password-content">
+                    <h2>비밀번호를 입력하세요</h2>
+                    <input
+                      type="password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                    />
+                    <div>
+                      <p>{errorMessage && <p>{errorMessage}</p>}</p>
+                      <button className="basic-btn" onClick={handleClosePopup}>
+                        Cancel
+                      </button>
+                      <button className="basic-btn" onClick={handleDeleteUser}>
+                        Confirm
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
               {successMessage && <p>{successMessage}</p>}
-              {errorMessage && <p>{errorMessage}</p>}
             </div>
           </div>
           <div className="SpringMaker">
@@ -97,8 +146,11 @@ const Mypage = () => {
             </div>
             <Circles style={{ marginLeft: "1em" }} />
           </div>
+
           <div className="RightDivOveray">
-            <Friends />
+            <div className="tab-content">
+              <p>현재탭{activeTab}</p>
+            </div>
           </div>
         </div>
       </div>
