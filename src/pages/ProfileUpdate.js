@@ -6,15 +6,14 @@ import Circles from "../components/Circles";
 import Springs from "../components/Springs";
 import imageCompression from "browser-image-compression";
 import IndexBtn from "../components/IndexBtn";
+import { useNavigate } from "react-router";
 
 const ProfileUpdate = () => {
   // 로컬 스토리지에서 사용자 정보를 읽어옵니다.
   const userDto = JSON.parse(localStorage.getItem("user"));
-  const [nickname, setNickname] = useState("");
+  const [nickname, setNickname] = useState(userDto.nickname);
   const [password, setPassword] = useState("");
-  const [image, setImage] = useState(
-    "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
-  );
+  const [image, setImage] = useState(userDto.image);
   const [file, setFile] = useState(null);
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -26,6 +25,7 @@ const ProfileUpdate = () => {
 
   //버튼 활성화
   const [disable, setDisable] = useState(true);
+  const navigate = useNavigate();
 
   const handleUpdateProfile = (e) => {
     e.preventDefault(); // 폼 제출 기본 동작 방지
@@ -38,6 +38,7 @@ const ProfileUpdate = () => {
       userId: userDto.userId,
       nickname,
       image,
+      password,
     };
 
     //localSotrage에 담길 값 (보안상 password 제외)
@@ -92,28 +93,6 @@ const ProfileUpdate = () => {
     }
   };
 
-  const handleUpdatePwd = () => {
-    const updateUserDto = {
-      token: userDto.token,
-      email: userDto.email,
-      name: userDto.name,
-      userId: userDto.userId,
-      nickname: userDto.nickname,
-      image,
-      password: password,
-    };
-    updateUser(userDto.userId, updateUserDto)
-      .then((response) => {
-        console.log(response);
-        alert("비밀번호가 성공적으로 업데이트되었습니다.");
-        window.location.href = "/mypage";
-      })
-      .catch((error) => {
-        console.error(error);
-        alert("비밀번호 업데이트에 실패하였습니다.");
-      });
-  };
-
   return (
     <div className="Diary">
       <div className="DiaryFrameContainer">
@@ -161,9 +140,6 @@ const ProfileUpdate = () => {
                   />
                   <br />
                   <p className="message">{nicknameMessage}</p>
-                  <button type="submit" className="basic-btn">
-                    저장
-                  </button>
                   <br />
                   <label style={{ margin: "2em" }}>비밀번호</label>
                   <input
@@ -184,15 +160,18 @@ const ProfileUpdate = () => {
                     }}
                   />
                   <br />
+                  <p className="message">{pwdMsg}</p>
+                  <br />
+                  <button onClick={() => navigate(-1)} className="basic-btn">
+                    취소
+                  </button>
                   <button
-                    onClick={handleUpdatePwd}
+                    type="submit"
                     disabled={disable}
                     className="basic-btn"
                   >
                     저장
                   </button>
-                  <br />
-                  <p className="message">{pwdMsg}</p>
                 </form>
               </div>
             </div>
