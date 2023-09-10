@@ -5,7 +5,11 @@ import SelectStamp from "./SelectStamp";
 
 const WritingDiary = () => {
   const { diaryId, stickerId } = useParams();
-  const [diary, setDiary] = useState({ title: "", content: "", user: { nickname: "" } });
+  const [diary, setDiary] = useState({
+    title: "",
+    content: "",
+    user: { nickname: "" },
+  });
   const loginUser = JSON.parse(localStorage.getItem("user"));
   const [stickers, setStickers] = useState([]);
   const [hasPermission, setHasPermission] = useState(false);
@@ -165,9 +169,7 @@ const WritingDiary = () => {
   }
 
   if (!hasPermission) {
-    return (
-      <div></div>
-    );
+    return <div></div>;
   }
 
   return (
