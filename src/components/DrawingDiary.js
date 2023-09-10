@@ -35,7 +35,17 @@ const DrawingDiary = () => {
 
   if (!hasPermission) {
     return (
-      <h1 style={{ display: "flex", alignItems: "center", justifyContent: "center", paddingLeft: "10px", color: "red" }}>🚫 접근 권한이 없는 페이지입니다. 🚫</h1>
+      <h1
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          paddingLeft: "10px",
+          color: "red",
+        }}
+      >
+        🚫 접근 권한이 없는 페이지입니다. 🚫
+      </h1>
     );
   }
 
@@ -51,6 +61,17 @@ const DrawingDiary = () => {
       <div className="imageContainer">
         <img className="diaryImage" src={image} alt="Diary Image" />
       </div>
+      <footer>
+        {" "}
+        <div className="bgm">
+          <audio
+            src={diary.bgm}
+            controls
+            loop
+            style={{ maxWidth: "100%" }}
+          ></audio>
+        </div>
+      </footer>
     </div>
   );
 };
