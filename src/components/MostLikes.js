@@ -123,7 +123,7 @@ const MostLikes = () => {
           {diaries.length === 0 ? (
             <p>작성된 일기가 없습니다.</p>
           ) : (
-            <div>Loading...</div>
+            <div>아직 도장을 받은 스티커가 없어요!</div>
           )}
         </div>
       )}

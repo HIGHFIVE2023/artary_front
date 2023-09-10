@@ -70,7 +70,6 @@ const Login = () => {
                 id="id"
                 name="id"
                 placeholder="아이디를 입력해주세요"
-                value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
               <input

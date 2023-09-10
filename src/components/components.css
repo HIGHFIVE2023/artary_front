@@ -348,7 +348,7 @@ header > div {
   width: 20%;
   position: fixed;
   top: 4%;
-  transform: translateX(-150%);
+  transform: translateX(20%);
 }
 
 .tab-list {
@@ -379,8 +379,8 @@ header > div {
 
 .tab-content {
   height: 90%;
-  width: 90%;
-  margin-left: 3em;
+  width: 120%;
+
   border-radius: 4px;
   position: absolute;
 }
