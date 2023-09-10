@@ -16,7 +16,7 @@ a {
 }
 
 .navBtn {
-  background-color: rgb(246, 255, 149);
+  background-color: rgb(253, 255, 149);
   color: black;
   border: none;
   cursor: pointer;
@@ -485,8 +485,14 @@ header > div {
 
 .mostLikesContainer {
   border-radius: 1em;
-  border: thick double #32a1ce;
+  border: thick double #b458ff;
   width: 80%;
+  margin-left: 7%;
+}
+.mostLikesContainer img {
+  cursor: pointer;
+  margin-left: 3%;
+  max-width: 45%; /* 이미지의 최대 너비를 부모 요소에 맞게 조절합니다. */
 }
 
 .notification-badge {

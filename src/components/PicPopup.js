@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { call } from "../service/ApiService";
 
 // 팝업 컴포넌트
-const Popup = ({ diaryId, onClose, onSubmitClick }) => {
+const PicPopup = ({ diaryId, onClose, onSubmitClick }) => {
   const [btnVisible, setBtnVisible] = useState(true);
   const [picVisible, setPicVisible] = useState(false);
 
@@ -104,4 +104,4 @@ const Popup = ({ diaryId, onClose, onSubmitClick }) => {
   );
 };
 
-export default Popup;
+export default PicPopup;

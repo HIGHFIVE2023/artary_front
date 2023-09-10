@@ -1,9 +1,4 @@
-import React, {
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import IndexBtn from "../components/IndexBtn";
 import Springs from "./Springs";
@@ -11,7 +6,7 @@ import Circles from "./Circles";
 import EmotionItem from "../components/EmotionItem";
 import { getStringDate } from "../util/date.js";
 import { emotionList } from "../util/emotion.js";
-import Popup from "./Popup";
+import PicPopup from "./PicPopup";
 import { call } from "../service/ApiService";
 
 const EditDiary = () => {
@@ -217,7 +212,7 @@ const EditDiary = () => {
                 </button>
               )}
               {isPopupOpen && (
-                <Popup
+                <PicPopup
                   diaryId={diaryId}
                   onClose={closePopup}
                   onSubmitClick={handleSubmitClick}

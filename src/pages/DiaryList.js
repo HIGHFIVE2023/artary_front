@@ -31,8 +31,12 @@ const DiaryList = () => {
   const fetchDiaries = (page) => {
     call(`/diary/pagination/${nickname}?page=${page}`, "GET", null)
       .then((response) => {
-        console.log(response);
-        setDiaries(response.data);
+        // 데이터를 받은 후 createdAt을 기준으로 오름차순으로 정렬
+        const sortedDiaries = response.data.sort((a, b) => {
+          return new Date(a.createdAt) - new Date(b.createdAt);
+        });
+
+        setDiaries(sortedDiaries);
         setTotalPages(response.pageInfo.totalPages);
       })
       .catch((error) => {
@@ -57,24 +61,30 @@ const DiaryList = () => {
             <div className="containerOfLeft">
               <p
                 style={{
-                  width: "100%",
+                  width: "85%",
                   height: "1em",
                   marginTop: "0",
                   padding: "1em",
+                  backgroundColor: "rgb(246, 255, 149)",
+                  borderRadius: "10px",
+                  fontFamily: "crayon",
+                  fontWeight: "bold",
                 }}
               >
                 {nickname} 님의 일기
               </p>
-              <h3
+              <p
                 style={{
-                  width: "100%",
+                  width: "70%",
+                  marginLeft: "10%",
                   height: "1em",
                   margin: "0",
                   padding: "1em",
+                  fontFamily: "crayon",
                 }}
               >
-                가장 스티커를 많이 받은 일기
-              </h3>
+                {"<가장 스티커를 많이 받은 일기>"}
+              </p>
               <MostLikes />
             </div>
           </div>

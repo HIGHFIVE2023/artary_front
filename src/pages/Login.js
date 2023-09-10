@@ -45,8 +45,6 @@ const Login = () => {
     navigate("/users/email");
   };
 
-
-
   return (
     <div className="Diary">
       <div className="DiaryFrameContainer">
@@ -91,7 +89,6 @@ const Login = () => {
               </button>
               {error && <p className="error-message">{error}</p>}
             </div>
-
             <div className="extra-login-group">
               <btn className="findId" onClick={navigateToFindEmail}>
                 아이디 찾기
