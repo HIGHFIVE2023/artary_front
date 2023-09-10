@@ -10,10 +10,10 @@ const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [nickname, setNickname] = useState("");
   const [activeTab, setActiveTab] = useState(1);
-  const[notificationCount, setNotificationCount] = useState(0);
-  const[isEventRendered, setIsEventRendered] = useState(false);
+  const [notificationCount, setNotificationCount] = useState(0);
+  const [isEventRendered, setIsEventRendered] = useState(false);
   const [listening, setListening] = useState(false);
-  let userDto = null;
+  const [userDto, setUserDto] = useState(null);
 
   const popupRef = useRef(null); // Ref to the popup element
 
@@ -22,12 +22,12 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-    userDto = JSON.parse(localStorage.getItem("user"));
-    if (userDto) {
+    const storedUserDto = JSON.parse(localStorage.getItem("user"));
+    if (storedUserDto) {
+      setUserDto(storedUserDto); // Set userDto with the stored user data
       setIsLoggedIn(true);
-      setNickname(userDto.nickname);
+      setNickname(storedUserDto.nickname);
       setIsEventRendered(true);
-
     } else {
       setIsLoggedIn(false);
       setNickname("");
@@ -36,12 +36,13 @@ const Navbar = () => {
 
   useEffect(() => {
     let eventSource;
-    if (!listening && userDto) {
+    if (!listening && userDto && userDto.email) {
+      // Check if userDto and email exist
       console.log("Subscribing to notifications...");
 
       call("/notifications", "GET", null)
         .then((data) => {
-          setNotificationCount(data.length); // 알림 갯수 업데이트
+          setNotificationCount(data.length);
         })
         .catch((error) => {
           console.error(error);
@@ -81,10 +82,11 @@ const Navbar = () => {
     return () => {
       console.log("Event source closed");
     };
-  }, []);
+  }, [userDto, listening]); // Add userDto and listening as dependencies
 
   const handleLogout = async () => {
     try {
+      setPopupOpen(false);
       setIsLoggedIn(false);
       setNickname("");
       localStorage.clear();
@@ -93,6 +95,9 @@ const Navbar = () => {
     } catch (error) {
       console.error(error);
     }
+  };
+  const handleLogin = () => {
+    window.location.href = "/users/login";
   };
 
   const [isPopupOpen, setPopupOpen] = useState(false);
@@ -134,21 +139,17 @@ const Navbar = () => {
           </button>
           <button
             className={`Tab${activeTab === 2 ? "active" : ""}`}
-            onClick={() => handleTabChange(2)}
+            onClick={handleLogout}
           >
             로그아웃
           </button>
         </div>
         <div className="tabContent">
-          {activeTab === 1 && <Event notification={notification} notificationCount={setNotificationCount} />}
-          {activeTab === 2 && (
-            <div>
-              {isLoggedIn && (
-                <a href="/" onClick={handleLogout}>
-                  로그아웃
-                </a>
-              )}
-            </div>
+          {activeTab === 1 && (
+            <Event
+              notification={notification}
+              notificationCount={setNotificationCount}
+            />
           )}
         </div>
         <button className="close-button" onClick={closePopup}></button>
@@ -160,15 +161,15 @@ const Navbar = () => {
     <div>
       <button
         className="navBtn"
-        style={{ position: 'relative' }}
-        onClick={() => {
-          openPopup();
-        }}
+        style={{ position: "relative" }}
+        onClick={isLoggedIn ? openPopup : handleLogin}
       >
         {isLoggedIn ? (
           <>
             {nickname} 님{view && <Dropdown notification={notification} />}
-            {notificationCount > 0 && <span className="notification-badge">{notificationCount}</span>}
+            {notificationCount > 0 && (
+              <span className="notification-badge">{notificationCount}</span>
+            )}
           </>
         ) : (
           <a href="/users/login">로그인</a>
