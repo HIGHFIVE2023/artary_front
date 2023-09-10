@@ -9,6 +9,7 @@ import { emotionList } from "../util/emotion.js";
 import PicPopup from "./PicPopup";
 import StcPopup from "./StcPopup";
 import { call } from "../service/ApiService";
+import Loading from "../service/Loading";
 
 const DiaryEditor = () => {
   const user = JSON.parse(localStorage.getItem("user"));
@@ -16,7 +17,8 @@ const DiaryEditor = () => {
   const [content, setContent] = useState("");
   const [title, setTitle] = useState("");
   const [diaryId, setDiaryId] = useState("");
-  const [isLoading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
   const [emotion, setEmotion] = useState(3);
   const [diary, setDiary] = useState({ image: "" });
 
@@ -72,8 +74,6 @@ const DiaryEditor = () => {
       emotion: emotionName[emotion],
     };
 
-    setLoading(true);
-
     call("/diary/write", "POST", req)
       .then((response) => {
         console.log(response);
@@ -81,7 +81,6 @@ const DiaryEditor = () => {
       })
       .catch((error) => {
         console.error(error);
-        setLoading(false);
       });
   };
 
@@ -113,10 +112,13 @@ const DiaryEditor = () => {
 
   //저장
   const handleClick = () => {
+    setIsLoading(true);
     call(`/diary/${diaryId}/save`, "POST", null)
       .then((response) => {
         console.log(response);
+        setIsLoading(false);
       })
+
       .catch((error) => {
         console.log(error);
       });
@@ -134,6 +136,7 @@ const DiaryEditor = () => {
     <div className="Diary">
       <div className="DiaryFrameContainer">
         <div className="DiaryFrame">
+          {isLoading ? <Loading /> : null}
           <div className="IndexBtnContainer">
             <IndexBtn type={"write"} text1={"일기쓰기"} />
           </div>

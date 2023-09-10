@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { call } from "../service/ApiService";
+import Loading from "../service/Loading";
 
 const DrawingDiary = () => {
   const { diaryId } = useParams();
@@ -35,7 +36,17 @@ const DrawingDiary = () => {
 
   if (!hasPermission) {
     return (
-      <h1 style={{ display: "flex", alignItems: "center", justifyContent: "center", paddingLeft: "10px", color: "red" }}>🚫 접근 권한이 없는 페이지입니다. 🚫</h1>
+      <h1
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          paddingLeft: "10px",
+          color: "red",
+        }}
+      >
+        🚫 접근 권한이 없는 페이지입니다. 🚫
+      </h1>
     );
   }
 
