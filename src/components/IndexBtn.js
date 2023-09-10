@@ -32,7 +32,6 @@ const IndexBtn = ({ type, text1, text2, text3, text4 }) => {
 
   return (
     <>
-      <Friends />
       <section>
         <div className="indexContainer01">
           <button

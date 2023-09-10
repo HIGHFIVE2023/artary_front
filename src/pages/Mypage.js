@@ -6,11 +6,7 @@ import IndexBtn from "../components/IndexBtn";
 import { UserOutlined } from "@ant-design/icons";
 import { Avatar } from "antd";
 import { useNavigate } from "react-router-dom";
-import { ActiveContext } from "./Friends";
-import SearchFriend from "../components/SearchFriend";
-import FriendsList from "../components/FriendsList";
-import FriendRequest from "../components/FriendRequest";
-import { act } from "react-dom/test-utils";
+import Friends, { ActiveContext } from "./Friends";
 
 const Mypage = () => {
   const userDto = JSON.parse(localStorage.getItem("user"));
@@ -24,10 +20,8 @@ const Mypage = () => {
     "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
   );
 
-  let contents = [<SearchFriend />, <FriendsList />, <FriendRequest />];
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [password, setPassword] = useState("");
-  const activeTab = useContext(ActiveContext);
 
   const navigate = useNavigate();
   const navigateToMypageUpdate = () => {
@@ -148,9 +142,7 @@ const Mypage = () => {
           </div>
 
           <div className="RightDivOveray">
-            <div className="tab-content">
-              <p>현재탭{activeTab}</p>
-            </div>
+            <Friends />
           </div>
         </div>
       </div>
