@@ -63,7 +63,7 @@ const DiaryList = () => {
                   padding: "1em",
                   backgroundColor: "rgb(246, 255, 149)",
                   borderRadius: "10px",
-                  fontFamily: "crayon",
+                  fontFamily: "Cafe24Supermagic-Bold-v1.0",
                   fontWeight: "bold",
                 }}
               >
@@ -76,7 +76,7 @@ const DiaryList = () => {
                   height: "1em",
                   margin: "0",
                   padding: "1em",
-                  fontFamily: "crayon",
+                  fontFamily: "Cafe24Supermagic-Bold-v1.0",
                 }}
               >
                 {"<가장 스티커를 많이 받은 일기>"}
