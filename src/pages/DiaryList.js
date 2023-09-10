@@ -31,12 +31,8 @@ const DiaryList = () => {
   const fetchDiaries = (page) => {
     call(`/diary/pagination/${nickname}?page=${page}`, "GET", null)
       .then((response) => {
-        // 데이터를 받은 후 createdAt을 기준으로 오름차순으로 정렬
-        const sortedDiaries = response.data.sort((a, b) => {
-          return new Date(a.createdAt) - new Date(b.createdAt);
-        });
-
-        setDiaries(sortedDiaries);
+        console.log(response);
+        setDiaries(response.data);
         setTotalPages(response.pageInfo.totalPages);
       })
       .catch((error) => {
