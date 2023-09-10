@@ -7,6 +7,20 @@
   font-family: "crayon";
   src: url("../public/font/Typo_CrayonM.ttf");
 }
+@font-face {
+  font-family: "HakgyoansimWoojuR";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-2@1.0/HakgyoansimWoojuR.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Cafe24Supermagic-Bold-v1.0";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-2@1.0/Cafe24Supermagic-Bold-v1.0.woff2")
+    format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
 
 .textarea-container {
   background-repeat: repeat-y;
@@ -15,7 +29,7 @@
 }
 
 textarea {
-  font-family: "kyobo";
+  font-family: "HakgyoansimWoojuR";
   background-color: transparent;
   border: none;
   font-size: 19px;
@@ -34,9 +48,12 @@ textarea {
 body {
   background: hsl(200, 94%, 88%);
   text-align: center;
-  font-family: "kyobo";
+  font-family: "HakgyoansimWoojuR";
   overflow: hidden;
   font-size: 16px;
+}
+p {
+  font-family: "Cafe24Supermagic-Bold-v1.0";
 }
 
 /*홈 기본 틀*/
@@ -94,7 +111,7 @@ body {
 /*다이어리 기본 틀*/
 .DiaryFrameContainer {
   position: absolute;
-  font-family: "kyobo";
+  font-family: "HakgyoansimWoojuR";
   width: 65%;
   height: 80%;
   background-color: hsl(282, 100%, 91%);
@@ -177,10 +194,10 @@ button {
   cursor: pointer;
   border: none;
   outline: none;
-  font-family: "crayon";
+  font-family: "Cafe24Supermagic-Bold-v1.0";
 }
 .HomeButtonContainer {
-  font-family: "crayon";
+  font-family: "Cafe24Supermagic-Bold-v1.0";
   position: absolute;
   right: -3.7em;
   top: 70px;
@@ -188,7 +205,7 @@ button {
 }
 
 .LoginIndexBtnContainer {
-  font-family: "crayon";
+  font-family: "Cafe24Supermagic-Bold-v1.0";
   position: absolute;
   right: -60px;
   top: 44px;
@@ -199,7 +216,7 @@ button {
   border: none;
 }
 .IndexBtnContainer {
-  font-family: "crayon";
+  font-family: "Cafe24Supermagic-Bold-v1.0";
   position: absolute;
   left: 96.5%;
   top: 10%;
@@ -530,7 +547,7 @@ button {
 
 /*팝업창*/
 .popup {
-  font-family: crayon;
+  font-family: Cafe24Supermagic-Bold-v1.0;
   z-index: 1;
   background: #fff;
   border: 1px solid #dedede;
@@ -574,7 +591,7 @@ button {
   height: 55%;
 }
 .stcpopup {
-  font-family: crayon;
+  font-family: Cafe24Supermagic-Bold-v1.0;
   z-index: 1;
   background: #fff;
   border: 1px solid #dedede;
