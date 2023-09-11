@@ -37,8 +37,8 @@ const FindPw = () => {
     navigate("/users/signup");
   };
 
-  const navigateToFindPw = () => {
-    navigate("/users/password");
+  const navigateToLogin = () => {
+    navigate("/users/login");
   };
 
   const navigateToFindEmail = () => {
@@ -82,7 +82,7 @@ const FindPw = () => {
               <btn className="findId" onClick={navigateToFindEmail}>
                 아이디 찾기
               </btn>
-              <btn className="findPwd" onClick={navigateToFindPw}>
+              <btn className="findPwd" onClick={navigateToLogin}>
                 로그인 가기
               </btn>
               <btn className="GoSignUp" onClick={navigateToSignUp}>
