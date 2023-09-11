@@ -104,10 +104,11 @@ const WritingDiary = () => {
   //칸칸이 배열하기
   const [chunks, setChunks] = useState([]);
   function chunkArray(arr, chunkSize) {
+    const result = [];
     for (let i = 0; i < arr.length; i += chunkSize) {
-      chunks.push(arr.slice(i, i + chunkSize));
+      result.push(arr.slice(i, i + chunkSize));
     }
-    return chunks;
+    return result;
   }
 
   useEffect(() => {
@@ -207,7 +208,6 @@ const WritingDiary = () => {
                   {chunk.map((sticker, index) => (
                     <div key={index} className="sticker">
                       <div className="stickerWrapper">
-                        {/* 타입 사진 연결 */}
                         {renderStickerImage(sticker)}
                         {hoveredUserNickname && (
                           <div className="userNicknamePopup">
@@ -217,7 +217,6 @@ const WritingDiary = () => {
                       </div>
                     </div>
                   ))}
-                  {/* 한 줄에 5칸이 되도록 빈 div로 */}
                   {Array.from({ length: 5 - chunk.length }).map((_, index) => (
                     <div key={`empty-${index}`} className="sticker"></div>
                   ))}
