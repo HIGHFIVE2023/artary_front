@@ -83,20 +83,20 @@ const FriendRequest = () => {
                   <p className="username">{requestFriend.nickname}</p>
                   <p className="email">{requestFriend.email}</p>
                   <span>{calculateTime(requestFriend.createdAt)}</span>
-                  <div className="button-container">
-                    <button
-                      onClick={() => replyFriend(requestFriend.email, true)}
-                      className="accept-button"
-                    >
-                      수락
-                    </button>
-                    <button
-                      onClick={() => replyFriend(requestFriend.email, false)}
-                      className="reject-button"
-                    >
-                      거절
-                    </button>
-                  </div>
+                </div>
+                <div className="button-container">
+                  <button
+                    onClick={() => replyFriend(requestFriend.email, true)}
+                    className="accept-button"
+                  >
+                    수락
+                  </button>
+                  <button
+                    onClick={() => replyFriend(requestFriend.email, false)}
+                    className="reject-button"
+                  >
+                    거절
+                  </button>
                 </div>
               </li>
             );

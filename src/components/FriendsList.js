@@ -64,7 +64,7 @@ const FriendsList = () => {
                   icon={<UserOutlined />}
                   src={profileImage}
                 />
-                <div className="user-info">
+                <div className="user-info" style={{ width: "13em" }}>
                   <p className="username">{friend.nickname}</p>
                   <p className="email">{friend.email}</p>
                 </div>

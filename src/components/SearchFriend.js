@@ -138,13 +138,15 @@ const SearchFriend = () => {
                   src={defaultImageURL}
                 />
               )}
-              <div>
-                <p>{nickname}</p>
-                <p>{email}</p>
+              <div className="user-info">
+                <p className="username">{nickname}</p>
+                <p className="email">{email}</p>
               </div>
               {/* 친구 검색 결과에 따라 다른 정보를 표시할 수 있습니다 */}
               {isFriend ? (
-                <button disabled>친구</button>
+                <button disabled className="frndBtn">
+                  친구
+                </button>
               ) : (
                 <>
                   {getRequest ? (
