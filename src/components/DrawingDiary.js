@@ -1,7 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router";
 import { call } from "../service/ApiService";
-import Loading from "../service/Loading";
 
 const DrawingDiary = () => {
   const { diaryId } = useParams();

@@ -17,7 +17,7 @@ const DiaryEditor = () => {
   const [content, setContent] = useState("");
   const [title, setTitle] = useState("");
   const [diaryId, setDiaryId] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoadingMusic, setIsLoadingMusic] = useState(false);
 
   const [emotion, setEmotion] = useState(3);
   const [diary, setDiary] = useState({ image: "" });
@@ -112,18 +112,26 @@ const DiaryEditor = () => {
 
   //저장
   const handleClick = () => {
-    setIsLoading(true);
+    setIsLoadingMusic(true);
+
     call(`/diary/${diaryId}/save`, "POST", null)
       .then((response) => {
-        console.log(response);
-        setIsLoading(false);
+        if (response.status === 200) {
+          console.log("음악 생성이 완료되었습니다.");
+          // 이후에 필요한 작업을 수행합니다.
+        } else {
+          console.error("음악 생성에 실패했습니다.");
+        }
       })
-
       .catch((error) => {
-        console.log(error);
+        console.error(error);
+      })
+      .finally(() => {
+        setIsLoadingMusic(false);
+        navigate(`/diary/${diaryId}`);
       });
-    navigate(`/diary/${diaryId}`);
   };
+
   const saveView = () => {
     if (window.confirm("그림 생성을 완료하셨습니까? 완료 시 저장됩니다.")) {
       alert("저장되었습니다.");
@@ -134,116 +142,119 @@ const DiaryEditor = () => {
 
   return (
     <div className="Diary">
-      <div className="DiaryFrameContainer">
-        <div className="DiaryFrame">
-          {isLoading ? <Loading /> : null}
-          <div className="IndexBtnContainer">
-            <IndexBtn type={"write"} text1={"일기쓰기"} />
-          </div>
-          <div className="LeftDivOveray">
-            <div className="Left">
-              <header>
-                <div className="theDate">
-                  <input
-                    className="input-date"
-                    value={date}
-                    onChange={(e) => setDate(e.target.value)}
-                    type="date"
-                  />
-                </div>
-                <div className="Emotion">
-                  {"기분"}
-                  {emotionList.map((it) => (
-                    <EmotionItem
-                      key={it.emotion_id}
-                      {...it}
-                      onClick={handleClickEmote}
-                      isSelected={it.emotion_id === emotion}
+      {isLoadingMusic ? ( // isLoadingMusic가 true이면 로딩 페이지를 표시
+        <Loading /> // 로딩 페이지 컴포넌트를 만들어서 이곳에 렌더링합니다.
+      ) : (
+        <div className="DiaryFrameContainer">
+          <div className="DiaryFrame">
+            <div className="IndexBtnContainer">
+              <IndexBtn type={"write"} text1={"일기쓰기"} />
+            </div>
+            <div className="LeftDivOveray">
+              <div className="Left">
+                <header>
+                  <div className="theDate">
+                    <input
+                      className="input-date"
+                      value={date}
+                      onChange={(e) => setDate(e.target.value)}
+                      type="date"
                     />
-                  ))}
+                  </div>
+                  <div className="Emotion">
+                    {"기분"}
+                    {emotionList.map((it) => (
+                      <EmotionItem
+                        key={it.emotion_id}
+                        {...it}
+                        onClick={handleClickEmote}
+                        isSelected={it.emotion_id === emotion}
+                      />
+                    ))}
+                  </div>
+                </header>
+                <div className="imageContainer">
+                  {!image ? null : (
+                    <img src={image} className="diaryImage" alt="Diary Image" />
+                  )}
                 </div>
-              </header>
-              <div className="imageContainer">
-                {!image ? null : (
-                  <img src={image} className="diaryImage" alt="Diary Image" />
+              </div>
+              <div className="LeftBottomDiv">
+                {isStcButtonVisible && (
+                  <button
+                    className="sentenceBtn"
+                    onClick={() => {
+                      openStcPopup();
+                    }}
+                  >
+                    첫 문장 추천
+                  </button>
+                )}
+                {isStcPopupOpen && <StcPopup onClose={closeStcPopup} />}
+                {isPicButtonVisible && (
+                  <button
+                    className="drawBtn"
+                    onClick={() => {
+                      openPicPopup();
+                      handleSubmitPic();
+                    }}
+                  >
+                    그림 생성
+                  </button>
+                )}
+                {isPicPopupOpen && (
+                  <PicPopup
+                    diaryId={diaryId}
+                    onClose={closePicPopup}
+                    onSubmitClick={handleSubmitClick}
+                  />
                 )}
               </div>
             </div>
-            <div className="LeftBottomDiv">
-              {isStcButtonVisible && (
-                <button
-                  className="sentenceBtn"
-                  onClick={() => {
-                    openStcPopup();
-                  }}
-                >
-                  첫 문장 추천
-                </button>
-              )}
-              {isStcPopupOpen && <StcPopup onClose={closeStcPopup} />}
-              {isPicButtonVisible && (
-                <button
-                  className="drawBtn"
-                  onClick={() => {
-                    openPicPopup();
-                    handleSubmitPic();
-                  }}
-                >
-                  그림 생성
-                </button>
-              )}
-              {isPicPopupOpen && (
-                <PicPopup
-                  diaryId={diaryId}
-                  onClose={closePicPopup}
-                  onSubmitClick={handleSubmitClick}
-                />
-              )}
-            </div>
-          </div>
-          <div className="SpringMaker">
-            <Circles style={{ marginRight: "1em" }} />
-            <div className="Spring">
-              <Springs />
-            </div>
-            <Circles style={{ marginLeft: "1em" }} />
-          </div>
-          <div className="RightDivOveray">
-            <div className="Right">
-              <header>
-                <div className="title">제목: </div>
-                <input
-                  placeholder="제목을 입력하세요."
-                  type="text"
-                  className="inputTitle"
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
-                />
-                <div className="writer">작성자: {user.nickname}</div>
-              </header>
-              <div class="textarea-container">
-                <textarea
-                  ref={contentRef}
-                  value={content}
-                  onChange={(e) => setContent(e.target.value)}
-                  placeholder="오늘 하루는 어땠나요?"
-                />
+            <div className="SpringMaker">
+              <Circles style={{ marginRight: "1em" }} />
+              <div className="Spring">
+                <Springs />
               </div>
+              <Circles style={{ marginLeft: "1em" }} />
             </div>
-            <div className="RightBottomDiv">
-              <button
-                className="saveBtn"
-                onClick={() => {
-                  handleClick();
-                  saveView();
-                }}
-              >
-                저장하기
-              </button>
+            <div className="RightDivOveray">
+              <div className="Right">
+                <header>
+                  <div className="title">제목: </div>
+                  <input
+                    placeholder="제목을 입력하세요."
+                    type="text"
+                    className="inputTitle"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                  />
+                  <div className="writer">작성자: {user.nickname}</div>
+                </header>
+                <div class="textarea-container">
+                  <textarea
+                    ref={contentRef}
+                    value={content}
+                    onChange={(e) => setContent(e.target.value)}
+                    placeholder="오늘 하루는 어땠나요?"
+                  />
+                </div>
+              </div>
+              <div className="RightBottomDiv">
+                <button
+                  className="saveBtn"
+                  onClick={() => {
+                    handleClick();
+                    saveView();
+                  }}
+                >
+                  저장하기
+                </button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
