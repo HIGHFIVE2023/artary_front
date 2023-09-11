@@ -410,9 +410,8 @@ header > div {
 }
 
 .tab-content {
-  height: 90%;
+  height: 70vh;
   width: 120%;
-
   border-radius: 4px;
   position: absolute;
 }
@@ -429,7 +428,7 @@ header > div {
 
 .frndBtn {
   align-items: center;
-  position: absolute;
+  flex: 1;
   height: 4em;
   width: 3em;
   right: 0.6em;
@@ -450,7 +449,7 @@ header > div {
 }
 
 .user-list-container {
-  height: 75%;
+  height: 100%;
 }
 
 .user-list {
@@ -465,11 +464,14 @@ header > div {
   border: 1px solid #ddd;
   border-radius: 5px;
   background-color: #fff;
+  padding: 2%;
 }
 
 .user-info {
   display: flex;
+  flex: 3;
   flex-direction: column;
+  margin: 2%;
 }
 
 .username {
@@ -486,7 +488,11 @@ header > div {
 
 .button-container {
   display: flex;
-  gap: 3em; /* 버튼 사이의 간격 설정 */
+  gap: 1em; /* 버튼 사이의 간격 설정 */
+  padding: 1%;
+  height: inherit;
+  flex: 1;
+  flex-direction: column;
 }
 
 .accept-button,
@@ -496,7 +502,7 @@ header > div {
   padding: 0.3em 0.5em;
   border: none;
   cursor: pointer;
-  width: 40%;
+  width: 90%;
 }
 
 .accept-button {
