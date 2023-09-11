@@ -4,6 +4,7 @@ import Event from "./Event";
 import "../components/components.css";
 import { notification } from "antd";
 import { call } from "../service/ApiService";
+import { Navigate, useNavigate } from "react-router";
 
 const Navbar = () => {
   const [view, setView] = useState(false);
@@ -16,6 +17,7 @@ const Navbar = () => {
   const [userDto, setUserDto] = useState(null);
 
   const popupRef = useRef(null); // Ref to the popup element
+  const navigate = useNavigate();
 
   const handleTabChange = (tabNumber) => {
     setActiveTab(tabNumber);
@@ -91,10 +93,10 @@ const Navbar = () => {
       setNickname("");
       localStorage.clear();
       await logout();
-      window.location.href = "/";
     } catch (error) {
       console.error(error);
     }
+    navigate("/");
   };
   const handleLogin = () => {
     window.location.href = "/users/login";
