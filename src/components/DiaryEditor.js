@@ -132,14 +132,6 @@ const DiaryEditor = () => {
       });
   };
 
-  const saveView = () => {
-    if (window.confirm("그림 생성을 완료하셨습니까? 완료 시 저장됩니다.")) {
-      alert("저장되었습니다.");
-    } else {
-      alert("그림 생성 버튼을 눌러 그림 생성을 진행하세요.");
-    }
-  };
-
   return (
     <div className="Diary">
       {isLoadingMusic ? ( // isLoadingMusic가 true이면 로딩 페이지를 표시
@@ -245,7 +237,6 @@ const DiaryEditor = () => {
                   className="saveBtn"
                   onClick={() => {
                     handleClick();
-                    saveView();
                   }}
                 >
                   저장하기
