@@ -109,7 +109,7 @@ const Chart = () => {
       <div>
         <h1>캘린더</h1>
         <hr />
-        <h3>이번 달은</h3>
+        <h3>내 감정 통계</h3>
         <div className="col-md-8">
           <ResponsiveContainer width={400} height={200} className="text-center">
             <PieChart>
