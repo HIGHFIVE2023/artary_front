@@ -76,7 +76,7 @@ const Mypage = () => {
               {nickname && email ? (
                 <div>
                   <Avatar
-                    size={200}
+                    size={150}
                     style={{ margin: "20px" }}
                     icon={<UserOutlined />}
                     src={image}

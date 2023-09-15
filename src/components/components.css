@@ -375,11 +375,11 @@ header > div {
 }
 
 /*친구리스트*/
-
 .tab-menu {
   width: 20%;
   position: fixed;
-  top: 4%;
+  top: 3.4%;
+  left: 53%;
   transform: translateX(20%);
 }
 
@@ -417,11 +417,11 @@ header > div {
 }
 
 .tab-content-inner {
-  position: absolute; /* 변경 */
-  top: 0; /* 변경 */
-  left: 5%; /* 변경 */
-  right: 0; /* 변경 */
-  bottom: 0; /* 변경 */
+  position: absolute;
+  top: 0;
+  left: 0%;
+  right: 0;
+  bottom: 0;
   width: 90%;
   z-index: 3;
 }

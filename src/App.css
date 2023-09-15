@@ -256,7 +256,7 @@ button {
   cursor: pointer;
   width: 4vw;
   height: 8vh;
-  font-size: 110%;
+  font-size: 98%;
   background-color: #fbb2b5;
 }
 .Index01_write {
@@ -266,7 +266,7 @@ button {
   cursor: pointer;
   width: 4vw;
   height: 8vh;
-  font-size: 110%;
+  font-size: 98%;
   background-color: #f5d960;
 }
 .Index02_diary {
@@ -276,7 +276,7 @@ button {
   cursor: pointer;
   width: 4vw;
   height: 8vh;
-  font-size: 110%;
+  font-size: 98%;
   background-color: #b8e08b;
 }
 .indexContainer03 img {
@@ -289,7 +289,7 @@ button {
   cursor: pointer;
   width: 4vw;
   height: 8vh;
-  font-size: 110%;
+  font-size: 98%;
   background-color: #89e5fb;
 }
 .Index04_mypage {
@@ -370,8 +370,9 @@ button {
 
 .CalendarPage.react-calendar {
   position: absolute;
-  top: 5%;
-  right: 10%;
+  top: 2.5%;
+  left: 11%;
+  width: 85%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -390,13 +391,13 @@ button {
   }
 
   .react-calendar__viewContainer {
-    height: 100%;
+    height: 60%;
   }
   /*달력 네비게이션바*/
   .react-calendar__navigation {
     background-color: lightpink;
     border-bottom: 0.2em solid brown;
-    height: 5em;
+    height: 3em;
     width: 100%;
     border-top-left-radius: 1em;
     border-top-right-radius: 1em;
@@ -404,7 +405,7 @@ button {
   }
 
   .react-calendar__navigation span {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 600;
     color: black;
   }
@@ -424,7 +425,7 @@ button {
   /*month 스타일*/
 
   .react-calendar__month-view__weekdays {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 900;
   }
 
