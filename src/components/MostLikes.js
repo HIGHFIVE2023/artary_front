@@ -5,21 +5,19 @@ import { useParams, useNavigate } from "react-router-dom";
 const MostLikes = () => {
   const navigate = useNavigate();
   const { nickname } = useParams();
+
   const [diaries, setDiaries] = useState([]);
   const [mostStickerDiary, setMostStickerDiary] = useState(null);
 
   useEffect(() => {
-    async function fetchDiaries() {
-      try {
-        const response = await call(`/diary/diaries`, "GET", null); // 스프링 부트의 모든 일기 조회 엔드포인트 경로로 수정
+    call(`/diary/${nickname}/getDiaries`, "GET", null)
+      .then((response) => {
         setDiaries(response);
-      } catch (error) {
-        console.error("Error fetching diaries:", error);
-      }
-    }
-
-    fetchDiaries();
-  }, []);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [nickname]);
 
   useEffect(() => {
     if (diaries.length === 0) {
@@ -119,7 +117,7 @@ const MostLikes = () => {
           </p>
         </div>
       ) : (
-        <div>
+        <div style={{ height: "40vh" }}>
           {diaries.length === 0 ? (
             <p>작성된 일기가 없습니다.</p>
           ) : (

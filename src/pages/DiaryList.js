@@ -71,7 +71,7 @@ const DiaryList = () => {
               </p>
               <p
                 style={{
-                  width: "70%",
+                  width: "100%",
                   marginLeft: "10%",
                   height: "1em",
                   margin: "0",
@@ -92,7 +92,7 @@ const DiaryList = () => {
             <Circles style={{ marginLeft: "1em" }} />
           </div>
           <div className="RightDivOveray">
-            {hasPermission ? (
+            {hasPermission && diaries.length != 0 ? (
               <div className="DiaryList">
                 {diaries.map((diary) => (
                   <div
@@ -118,16 +118,27 @@ const DiaryList = () => {
                 ))}
               </div>
             ) : (
-              <div>작성된 일기가 없습니다.</div>
+              <div style={{ width: "100%", alignItems: "center" }}>
+                작성된 일기가 없습니다.
+              </div>
             )}
-            <div className="Pagination" style={{ paddingLeft: "150px" }}>
-              <button onClick={() => handlePageChange(currentPage - 1)}>
+            <div
+              className="Pagination"
+              style={{ width: "100%", alignItems: "center" }}
+            >
+              <button
+                className="basic-btn"
+                onClick={() => handlePageChange(currentPage - 1)}
+              >
                 이전
               </button>
               <span>
                 {currentPage} / {totalPages}
               </span>
-              <button onClick={() => handlePageChange(currentPage + 1)}>
+              <button
+                className="basic-btn"
+                onClick={() => handlePageChange(currentPage + 1)}
+              >
                 다음
               </button>
             </div>
