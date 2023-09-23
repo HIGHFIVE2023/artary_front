@@ -19,6 +19,7 @@ const Chart = () => {
         const emotionData = response.map((e) => {
           return {
             emotion: e.emotion, // 이모지 데이터가 어떤 프로퍼티에 저장되어 있는지에 따라 변경
+            date: new Date(e.createdAt),
           };
         });
         setData(emotionData);
@@ -28,9 +29,9 @@ const Chart = () => {
       });
   }, []);
 
-  const calculatePercentages = () => {
+  const calculatePercentages = (filteredData) => {
     // 데이터에서 각 emotion의 개수를 계산
-    const emotionsCount = data.reduce(
+    const emotionsCount = filteredData.reduce(
       (acc, entry) => ({
         ...acc,
         [entry.emotion]: (acc[entry.emotion] || 0) + 1,
@@ -39,7 +40,7 @@ const Chart = () => {
     );
 
     // 총 데이터 개수 계산
-    const totalDataCount = data.length;
+    const totalDataCount = filteredData.length;
 
     // 각 emotion의 비율 계산
     const percentages = {
@@ -60,7 +61,19 @@ const Chart = () => {
     return percentages;
   };
 
-  const percentages = calculatePercentages();
+  const getCurrentMonthData = () => {
+    const currentDate = new Date();
+    const currentYear = currentDate.getFullYear();
+    const currentMonth = currentDate.getMonth();
+
+    return data.filter(
+      (entry) =>
+        entry.date.getFullYear() === currentYear &&
+        entry.date.getMonth() === currentMonth
+    );
+  };
+
+  const percentages = calculatePercentages(getCurrentMonthData());
 
   const COLORS = {
     ANGRY: "#E34234",
