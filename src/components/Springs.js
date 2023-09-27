@@ -6,6 +6,7 @@ const SpringContainer = styled.div`
   flex-direction: column;
   align-items: center;
   alignself: flex-start;
+  margin-top: 51%;
 `;
 
 const Spring = styled.div`
@@ -14,21 +15,17 @@ const Spring = styled.div`
   border: 7px solid #adb5bd;
   border-bottom: none;
   border-radius: 50% / 100% 100% 0% 0%;
-  margin-bottom: 3em;
+  margin-bottom: 3.1em;
   z-index: 2;
 `;
 
-const Springs = ({ style }) => {
-  return (
-    <SpringContainer style={style}>
-      <Spring style={{ marginTop: "40%", marginBottom: "80%" }} />
-      <Spring style={{ marginBottom: "80%" }} />
-      <Spring style={{ marginBottom: "80%" }} />
-      <Spring style={{ marginBottom: "80%" }} />
-      <Spring style={{ marginBottom: "80%" }} />
-      <Spring style={{ marginBottom: "1.6em" }} />
-    </SpringContainer>
-  );
+const Springs = ({ count, style }) => {
+  // count 개수만큼 Spring 컴포넌트 렌더링
+  const springElements = Array.from({ length: count }, (_, index) => (
+    <Spring key={index} />
+  ));
+
+  return <SpringContainer style={style}>{springElements}</SpringContainer>;
 };
 
 export default Springs;

@@ -94,9 +94,11 @@ li {
 
 /*왼쪽 그림 출력 div*/
 .LeftDivOveray {
+  flex-direction: column; /*수직 정렬*/
+  align-items: center;
+  justify-content: center;
   position: absolute;
   display: flex;
-  flex-wrap: wrap;
   width: 46.5%;
   height: 93%;
   background-color: hwb(26 97% 0%);
@@ -105,8 +107,11 @@ li {
 .Left {
   width: 80%;
   height: 80%;
-  display: block;
-  margin: 7% 14% 0 5%;
+  display: flex;
+
+  flex-direction: column;
+  margin: 0% 14% 0 5%;
+  top: 5%;
   position: absolute;
   border: 3px solid#212121;
   border-radius: 10px;
@@ -163,12 +168,12 @@ li {
 }
 /*오른쪽*/
 .RightDivOveray {
+  flex-direction: column; /*수직 정렬*/
+  justify-content: center;
   position: absolute;
+  display: flex;
   top: 0%;
   right: 5%;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
   width: 46.5%;
   height: 93%;
   background-color: hwb(26 97% 0%);
@@ -181,10 +186,10 @@ li {
   display: flex;
   flex-direction: column;
   margin: 2% 2% 0 14%;
-  margin-bottom: 15%;
+  top: 3%;
+  position: absolute;
   border: 3px solid #212121;
   border-radius: 10px;
-  position: relative;
 }
 
 .TextSquareContainer {

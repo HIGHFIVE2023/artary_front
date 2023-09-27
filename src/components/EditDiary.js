@@ -251,7 +251,7 @@ const EditDiary = () => {
             </div>
             <div className="RightBottomDiv">
               <button
-                className="saveBtn"
+                className="BottomBtns"
                 onClick={() => {
                   handleClick();
                   saveView();

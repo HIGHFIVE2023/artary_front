@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { login } from "../service/ApiService";
 import IndexBtn from "../components/IndexBtn";
 import Circles from "../components/Circles";
@@ -9,6 +9,8 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+
+  const [springCount, setSpringCount] = useState(6); // 초기값 6으로 설정
 
   const navigate = useNavigate();
 
@@ -45,6 +47,44 @@ const Login = () => {
     navigate("/users/email");
   };
 
+  //스프링
+  const calculateSpringCount = () => {
+    const windowHeight = window.innerHeight;
+    // 원하는 로직에 따라 화면 높이에 따라 갯수를 계산할 수 있습니다.
+    // 예를 들어, 높이가 특정 값 이하일 때는 4개, 그 이상일 때는 6개로 설정
+    if (windowHeight <= 200) {
+      return 1;
+    } else if (windowHeight <= 250) {
+      return 2;
+    } else if (windowHeight <= 350) {
+      return 3;
+    } else if (windowHeight <= 450) {
+      return 4;
+    } else if (windowHeight <= 550) {
+      return 5;
+    } else {
+      return 6;
+    }
+  };
+
+  const updateSpringCount = () => {
+    const count = calculateSpringCount();
+    setSpringCount(count);
+  };
+
+  useEffect(() => {
+    // 화면 크기 변경 감지를 위한 이벤트 리스너 등록
+    window.addEventListener("resize", updateSpringCount);
+
+    // 컴포넌트가 마운트될 때 한 번 호출
+    updateSpringCount();
+
+    // 컴포넌트가 언마운트될 때 이벤트 리스너 제거
+    return () => {
+      window.removeEventListener("resize", updateSpringCount);
+    };
+  }, []);
+
   return (
     <div className="Diary">
       <div className="DiaryFrameContainer">
@@ -54,13 +94,46 @@ const Login = () => {
           </div>
           <div className="LeftDivOveray">
             <img className="DiaryIntro" src="/img/intro.png" />
+            <div className="intro01">
+              <h3>
+                <img src="/img/introPallete.png" />
+                AI가 그려주는 하루
+              </h3>
+              <span>
+                일기를 작성하면
+                <br />
+                일기 내용을 요약하여
+                <br />
+                그림과 음악을 생성해드려요!
+                <br />
+                일기 쓰는 시작이 어려울 땐
+                <br />
+                키워드를 통해 첫 문장을 추천해요
+                <br />
+                친구들과 도장을 찍어가며 소통도 해보세요!
+              </span>
+            </div>
+            <div className="intro02">
+              <h3>
+                <img src="/img/introFace.png" />내 감정 되돌아보기
+              </h3>
+              <span>
+                일기를 작성하며 체크한 감정을
+                <br />
+                통계내어 확인할 수도 있고
+                <br />
+                캘린더에 찍힌 감정으로
+                <br />
+                모아볼 수도 있답니다!
+              </span>
+            </div>
           </div>
           <div className="SpringMaker">
-            <Circles style={{ marginRight: "1em" }} />
+            <Circles count={springCount} style={{ marginRight: "1em" }} />
             <div className="Spring">
-              <Springs />
+              <Springs count={springCount} />
             </div>
-            <Circles style={{ marginLeft: "1em" }} />
+            <Circles count={springCount} style={{ marginLeft: "1em" }} />
           </div>
           <div className="RightDivOveray">
             <img className="LoginIcon" src="/img/icon.png" alt="login icon" />

@@ -7,6 +7,7 @@ const CircleContainer = styled.div`
   align-items: center;
   alignself: flex-start;
   z-index: 1;
+  margin-top: 40%;
 `;
 
 const Circle = styled.div`
@@ -15,21 +16,16 @@ const Circle = styled.div`
   height: 1.5em;
   border-radius: 50%;
   margin-bottom: 3em;
-
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25) inset;
 `;
 
-const Circles = ({ style }) => {
-  return (
-    <CircleContainer style={style}>
-      <Circle style={{ marginTop: "1.5em" }} />
-      <Circle />
-      <Circle />
-      <Circle />
-      <Circle />
-      <Circle style={{ marginBottom: "1.5em" }} />
-    </CircleContainer>
-  );
+const Circles = ({ count, style }) => {
+  // count 개수만큼 Circle 컴포넌트 렌더링
+  const circleElements = Array.from({ length: count }, (_, index) => (
+    <Circle key={index} />
+  ));
+
+  return <CircleContainer style={style}>{circleElements}</CircleContainer>;
 };
 
 export default Circles;
