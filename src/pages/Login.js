@@ -50,26 +50,35 @@ const Login = () => {
   //스프링
   const calculateSpringCount = () => {
     const windowHeight = window.innerHeight;
-    // 원하는 로직에 따라 화면 높이에 따라 갯수를 계산할 수 있습니다.
-    // 예를 들어, 높이가 특정 값 이하일 때는 4개, 그 이상일 때는 6개로 설정
+    let count;
+
     if (windowHeight <= 200) {
-      return 1;
-    } else if (windowHeight <= 250) {
-      return 2;
-    } else if (windowHeight <= 350) {
-      return 3;
-    } else if (windowHeight <= 450) {
-      return 4;
+      count = 1;
+    } else if (windowHeight <= 275) {
+      count = 2;
+    } else if (windowHeight <= 375) {
+      count = 3;
+    } else if (windowHeight <= 475) {
+      count = 4;
     } else if (windowHeight <= 550) {
-      return 5;
+      count = 5;
     } else {
-      return 6;
+      count = 6;
     }
+    return count;
   };
 
   const updateSpringCount = () => {
     const count = calculateSpringCount();
     setSpringCount(count);
+  };
+
+  // 스프링 간격 설정
+  const springMargin = {
+    marginTop: "2em", // 맨 앞 스프링의 상단 간격
+    marginBottom: "0.5em", // 맨 뒤 스프링의 하단 간격
+    marginLeft: "1em", // 중간 스프링들의 좌측 간격
+    marginRight: "1em", // 중간 스프링들의 우측 간격
   };
 
   useEffect(() => {
@@ -129,11 +138,11 @@ const Login = () => {
             </div>
           </div>
           <div className="SpringMaker">
-            <Circles count={springCount} style={{ marginRight: "1em" }} />
+            <Circles count={springCount} style={springMargin} />
             <div className="Spring">
-              <Springs count={springCount} />
+              <Springs count={springCount} style={springMargin} />
             </div>
-            <Circles count={springCount} style={{ marginLeft: "1em" }} />
+            <Circles count={springCount} style={springMargin} />
           </div>
           <div className="RightDivOveray">
             <img className="LoginIcon" src="/img/icon.png" alt="login icon" />
