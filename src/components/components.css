@@ -47,6 +47,9 @@ a {
   height: 2em;
   background-color: rgb(246, 255, 149);
 }
+.Tab:hover {
+  color: rgb(221, 221, 221);
+}
 .Tabactive {
   border-radius: 1rem;
   width: 40%;
@@ -118,21 +121,20 @@ li {
 }
 .imageContainer {
   position: relative;
-  width: 100%;
-  height: 70%;
+  width: 90%;
+  height: 90%;
+  padding: 5%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .diaryImage {
   position: absolute;
-  top: -0.01%;
   max-height: 95%;
   width: auto;
   max-width: 95%;
   display: block; /* 이미지를 블록 요소로 설정하여 가운데 정렬을 적용합니다 */
-  margin-left: auto; /* 왼쪽 여백을 자동으로 설정하여 가운데 정렬을 적용합니다 */
-  margin-right: auto; /* 오른쪽 여백을 자동으로 설정하여 가운데 정렬을 적용합니다 */
+  margin: auto;
 }
 .getDiaryImage {
   margin-top: 10%;
@@ -159,13 +161,6 @@ li {
   max-height: 100px;
 }
 
-.CircleContainer {
-  display: flex;
-  flex-direction: column; /* Added property */
-  justify-content: center;
-  align-items: center;
-  z-index: -1;
-}
 /*오른쪽*/
 .RightDivOveray {
   flex-direction: column; /*수직 정렬*/
@@ -373,10 +368,12 @@ header > div {
   left: 42.5%;
   position: absolute;
   width: 10%;
+  height: 92%;
   z-index: 3;
 }
 .Spring {
   position: absolute;
+  height: 100%;
 }
 
 /*친구리스트*/
