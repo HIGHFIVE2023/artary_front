@@ -116,7 +116,7 @@ const DiaryList = () => {
                   fontWeight: "bold",
                 }}
               >
-                {nickname} 님의 일기
+                📕 {nickname} 님의 일기
               </p>
               <p
                 style={{

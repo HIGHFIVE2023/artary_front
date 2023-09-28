@@ -228,7 +228,7 @@ const DiaryEditor = () => {
                       openStcPopup();
                     }}
                   >
-                    첫 문장 추천
+                    ✏️ 첫 문장 추천
                   </button>
                 )}
                 {isStcPopupOpen && <StcPopup onClose={closeStcPopup} />}
@@ -240,7 +240,7 @@ const DiaryEditor = () => {
                       handleSubmitPic();
                     }}
                   >
-                    그림 생성
+                    🎨 그림 생성
                   </button>
                 )}
                 {isPicPopupOpen && (
@@ -288,7 +288,7 @@ const DiaryEditor = () => {
                     handleClick();
                   }}
                 >
-                  저장하기
+                  💾 저장하기
                 </button>
               </div>
             </div>

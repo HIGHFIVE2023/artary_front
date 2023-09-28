@@ -107,7 +107,7 @@ const Chart = () => {
   return (
     <div>
       <div>
-        <h1>캘린더</h1>
+        <h1>📅 캘린더</h1>
         <hr />
         <h3>내 감정 통계</h3>
         <div className="col-md-8">
