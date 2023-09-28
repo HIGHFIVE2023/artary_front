@@ -112,7 +112,7 @@ const Mypage = () => {
           </div>
           <div className="LeftDivOveray">
             <div className="mypage">
-              <h1>마이페이지</h1>
+              <h1>⚙️ 마이페이지</h1>
               {nickname && email ? (
                 <div>
                   <Avatar

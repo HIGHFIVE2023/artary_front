@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import IndexBtn from "../components/IndexBtn";
+import BottomBtn from "../components/BottomBtn";
 import DrawingDiary from "../components/DrawingDiary";
 import WritingDiary from "../components/WritingDiary";
 import Springs from "../components/Springs";
@@ -123,12 +124,13 @@ const Diary = () => {
             <DrawingDiary />
             <div className="LeftBottomDiv">
               {diaryUser === user.userId && (
-                <button className="BottomBtns" onClick={handleCreatePDF}>
-                  Pdf 추출하기
-                </button>
+                <BottomBtn
+                  image="../img/makePdf.png"
+                  onClick={handleCreatePDF}
+                ></BottomBtn>
               )}
               {diaryUser === user.userId && (
-                <button className="BottomBtns">공유하기</button>
+                <BottomBtn image="../img/share.png"></BottomBtn>
               )}
             </div>
           </div>
@@ -145,16 +147,12 @@ const Diary = () => {
               {diaryUser === user.userId && (
                 <>
                   <Link to={`/diary/${diaryId}/edit`}>
-                    <button className="BottomBtns">수정하기</button>
+                    <BottomBtn image="../img/edit.png"></BottomBtn>
                   </Link>
-                  <button
-                    className="BottomBtns"
-                    onClick={() => {
-                      handleDeleteDiary();
-                    }}
-                  >
-                    삭제하기
-                  </button>
+                  <BottomBtn
+                    image="../img/delete.png"
+                    onClick={handleDeleteDiary}
+                  ></BottomBtn>
                 </>
               )}
             </div>
