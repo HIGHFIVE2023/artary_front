@@ -32,7 +32,7 @@ const IndexBtn = ({ type, text1, text2, text3, text4 }) => {
 
   return (
     <>
-      <section>
+      <section className="IndexBtns">
         <div className="indexContainer01">
           <button
             className={["Index01", `Index01_${btnType}`].join(" ")}
@@ -40,8 +40,8 @@ const IndexBtn = ({ type, text1, text2, text3, text4 }) => {
             id="btn"
             onClick={navigateToWrite}
           >
-            <img src="/img/pencil.png" height="20px" width="20px" />
-            {text1}
+            <img src="/img/pencil.png" height="50%" />
+            <span className="indexText">{text1}</span>
           </button>
         </div>
         <div className="indexContainer02">
@@ -49,8 +49,8 @@ const IndexBtn = ({ type, text1, text2, text3, text4 }) => {
             className={["Index02", `Index02_${btnType}`].join(" ")}
             onClick={navigateToDiary}
           >
-            <img src="/img/diary.png" height="20px" width="20px" />
-            {text2}
+            <img src="/img/diary.png" height="50%" />
+            <span className="indexText">{text2}</span>
           </button>
         </div>
 
@@ -59,8 +59,8 @@ const IndexBtn = ({ type, text1, text2, text3, text4 }) => {
             className={["Index03", `Index03_${btnType}`].join(" ")}
             onClick={navigateToCalen}
           >
-            <img src="/img/calendar.png" height="20px" width="20px" />
-            {text3}
+            <img src="/img/calendar.png" height="50%" />
+            <span className="indexText">{text3}</span>
           </button>
         </div>
         <div className="indexContainer04">
@@ -68,8 +68,8 @@ const IndexBtn = ({ type, text1, text2, text3, text4 }) => {
             className={["Index04", `Index04_${btnType}`].join(" ")}
             onClick={navigateToMypage}
           >
-            <img src="/img/mypage.png" height="20px" width="20px" />
-            {text4}
+            <img src="/img/mypage.png" height="50%" />
+            <span className="indexText">{text4}</span>
           </button>
         </div>
       </section>

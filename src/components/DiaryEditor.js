@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from "react";
+import React, { useCallback, useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import IndexBtn from "../components/IndexBtn";
 import Springs from "./Springs";
@@ -21,6 +21,8 @@ const DiaryEditor = () => {
 
   const [emotion, setEmotion] = useState(3);
   const [diary, setDiary] = useState({ image: "" });
+
+  const [springCount, setSpringCount] = useState(6); // 초기값 6으로 설정
 
   //기본 선택 감정 3번감정
   const [date, setDate] = useState(getStringDate(new Date()));
@@ -132,6 +134,53 @@ const DiaryEditor = () => {
       });
   };
 
+  //스프링
+  const calculateSpringCount = () => {
+    const windowHeight = window.innerHeight;
+    let count;
+
+    if (windowHeight <= 200) {
+      count = 1;
+    } else if (windowHeight <= 275) {
+      count = 2;
+    } else if (windowHeight <= 375) {
+      count = 3;
+    } else if (windowHeight <= 475) {
+      count = 4;
+    } else if (windowHeight <= 550) {
+      count = 5;
+    } else {
+      count = 6;
+    }
+    return count;
+  };
+
+  const updateSpringCount = () => {
+    const count = calculateSpringCount();
+    setSpringCount(count);
+  };
+
+  // 스프링 간격 설정
+  const springMargin = {
+    marginTop: "2em", // 맨 앞 스프링의 상단 간격
+    marginBottom: "0.5em", // 맨 뒤 스프링의 하단 간격
+    marginLeft: "1em", // 중간 스프링들의 좌측 간격
+    marginRight: "1em", // 중간 스프링들의 우측 간격
+  };
+
+  useEffect(() => {
+    // 화면 크기 변경 감지를 위한 이벤트 리스너 등록
+    window.addEventListener("resize", updateSpringCount);
+
+    // 컴포넌트가 마운트될 때 한 번 호출
+    updateSpringCount();
+
+    // 컴포넌트가 언마운트될 때 이벤트 리스너 제거
+    return () => {
+      window.removeEventListener("resize", updateSpringCount);
+    };
+  }, []);
+
   return (
     <div className="Diary">
       {isLoadingMusic ? ( // isLoadingMusic가 true이면 로딩 페이지를 표시
@@ -174,24 +223,24 @@ const DiaryEditor = () => {
               <div className="LeftBottomDiv">
                 {isStcButtonVisible && (
                   <button
-                    className="sentenceBtn"
+                    className="BottomBtns"
                     onClick={() => {
                       openStcPopup();
                     }}
                   >
-                    첫 문장 추천
+                    ✏️ 첫 문장 추천
                   </button>
                 )}
                 {isStcPopupOpen && <StcPopup onClose={closeStcPopup} />}
                 {isPicButtonVisible && (
                   <button
-                    className="drawBtn"
+                    className="BottomBtns"
                     onClick={() => {
                       openPicPopup();
                       handleSubmitPic();
                     }}
                   >
-                    그림 생성
+                    🎨 그림 생성
                   </button>
                 )}
                 {isPicPopupOpen && (
@@ -204,11 +253,11 @@ const DiaryEditor = () => {
               </div>
             </div>
             <div className="SpringMaker">
-              <Circles style={{ marginRight: "1em" }} />
+              <Circles count={springCount} style={springMargin} />
               <div className="Spring">
-                <Springs />
+                <Springs count={springCount} style={springMargin} />
               </div>
-              <Circles style={{ marginLeft: "1em" }} />
+              <Circles count={springCount} style={springMargin} />
             </div>
             <div className="RightDivOveray">
               <div className="Right">
@@ -234,12 +283,12 @@ const DiaryEditor = () => {
               </div>
               <div className="RightBottomDiv">
                 <button
-                  className="saveBtn"
+                  className="BottomBtns"
                   onClick={() => {
                     handleClick();
                   }}
                 >
-                  저장하기
+                  💾 저장하기
                 </button>
               </div>
             </div>

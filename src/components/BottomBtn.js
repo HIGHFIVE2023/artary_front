@@ -1,4 +1,7 @@
+import React, { useState } from "react";
+
 const BottomBtn = ({ text, image, onClick }) => {
+  const [isHovered, setIsHovered] = useState(false);
   // onClick 속성 추가
 
   const handlingClick = () => {
@@ -9,11 +12,19 @@ const BottomBtn = ({ text, image, onClick }) => {
   };
 
   return (
-    <button className="BottomBtn" onClick={onClick}>
+    <button 
+      className="BottomBtn" 
+      onClick={onClick}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
       {text}
-      <img src={image} alt="Button Image" />
+      <img 
+        src={isHovered ? image.replace(".png", "H.png") : image} 
+        alt="Button Image" 
+      />
     </button>
   );
 };
-
-export default BottomBtn;
+  
+  export default BottomBtn;
