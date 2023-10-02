@@ -155,7 +155,7 @@ const DiaryList = () => {
                       style={{ color: "black" }}
                     >
                       <div className="itemImgContainer">
-                        <img src={diary.image} style={{ maxHeight: "6em" }} />
+                        <img src={diary.image} style={{ maxHeight: "6rem" }} />
                       </div>
                       <div className="itemTextContainer">
                         {diary.title}
@@ -173,7 +173,12 @@ const DiaryList = () => {
             )}
             <div
               className="Pagination"
-              style={{ width: "100%", alignItems: "center" }}
+              style={{
+                width: "100%",
+                alignItems: "center",
+                marginLeft: "2%",
+                marginTop: "10%",
+              }}
             >
               <button
                 className="basic-btn"

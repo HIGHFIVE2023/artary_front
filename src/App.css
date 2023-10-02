@@ -668,24 +668,27 @@ button {
 .DiaryList {
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* 2x2 그리드로 설정 */
-  gap: 20px;
+  gap: 10%;
   justify-content: center;
-  margin-left: 22%;
+  margin-left: 9%;
+  margin-top: 7%;
 }
 
 /* DiaryItem 스타일 */
 .DiaryItem {
-  border: 1px solid #ddd; /* 테두리 스타일 설정 */
-  padding: 10px; /* 내부 여백 설정 */
-  text-align: center; /* 텍스트 가운데 정렬 */
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+  height: 90%;
+  width: 70%;
 }
 .itemImgContainer {
-  max-height: 6em;
+  max-height: 85%;
   overflow: hidden;
 }
 .itemTextContainer {
-  margin-top: 5px;
-  font-size: 14px;
+  margin-top: 5%;
+  font-size: 0.9rem;
 }
 .not-found-container {
   text-align: center;
