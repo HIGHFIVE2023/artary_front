@@ -12,6 +12,8 @@ import { useNavigate } from "react-router-dom";
 function Calenpage() {
   const [date, setDate] = useState(new Date());
   const [mark, setMark] = useState([]);
+  const monthOfActiveDate = moment(date).format("YYYY-MM");
+  const [activeMonth, setActiveMonth] = useState(monthOfActiveDate);
   const navigate = useNavigate();
 
   const [springCount, setSpringCount] = useState(6); // 초기값 6으로 설정
@@ -75,6 +77,11 @@ function Calenpage() {
     }
   };
 
+  const getActiveMonth = (activeStartDate) => {
+    const newActiveMonth = moment(activeStartDate).format("YYYY-MM");
+    setActiveMonth(newActiveMonth);
+  };
+
   //스프링
   const calculateSpringCount = () => {
     const windowHeight = window.innerHeight;
@@ -131,7 +138,7 @@ function Calenpage() {
           </div>
 
           <div className="LeftDivOveray">
-            <Chart />
+            <Chart displayedMonth={activeMonth} mark={mark} />
           </div>
           <div className="SpringMaker">
             <Circles count={springCount} style={springMargin} />
@@ -150,6 +157,9 @@ function Calenpage() {
               className="CalendarPage"
               tileContent={tileContent} // 이모지를 표시하는 tileContent 함수를 전달
               onClickDay={handleTileClick}
+              onActiveStartDateChange={({ activeStartDate }) =>
+                getActiveMonth(activeStartDate)
+              }
             />
           </div>
         </div>
