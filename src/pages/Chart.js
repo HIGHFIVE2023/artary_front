@@ -5,6 +5,7 @@ import { call } from "../service/ApiService";
 
 const Chart = ({ displayedMonth }) => {
   const [data, setData] = useState([]);
+  const [year, month] = displayedMonth.split("-");
 
   useEffect(() => {
     call(`/diary/diaries`, "GET", null)
@@ -50,11 +51,7 @@ const Chart = ({ displayedMonth }) => {
         : 0,
     };
 
-    if (percentages == null) {
-      return null;
-    } else {
-      return percentages;
-    }
+    return percentages;
   };
 
   const getCurrentMonthData = () => {
@@ -112,14 +109,17 @@ const Chart = ({ displayedMonth }) => {
       <div>
         <h1>📅 캘린더</h1>
         <hr />
-        <h3>{displayedMonth} 통계</h3>
+        <h3>
+          {year} 년 {month} 월의 통계
+        </h3>
         <div className="col-md-8">
-          {percentages !== null ? (
-            <ResponsiveContainer
-              width={400}
-              height={200}
-              className="text-center"
-            >
+          <ResponsiveContainer width={400} height={200} className="text-center">
+            {percentages.angry === 0 &&
+            percentages.sad === 0 &&
+            percentages.happy === 0 &&
+            percentages.soso === 0 ? (
+              <div>이번 달은 작성하신 일기가 없어요!</div>
+            ) : (
               <PieChart>
                 <Legend
                   layout="vertical"
@@ -141,10 +141,8 @@ const Chart = ({ displayedMonth }) => {
                   ))}
                 </Pie>
               </PieChart>
-            </ResponsiveContainer>
-          ) : (
-            <div>통계가 없습니다.</div>
-          )}
+            )}
+          </ResponsiveContainer>
         </div>
       </div>
     </div>
