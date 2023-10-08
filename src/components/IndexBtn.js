@@ -6,6 +6,7 @@ import Friends from "../pages/Friends";
 
 const IndexBtn = ({ type, text1, text2, text3, text4 }) => {
   const user = JSON.parse(localStorage.getItem("user"));
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   // 버튼 타입
   const btnType = ["write", "diary", "calendar", "mypage", "default"].includes(
@@ -16,6 +17,10 @@ const IndexBtn = ({ type, text1, text2, text3, text4 }) => {
 
   // 페이지 이동
   const navigate = useNavigate();
+
+  const navigateToLogin = () => {
+    navigate("/users/login");
+  };
 
   const navigateToWrite = () => {
     navigate("/diary/write");
@@ -38,7 +43,7 @@ const IndexBtn = ({ type, text1, text2, text3, text4 }) => {
             className={["Index01", `Index01_${btnType}`].join(" ")}
             activeClassName="selected"
             id="btn"
-            onClick={navigateToWrite}
+            onClick={isLoggedIn ? navigateToWrite : navigateToLogin}
           >
             <img src="/img/pencil.png" height="50%" />
             <span className="indexText">{text1}</span>
@@ -47,7 +52,7 @@ const IndexBtn = ({ type, text1, text2, text3, text4 }) => {
         <div className="indexContainer02">
           <button
             className={["Index02", `Index02_${btnType}`].join(" ")}
-            onClick={navigateToDiary}
+            onClick={isLoggedIn ? navigateToDiary : navigateToLogin}
           >
             <img src="/img/diary.png" height="50%" />
             <span className="indexText">{text2}</span>
@@ -57,7 +62,7 @@ const IndexBtn = ({ type, text1, text2, text3, text4 }) => {
         <div className="indexContainer03">
           <button
             className={["Index03", `Index03_${btnType}`].join(" ")}
-            onClick={navigateToCalen}
+            onClick={isLoggedIn ? navigateToCalen : navigateToLogin}
           >
             <img src="/img/calendar.png" height="50%" />
             <span className="indexText">{text3}</span>
@@ -66,7 +71,7 @@ const IndexBtn = ({ type, text1, text2, text3, text4 }) => {
         <div className="indexContainer04">
           <button
             className={["Index04", `Index04_${btnType}`].join(" ")}
-            onClick={navigateToMypage}
+            onClick={isLoggedIn ? navigateToMypage : navigateToLogin}
           >
             <img src="/img/mypage.png" height="50%" />
             <span className="indexText">{text4}</span>
