@@ -111,7 +111,7 @@ const Chart = () => {
         <hr />
         <h3>내 감정 통계</h3>
         <div className="col-md-8">
-          <ResponsiveContainer width={400} height={200} className="text-center">
+          <ResponsiveContainer width={300} height={300} className="text-center">
             <PieChart>
               <Legend layout="vertical" verticalAlign="middle" align="right" />
               <Pie

@@ -7,6 +7,7 @@ import Friends from "../pages/Friends";
 const IndexBtn = ({ type, text1, text2, text3, text4 }) => {
   const user = JSON.parse(localStorage.getItem("user"));
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userDto, setUserDto] = useState(null);
 
   // 버튼 타입
   const btnType = ["write", "diary", "calendar", "mypage", "default"].includes(
@@ -34,6 +35,17 @@ const IndexBtn = ({ type, text1, text2, text3, text4 }) => {
   const navigateToMypage = () => {
     navigate("/mypage");
   };
+
+  //로그인셋
+  useEffect(() => {
+    const storedUserDto = JSON.parse(localStorage.getItem("user"));
+    if (storedUserDto) {
+      setUserDto(storedUserDto); // Set userDto with the stored user data
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, []);
 
   return (
     <>

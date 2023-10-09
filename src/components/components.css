@@ -111,7 +111,6 @@ li {
   width: 80%;
   height: 80%;
   display: flex;
-
   flex-direction: column;
   margin: 0% 14% 0 5%;
   top: 5%;
@@ -122,7 +121,7 @@ li {
 .imageContainer {
   position: relative;
   width: 90%;
-  height: 90%;
+  height: 130%;
   padding: 5%;
   display: flex;
   justify-content: center;
@@ -226,7 +225,8 @@ footer {
   float: right;
 }
 .GetSticker {
-  height: 65%;
+  height: 80%;
+  width: 100%;
   display: flex;
   overflow: auto; /* 세로 스크롤 */
 }
@@ -292,6 +292,7 @@ footer {
 
 /* 플레이어 */
 .bgm {
+  height: 30%;
   display: flex;
 }
 .progressBar {

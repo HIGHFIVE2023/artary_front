@@ -40,8 +40,8 @@ p {
 }
 
 .book-cover {
-  width: 25em;
-  height: 30em;
+  width: 33%;
+  height: 80%;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -372,6 +372,7 @@ button {
   top: 2.5%;
   left: 11%;
   width: 85%;
+  height: 5%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -404,7 +405,7 @@ button {
   }
 
   .react-calendar__navigation span {
-    font-size: 20px;
+    font-size: 1.3rem;
     font-weight: 600;
     color: black;
   }
@@ -424,7 +425,7 @@ button {
   /*month 스타일*/
 
   .react-calendar__month-view__weekdays {
-    font-size: 16px;
+    font-size: 1.3rem;
     font-weight: 900;
   }
 
@@ -436,7 +437,7 @@ button {
 
   .react-calendar__month-view abbr {
     /* 텍스트 */
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 500;
   }
 
