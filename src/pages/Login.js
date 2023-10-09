@@ -108,33 +108,41 @@ const Login = () => {
                 <img src="/img/introPallete.png" />
                 AI가 그려주는 하루
               </h3>
-              <span>
-                일기를 작성하면
-                <br />
-                일기 내용을 요약하여
-                <br />
-                그림과 음악을 생성해드려요!
-                <br />
-                일기 쓰는 시작이 어려울 땐
-                <br />
-                키워드를 통해 첫 문장을 추천해요
-                <br />
-                친구들과 도장을 찍어가며 소통도 해보세요!
-              </span>
+              <div className="introSpan">
+                <span>
+                  일기를 쓰는 하루가 즐겁도록
+                  <br />
+                  그림과 음악을 생성하고
+                  <br />
+                  당신의 키워드를 통해
+                  <br />
+                  일기의 첫문장을 추천합니다.
+                  <br />
+                  친구와 서로 도장을 주고받아요.
+                </span>
+                <img
+                  src="/img/intro01.png"
+                  style={{ width: "37%", marginLeft: "3%" }}
+                />
+              </div>
             </div>
             <div className="intro02">
               <h3>
                 <img src="/img/introFace.png" />내 감정 되돌아보기
               </h3>
-              <span>
-                일기를 작성하며 체크한 감정을
-                <br />
-                통계내어 확인할 수도 있고
-                <br />
-                캘린더에 찍힌 감정으로
-                <br />
-                모아볼 수도 있답니다!
-              </span>
+              <div className="introSpan">
+                <span>
+                  나의 감정을 통계로 확인하고
+                  <br />
+                  캘린더로 일기와 감정을
+                  <br />
+                  모아보세요.
+                </span>
+                <img
+                  src="/img/intro02.png"
+                  style={{ width: "37%", marginLeft: "10%" }}
+                />
+              </div>
             </div>
           </div>
           <div className="SpringMaker">

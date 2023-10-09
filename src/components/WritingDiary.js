@@ -90,6 +90,42 @@ const WritingDiary = () => {
     );
   }
 
+  //줄공책
+  const [buttonText, setButtonText] = useState("줄공책st");
+  const [displayText, setDisplayText] = useState(true); // 초기에 true로 설정
+  const [linesAndContent, setLinesAndContent] = useState([]);
+
+  const handleButtonClick = () => {
+    setDisplayText(!displayText); // 버튼 클릭 시에 displayText를 토글
+  };
+
+  // linesAndContent 배열 생성 함수
+  const createLinesAndContent = () => {
+    const linesAndContentArray = [];
+    const numCols2 = 26; // 열 수 조정
+    for (let i = 0; i < numRows; i++) {
+      linesAndContentArray.push(<hr key={`line-${i}`} className="line" />);
+      const startIndex = i * numCols2;
+      const endIndex = startIndex + numCols2;
+      const lineContent = content.slice(startIndex, endIndex);
+      linesAndContentArray.push(
+        <div key={`content-${i}`} className="line-content">
+          {lineContent || "\u00A0"}{" "}
+          {/* 빈 줄일 경우 빈 칸을 추가하여 간격 유지 */}
+        </div>
+      );
+    }
+    return linesAndContentArray;
+  };
+
+  useEffect(() => {
+    if (displayText) {
+      const linesAndContentArray = createLinesAndContent();
+      setLinesAndContent(linesAndContentArray);
+    }
+  }, [displayText]);
+
+  //스티커
   useEffect(() => {
     call(`/diary/${diaryId}/stickers`, "GET", null)
       .then((response) => {
@@ -183,8 +219,17 @@ const WritingDiary = () => {
       <header>
         <div className="title">제목: {title}</div>
         <div className="writer">작성자: {user.nickname}</div>
+        <button onClick={handleButtonClick}>{buttonText}</button>
       </header>
-      <div className="TextSquareContainer">{squares}</div>
+      <div
+        className={`TextSquareContainer ${displayText ? "" : "lined-paper"}`}
+      >
+        {displayText ? (
+          squares
+        ) : (
+          <div className="lined-paper-container">{linesAndContent}</div>
+        )}
+      </div>
       <footer>
         <div className="stampHeader">{"<도장을 찍어요!>"}</div>
         {isButtonVisible && nickname !== loginUser.nickname && (

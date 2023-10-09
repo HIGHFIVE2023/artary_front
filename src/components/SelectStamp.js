@@ -14,7 +14,6 @@ const SelectStamp = ({ diaryId, onClose }) => {
       const response = await call(`/diary/${diaryId}/sticker`, "POST", data);
 
       console.log("API Response:", response);
-      alert(buttonType + " SUCCESS!");
       onClose();
     } catch (error) {
       console.log("API Error:", error);

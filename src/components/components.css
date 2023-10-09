@@ -44,8 +44,12 @@ a {
 .Tab {
   border-radius: 1rem;
   width: 40%;
-  height: 2em;
+  height: 5%;
+  margin-bottom: 3%;
   background-color: rgb(246, 255, 149);
+}
+.Tab:hover {
+  color: rgb(221, 221, 221);
 }
 .Tabactive {
   border-radius: 1rem;
@@ -108,7 +112,6 @@ li {
   width: 80%;
   height: 80%;
   display: flex;
-
   flex-direction: column;
   margin: 0% 14% 0 5%;
   top: 5%;
@@ -118,21 +121,20 @@ li {
 }
 .imageContainer {
   position: relative;
-  width: 100%;
-  height: 70%;
+  width: 90%;
+  height: 130%;
+  padding: 5%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .diaryImage {
   position: absolute;
-  top: -0.01%;
   max-height: 95%;
   width: auto;
   max-width: 95%;
   display: block; /* 이미지를 블록 요소로 설정하여 가운데 정렬을 적용합니다 */
-  margin-left: auto; /* 왼쪽 여백을 자동으로 설정하여 가운데 정렬을 적용합니다 */
-  margin-right: auto; /* 오른쪽 여백을 자동으로 설정하여 가운데 정렬을 적용합니다 */
+  margin: auto;
 }
 .getDiaryImage {
   margin-top: 10%;
@@ -159,13 +161,6 @@ li {
   max-height: 100px;
 }
 
-.CircleContainer {
-  display: flex;
-  flex-direction: column; /* Added property */
-  justify-content: center;
-  align-items: center;
-  z-index: -1;
-}
 /*오른쪽*/
 .RightDivOveray {
   flex-direction: column; /*수직 정렬*/
@@ -201,6 +196,17 @@ li {
   width: 106%;
   margin-left: 0.5%;
 }
+.lined-paper-container {
+}
+.lined-paper {
+  text-align: left;
+  overflow: auto;
+  max-height: 85%;
+  width: 104%;
+  margin-left: 2.5%;
+  line-height: 1.3;
+  font-size: 1rem;
+}
 
 /*푸터*/
 footer {
@@ -220,7 +226,8 @@ footer {
   float: right;
 }
 .GetSticker {
-  height: 65%;
+  height: 80%;
+  width: 100%;
   display: flex;
   overflow: auto; /* 세로 스크롤 */
 }
@@ -286,6 +293,7 @@ footer {
 
 /* 플레이어 */
 .bgm {
+  height: 30%;
   display: flex;
 }
 .progressBar {
@@ -373,10 +381,12 @@ header > div {
   left: 42.5%;
   position: absolute;
   width: 10%;
+  height: 92%;
   z-index: 3;
 }
 .Spring {
   position: absolute;
+  height: 100%;
 }
 
 /*친구리스트*/
