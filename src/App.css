@@ -16,31 +16,56 @@
 
 /*백그라운드, 바디*/
 body {
-  text-align: center;
+  background-color: hsl(200, 94%, 88%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
   font-family: "HakgyoansimWoojuR";
-  overflow: hidden;
   font-size: 1rem;
+
 }
 p {
   font-family: "Cafe24Supermagic-Bold-v1.0";
 }
 
+@media (max-width: 1200px) {
+  .App {
+    width: 200vw;
+  }
+}
+@media (min-width: 1024px) {
+  .App {
+    width: 80vw;
+  }
+}
+
+#root {
+  background: hsl(200, 94%, 88%);
+}
+.App {
+  min-height: 100vh;
+}
+
 /*홈 기본 틀*/
+.Home{
+  width: 100%;
+}
 .icon-container {
   position: absolute;
-  top: 5em; /* 적절한 위치로 조정 */
-  left: 7em; /* 적절한 위치로 조정 */
+  display: flex;
+  justify-content: center;
+  margin-top: 20%;
 }
 .MainIcon {
   position: relative;
-  width: 12em; /* 적절한 크기로 조정 */
-  height: 12em; /* 적절한 크기로 조정 */
+  width: 45%;
   z-index: 1; /* 아이콘을 책 표지 위로 올리기 */
   cursor: pointer;
 }
 
 .book-cover {
-  width: 33%;
+  width: 30%;
   height: 80%;
   position: absolute;
   top: 50%;
