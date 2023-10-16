@@ -53,10 +53,7 @@ const StcPopup = ({ onClose }) => {
         </div>
       ) : (
         <div className="putKeyword">
-          <p>
-            키워드를 ' , '로 연결하여 <br />
-            2가지 이상 입력해주세요.
-          </p>
+          <p>키워드를 ' , '로 연결하여 2가지 이상 입력해주세요.</p>
           <input
             placeholder="예시> 캠핑, 친구들, 산"
             type="text"

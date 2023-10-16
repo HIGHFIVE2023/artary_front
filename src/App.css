@@ -23,7 +23,6 @@ body {
   min-height: 100vh;
   font-family: "HakgyoansimWoojuR";
   font-size: 1rem;
-
 }
 p {
   font-family: "Cafe24Supermagic-Bold-v1.0";
@@ -48,7 +47,7 @@ p {
 }
 
 /*홈 기본 틀*/
-.Home{
+.Home {
   width: 100%;
 }
 .icon-container {
@@ -665,7 +664,9 @@ button {
 .stcpopup h3 {
   background: linear-gradient (to right, #fe88ff 0%, #c2a4ff 100%);
 }
-
+.popCloseBtn {
+  margin-left: 40%;
+}
 /*스티커*/
 .selectStamp {
   width: 100%;
@@ -734,12 +735,17 @@ button {
 /*마이페이지*/
 .mypage {
   position: absolute;
+  margin-left: 40%;
   width: 100%;
+}
+.mypageContainer {
+  margin-left: 30%;
 }
 .basic-btn {
   padding: 0.4em 0.5em;
   width: 7em;
   margin: 1em;
+  margin-left: 0;
   background: hsl(200, 94%, 88%);
 }
 .basic-btn:hover {
