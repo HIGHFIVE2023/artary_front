@@ -1,36 +1,32 @@
-import { PureComponent } from "react";
-import {
-  PieChart,
-  Pie,
-  Sector,
-  Cell,
-  ResponsiveContainer,
-  Legend,
-} from "recharts";
 import React, { useState, useEffect } from "react";
+import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from "recharts";
+import moment from "moment";
 import { call } from "../service/ApiService";
 
-const Chart = () => {
+const Chart = ({ displayedMonth }) => {
   const [data, setData] = useState([]);
+  const [year, month] = displayedMonth.split("-");
 
   useEffect(() => {
     call(`/diary/diaries`, "GET", null)
       .then((response) => {
-        const emotionData = response.map((e) => {
-          return {
-            emotion: e.emotion, // 이모지 데이터가 어떤 프로퍼티에 저장되어 있는지에 따라 변경
-          };
-        });
-        setData(emotionData);
+        if (response) {
+          const emotionData = response.map((e) => {
+            return {
+              emotion: e.emotion,
+              date: new Date(e.createdAt),
+            };
+          });
+          setData(emotionData);
+        }
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
 
-  const calculatePercentages = () => {
-    // 데이터에서 각 emotion의 개수를 계산
-    const emotionsCount = data.reduce(
+  const calculatePercentages = (filteredData) => {
+    const emotionsCount = filteredData.reduce(
       (acc, entry) => ({
         ...acc,
         [entry.emotion]: (acc[entry.emotion] || 0) + 1,
@@ -38,10 +34,8 @@ const Chart = () => {
       {}
     );
 
-    // 총 데이터 개수 계산
-    const totalDataCount = data.length;
+    const totalDataCount = filteredData.length;
 
-    // 각 emotion의 비율 계산
     const percentages = {
       angry: emotionsCount["ANGRY"]
         ? (emotionsCount["ANGRY"] / totalDataCount) * 100
@@ -60,7 +54,13 @@ const Chart = () => {
     return percentages;
   };
 
-  const percentages = calculatePercentages();
+  const getCurrentMonthData = () => {
+    return data.filter(
+      (entry) => moment(entry.date).format("YYYY-MM") === displayedMonth
+    );
+  };
+
+  const percentages = calculatePercentages(getCurrentMonthData());
 
   const COLORS = {
     ANGRY: "#E34234",
@@ -109,26 +109,39 @@ const Chart = () => {
       <div>
         <h1>📅 캘린더</h1>
         <hr />
-        <h3>내 감정 통계</h3>
+        <h3>
+          {year} 년 {month} 월의 통계
+        </h3>
         <div className="col-md-8">
-          <ResponsiveContainer width={300} height={300} className="text-center">
-            <PieChart>
-              <Legend layout="vertical" verticalAlign="middle" align="right" />
-              <Pie
-                data={numdata}
-                cx="50%"
-                cy="50%"
-                labelLine={false}
-                label={renderCustomizedLabel}
-                outerRadius={80}
-                fill="#8884d8"
-                dataKey="value"
-              >
-                {numdata.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={COLORS[entry.name]} />
-                ))}
-              </Pie>
-            </PieChart>
+          <ResponsiveContainer width={400} height={200} className="text-center">
+            {percentages.angry === 0 &&
+            percentages.sad === 0 &&
+            percentages.happy === 0 &&
+            percentages.soso === 0 ? (
+              <div>이번 달은 작성하신 일기가 없어요!</div>
+            ) : (
+              <PieChart>
+                <Legend
+                  layout="vertical"
+                  verticalAlign="middle"
+                  align="right"
+                />
+                <Pie
+                  data={numdata}
+                  cx="50%"
+                  cy="50%"
+                  labelLine={false}
+                  label={renderCustomizedLabel}
+                  outerRadius={80}
+                  fill="#8884d8"
+                  dataKey="value"
+                >
+                  {numdata.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={COLORS[entry.name]} />
+                  ))}
+                </Pie>
+              </PieChart>
+            )}
           </ResponsiveContainer>
         </div>
       </div>

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { call } from "../service/ApiService";
+import { SyncLoader } from "react-spinners";
 
 // 팝업 컴포넌트
 const PicPopup = ({ diaryId, onClose, onSubmitClick }) => {
@@ -83,7 +84,10 @@ const PicPopup = ({ diaryId, onClose, onSubmitClick }) => {
             {isLoading && (
               <div className="loading-container">
                 <img className="loadingImg" src="/img/loading.png" />
-                그림 생성 중...
+                <SyncLoader style={{ size: "3em", margin: "1em" }} />
+                <br />
+                <br />
+                loading
               </div>
             )}
             {!imageSrc ? null : (
