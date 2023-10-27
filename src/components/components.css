@@ -151,7 +151,7 @@ li {
   justify-content: center;
 }
 .loadingContainer {
-  display: flex;
+  display: block;
   align-items: center;
   justify-content: center;
   text-align: center;
