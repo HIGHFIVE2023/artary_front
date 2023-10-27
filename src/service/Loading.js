@@ -3,7 +3,7 @@ import { SyncLoader } from "react-spinners";
 
 export const Loading = () => {
   return (
-    <div>
+    <div className="loadingContainer">
       <h3>Loading</h3>
       <img className="loadingImg" src="/img/loading.png" />
       <SyncLoader />
