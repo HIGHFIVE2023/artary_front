@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import IndexBtn from "../components/IndexBtn";
 import Circles from "../components/Circles";
 import Springs from "../components/Springs";
-import axios from "axios";
+import { call } from "../service/ApiService";
 
 const FindPw = () => {
   const [email, setEmail] = useState("");
@@ -24,8 +24,7 @@ const FindPw = () => {
       return;
     }
 
-    axios
-      .post("http://localhost:8080/users/password", data)
+    call("/users/password", "POST", data)
       .then(() => {
         alert("임시 비밀번호를 사용자의 이메일로 발송했습니다.");
       })

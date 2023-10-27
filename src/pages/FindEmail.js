@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import IndexBtn from "../components/IndexBtn";
 import Circles from "../components/Circles";
 import Springs from "../components/Springs";
-import axios from "axios";
+import { call } from "../service/ApiService";
 
 const FindEmail = () => {
   const [name, setName] = useState("");
@@ -25,8 +25,7 @@ const FindEmail = () => {
     data.append("name", name);
     data.append("nickname", nickname);
 
-    axios
-      .post("http://localhost:8080/users/email", data)
+    call("/users/email", "POST", data)
       .then((response) => {
         setSuccessMessage("아이디는 " + response.data + " 입니다.");
       })

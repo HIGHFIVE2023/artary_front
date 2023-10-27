@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import axios from "axios";
+import { call } from "../service/ApiService";
 import { useNavigate } from "react-router-dom";
-import { async } from "q";
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -44,10 +43,10 @@ const Register = () => {
       setNicknameMessage("사용가능한 닉네임 입니다.");
       setIsNickname(true);
     }
-    await axios
-      .get(`http://localhost:8080/users/signup/nickname/${currentName}/exists`)
+    await call(`/users/signup/nickname/${nickname}/exists`, "GET", null)
       .then((response) => {
-        if (response.data === false) {
+        console.log(response);
+        if (response === false) {
           setIsNickname(true);
         } else {
           setNicknameMessage("이미 존재");
@@ -58,7 +57,7 @@ const Register = () => {
         console.log(error);
       });
   };
-  
+
   const onChangeEmail = async (e) => {
     const currEmail = e.target.value;
     setEmail(currEmail);
@@ -74,11 +73,10 @@ const Register = () => {
   };
 
   const onCheckEmail = async (e) => {
-    await axios
-      .get(`http://localhost:8080/users/signup/email/${email}/exists`)
+    await call(`/users/signup/email/${email}/exists`, "GET", null)
       .then((response) => {
         setEmail(email);
-        if (response.data === false) {
+        if (response === false) {
           setEmailMsg("사용 가능한 이메일입니다.");
           setIsEmail(true);
         } else {
@@ -110,17 +108,16 @@ const Register = () => {
   const handleSubmit = async (e) => {
     // 회원가입 요청을 보내는 함수
     e.preventDefault();
-    if (!name || !nickname || !email || !password) {
+    if (!isname || !isnickname || !isEmail || !isPassword) {
       alert("양식에 맞춰주세요");
       return;
     }
-    await axios
-      .post("http://localhost:8080/users/signup", {
-        name,
-        nickname,
-        email,
-        password,
-      })
+    await call("/users/signup", "POST", {
+      name,
+      nickname,
+      email,
+      password,
+    })
       .then((response) => {
         // 회원가입 성공 시 처리
         console.log(response.data); // 응답 데이터 확인
