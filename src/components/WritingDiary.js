@@ -96,8 +96,23 @@ const WritingDiary = () => {
   const [linesAndContent, setLinesAndContent] = useState([]);
 
   const handleButtonClick = () => {
-    setDisplayText(!displayText); // 버튼 클릭 시에 displayText를 토글
+    setDisplayText(!displayText); // displayText 상태를 먼저 토글
+    // 스타일을 업데이트
+    if (displayText) {
+      setButtonText("원고지st"); // 버튼 텍스트 변경
+    } else {
+      setButtonText("줄공책st"); // 버튼 텍스트 변경
+    }
   };
+
+  useEffect(() => {
+    // 스타일을 업데이트
+    if (displayText) {
+      setButtonText("원고지st"); // 버튼 텍스트 변경
+    } else {
+      setButtonText("줄공책st"); // 버튼 텍스트 변경
+    }
+  }, [displayText]);
 
   // linesAndContent 배열 생성 함수
   const createLinesAndContent = () => {

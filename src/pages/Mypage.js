@@ -123,7 +123,7 @@ const Mypage = () => {
             <div className="mypage">
               <h1>⚙️ 마이페이지</h1>
               {nickname && email ? (
-                <div>
+                <div className="mypageContainer">
                   <Avatar
                     size={150}
                     style={{ margin: "20px" }}

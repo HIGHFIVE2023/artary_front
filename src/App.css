@@ -16,33 +16,55 @@
 
 /*백그라운드, 바디*/
 body {
-  text-align: center;
+  background-color: hsl(200, 94%, 88%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
   font-family: "HakgyoansimWoojuR";
-  overflow: hidden;
   font-size: 1rem;
 }
 p {
   font-family: "Cafe24Supermagic-Bold-v1.0";
 }
 
+@media (max-width: 1200px) {
+  .App {
+    width: 200vw;
+  }
+}
+@media (min-width: 1024px) {
+  .App {
+    width: 80vw;
+  }
+}
+
+#root {
+  background: hsl(200, 94%, 88%);
+}
+.App {
+  min-height: 100vh;
+}
+
 /*홈 기본 틀*/
+.Home {
+  width: 100%;
+}
 .icon-container {
   position: absolute;
-  top: 15%;
-  left: 25%;
-  width: 50%;
-  height: 40%;
+  display: flex;
+  justify-content: center;
+  margin-top: 20%;
 }
 .MainIcon {
   position: relative;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
+  width: 45%;
+  z-index: 1; /* 아이콘을 책 표지 위로 올리기 */
   cursor: pointer;
 }
 
 .book-cover {
-  width: 33%;
+  width: 30%;
   height: 80%;
   position: absolute;
   top: 50%;
@@ -642,7 +664,9 @@ button {
 .stcpopup h3 {
   background: linear-gradient (to right, #fe88ff 0%, #c2a4ff 100%);
 }
-
+.popCloseBtn {
+  margin-left: 40%;
+}
 /*스티커*/
 .selectStamp {
   width: 100%;
@@ -711,12 +735,17 @@ button {
 /*마이페이지*/
 .mypage {
   position: absolute;
+  margin-left: 40%;
   width: 100%;
+}
+.mypageContainer {
+  margin-left: 30%;
 }
 .basic-btn {
   padding: 0.4em 0.5em;
   width: 7em;
   margin: 1em;
+  margin-left: 0;
   background: hsl(200, 94%, 88%);
 }
 .basic-btn:hover {

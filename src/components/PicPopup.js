@@ -99,7 +99,11 @@ const PicPopup = ({ diaryId, onClose, onSubmitClick }) => {
         )}
       </div>
       <br />
-      <button onClick={onClose}>닫기</button>
+      <div>
+        <button className="popCloseBtn" onClick={onClose}>
+          닫기
+        </button>
+      </div>
     </div>
   );
 };
