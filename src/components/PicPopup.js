@@ -65,7 +65,6 @@ const PicPopup = ({ diaryId, onClose, onSubmitClick }) => {
   return (
     <div className="popup">
       <p>내 일기에 맞는 그림 스타일</p>
-
       <div className="selectStyle">
         {btnVisible && (
           <button className="pencilStyle" onClick={handleSubmitPencil}>

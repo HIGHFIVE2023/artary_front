@@ -12,8 +12,8 @@ const CircleContainer = styled.div`
 
 const Circle = styled.div`
   background-color: hsl(282, 100%, 91%);
-  width: 1.5em;
-  height: 1.5em;
+  width: 2rem;
+  height: 2rem;
   border-radius: 50%;
   margin-bottom: auto;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25) inset;

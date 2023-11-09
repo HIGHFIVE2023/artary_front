@@ -12,9 +12,9 @@ const SpringContainer = styled.div`
 const Spring = styled.div`
   width: 3em;
   height: 1em;
-  border: 7px solid #adb5bd;
+  border: 8px solid #adb5bd;
   border-bottom: none;
-  border-radius: 50% / 100% 100% 0% 0%;
+  border-radius: 60% / 100% 100% 0% 0%;
   margin-bottom: auto;
   z-index: 2;
 `;

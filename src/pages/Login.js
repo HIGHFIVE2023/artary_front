@@ -122,7 +122,7 @@ const Login = () => {
                 </span>
                 <img
                   src="/img/intro01.png"
-                  style={{ width: "37%", marginLeft: "3%" }}
+                  style={{ width: "45%", marginLeft: "3%" }}
                 />
               </div>
             </div>
@@ -140,7 +140,7 @@ const Login = () => {
                 </span>
                 <img
                   src="/img/intro02.png"
-                  style={{ width: "37%", marginLeft: "10%" }}
+                  style={{ width: "45%", marginLeft: "6%" }}
                 />
               </div>
             </div>
