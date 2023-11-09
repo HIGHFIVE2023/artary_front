@@ -56,10 +56,10 @@ const WritingDiary = () => {
   const { nickname } = user;
 
   //원고지
-  const numRows = 9;
+  const numRows = 8;
   let numCols = 8;
 
-  if (content.length > 72) {
+  if (content.length > 64) {
     numCols = Math.ceil(content.length / numRows);
   }
 
@@ -80,8 +80,8 @@ const WritingDiary = () => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          width: "35px",
-          height: "35px",
+          width: "4rem",
+          height: "4rem",
           border: "1px solid black",
         }}
       >
@@ -124,7 +124,7 @@ const WritingDiary = () => {
 
   const createNotebookStyleContent = () => {
     const notebookStyleArray = [];
-    const numCols2 = 25; // 열 수 조정
+    const numCols2 = 30; // 열 수 조정
     for (let i = 0; i < numRows; i++) {
       const startIndex = i * numCols2;
       const endIndex = startIndex + numCols2;

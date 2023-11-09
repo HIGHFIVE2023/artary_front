@@ -48,7 +48,7 @@ const SelectStamp = ({ diaryId, onClose }) => {
           <img src="../img/perfect.PNG" />
         </button>
       </div>
-      <button onClick={onClose}>닫기</button>
+      <button className="stampCloseBtn" onClick={onClose}>닫기</button>
     </div>
   );
 };

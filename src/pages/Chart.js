@@ -90,7 +90,7 @@ const Chart = ({ displayedMonth }) => {
         fill="white"
         textAnchor={x > cx ? "start" : "end"}
         dominantBaseline="central"
-        fontSize={14}
+        fontSize={20}
       >
         {`${(percent * 100).toFixed(2)}%`}
       </text>
@@ -112,7 +112,7 @@ const Chart = ({ displayedMonth }) => {
         {year} 년 {month} 월의 통계
       </h3>
       <div className="col-md-8">
-        <ResponsiveContainer width={300} height={200} className="text-center">
+        <ResponsiveContainer width={600} height={600} className="text-center">
           {percentages.angry === 0 &&
           percentages.sad === 0 &&
           percentages.happy === 0 &&
@@ -127,7 +127,7 @@ const Chart = ({ displayedMonth }) => {
                 cy="50%"
                 labelLine={false}
                 label={renderCustomizedLabel}
-                outerRadius={80}
+                outerRadius={200}
                 fill="#8884d8"
                 dataKey="value"
               >

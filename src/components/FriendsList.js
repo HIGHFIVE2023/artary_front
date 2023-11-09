@@ -56,7 +56,7 @@ const FriendsList = () => {
               <Link
                 key={index}
                 to={`/diary/list/${friend.nickname}`}
-                style={{ color: "black", display: "flex" }}
+                style={{ color: "black", display: "flex", }}
               >
                 <Avatar
                   style={{ margin: "0.3em" }}

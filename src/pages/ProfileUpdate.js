@@ -159,20 +159,20 @@ const ProfileUpdate = () => {
                 <form onSubmit={handleUpdateProfile}>
                   <div>
                     <Avatar
-                      size={170}
+                      size={300}
                       style={{ marginBottom: "0.4em", marginTop: "0.1em" }}
                       icon={<UserOutlined />}
                       src={image}
                     />
-                  </div>
-                  <input
+                  </div> <input
                     type="file"
                     accept="image/jpg,image/png,image/jpeg"
                     ref={fileInput}
                     onChange={handleFileChange}
                   />
                   <br />
-                  <label style={{ margin: "2em" }}>닉네임</label>
+                  <div className="mypageEditInput">
+                  <label style={{ marginRight: "2.8em" }}>닉네임</label>
                   <input
                     type="text"
                     value={nickname}
@@ -190,7 +190,7 @@ const ProfileUpdate = () => {
                   <br />
                   <p className="message">{nicknameMessage}</p>
                   <br />
-                  <label style={{ margin: "2em" }}>비밀번호</label>
+                  <label style={{ marginRight: "2em" }}>비밀번호</label>
                   <input
                     type="password"
                     value={password}
@@ -210,7 +210,8 @@ const ProfileUpdate = () => {
                   />
                   <br />
                   <p className="message">{pwdMsg}</p>
-                  <br />
+                  <br /></div>
+                 
                   <button onClick={() => navigate(-1)} className="basic-btn">
                     취소
                   </button>
@@ -226,11 +227,11 @@ const ProfileUpdate = () => {
             </div>
           </div>
           <div className="SpringMaker">
-            <Circles count={springCount} style={{ marginRight: "1em" }} />
+            <Circles count={springCount} style={springMargin} />
             <div className="Spring">
-              <Springs count={springCount} />
+              <Springs count={springCount} style={springMargin} />
             </div>
-            <Circles count={springCount} style={{ marginLeft: "1em" }} />
+            <Circles count={springCount} style={springMargin} />
           </div>
           <div className="RightDivOveray"></div>
         </div>

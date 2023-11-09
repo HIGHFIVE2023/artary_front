@@ -116,7 +116,6 @@ const SearchFriend = () => {
           검색
         </button>
       </div>
-
       <div>
         {/* 검색 결과가 빈 문자열이 아닌 경우에 정보를 표시 */}
         {nickname !== "" && email !== "" ? (
@@ -165,7 +164,7 @@ const SearchFriend = () => {
             </div>
           </div>
         ) : (
-          <p>검색 결과가 없습니다.</p>
+          <p style={{marginLeft: "23%"}}>검색 결과가 없습니다.</p>
         )}
       </div>
     </div>

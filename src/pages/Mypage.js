@@ -125,7 +125,7 @@ const Mypage = () => {
               {nickname && email ? (
                 <div className="mypageContainer">
                   <Avatar
-                    size={150}
+                    size={300}
                     style={{ margin: "20px" }}
                     icon={<UserOutlined />}
                     src={image}

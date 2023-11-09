@@ -66,11 +66,11 @@ const SignUp = ({}) => {
             <img className="DiaryIntro" src="/img/intro.png" />
           </div>
           <div className="SpringMaker">
-            <Circles count={springCount} style={{ marginRight: "1em" }} />
+            <Circles count={springCount} style={springMargin} />
             <div className="Spring">
-              <Springs count={springCount} />
+              <Springs count={springCount} style={springMargin} />
             </div>
-            <Circles count={springCount} style={{ marginLeft: "1em" }} />
+            <Circles count={springCount} style={springMargin} />
           </div>
           <div className="RightDivOveray">
             <img className="signupIcon" src="/img/icon.png" alt="login icon" />

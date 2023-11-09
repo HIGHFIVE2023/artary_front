@@ -108,7 +108,8 @@ const DiaryList = () => {
                 style={{
                   width: "85%",
                   height: "1em",
-                  marginTop: "0",
+                  marginBottom:"20%",
+                  marginTop: "-50%",
                   padding: "1em",
                   backgroundColor: "rgb(246, 255, 149)",
                   borderRadius: "10px",
@@ -129,7 +130,7 @@ const DiaryList = () => {
                 }}
               >
                 {"<가장 스티커를 많이 받은 일기>"}
-              </p>
+              </p><br/>
               <MostLikes />
             </div>
           </div>
@@ -155,7 +156,7 @@ const DiaryList = () => {
                       style={{ color: "black" }}
                     >
                       <div className="itemImgContainer">
-                        <img src={diary.image} style={{ maxHeight: "6rem" }} />
+                        <img src={diary.image} style={{ maxWidth: "90%",}} />
                       </div>
                       <div className="itemTextContainer">
                         {diary.title}
@@ -176,17 +177,20 @@ const DiaryList = () => {
               style={{
                 width: "100%",
                 alignItems: "center",
-                marginLeft: "2%",
+                marginLeft: "7.5%",
                 marginTop: "10%",
               }}
             >
               <div
                 style={{
-                  marginLeft: "18%",
+                  marginLeft: "12%",
                 }}
               >
                 <button
                   className="basic-btn"
+                  style={{
+                    marginRight: "10%",
+                  }}
                   onClick={() => handlePageChange(currentPage - 1)}
                 >
                   이전
@@ -197,7 +201,7 @@ const DiaryList = () => {
                 <button
                   className="basic-btn"
                   style={{
-                    marginLeft: "4%",
+                    marginLeft: "10%",
                   }}
                   onClick={() => handlePageChange(currentPage + 1)}
                 >
