@@ -97,11 +97,7 @@ const Diary = () => {
           </div>
           <div className="LeftDivOveray">
             <DrawingDiary />
-            <div className="LeftBottomDiv">
-              {diaryUser === user.userId && (
-                <BottomBtn image="../img/share.png"></BottomBtn>
-              )}
-            </div>
+            <div className="LeftBottomDiv"></div>
           </div>
           <div className="SpringMaker">
             <Circles count={springCount} style={springMargin} />

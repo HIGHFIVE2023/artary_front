@@ -69,7 +69,9 @@ const StcPopup = ({ onClose }) => {
         </div>
       )}
       <br />
-      <button onClick={onClose}>닫기</button>
+      <button className="popCloseBtn" onClick={onClose}>
+        닫기
+      </button>
     </div>
   );
 };

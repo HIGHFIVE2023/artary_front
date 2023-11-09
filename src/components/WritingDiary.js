@@ -90,57 +90,6 @@ const WritingDiary = () => {
     );
   }
 
-  //줄공책
-  const [buttonText, setButtonText] = useState("줄공책st");
-  const [displayText, setDisplayText] = useState(true); // 초기에 true로 설정
-  const [linesAndContent, setLinesAndContent] = useState([]);
-
-  const handleButtonClick = () => {
-    setDisplayText(!displayText); // displayText 상태를 먼저 토글
-    // 스타일을 업데이트
-    if (displayText) {
-      setButtonText("원고지st"); // 버튼 텍스트 변경
-    } else {
-      setButtonText("줄공책st"); // 버튼 텍스트 변경
-    }
-  };
-
-  useEffect(() => {
-    // 스타일을 업데이트
-    if (displayText) {
-      setButtonText("원고지st"); // 버튼 텍스트 변경
-    } else {
-      setButtonText("줄공책st"); // 버튼 텍스트 변경
-    }
-  }, [displayText]);
-
-  // linesAndContent 배열 생성 함수
-  const createLinesAndContent = () => {
-    const linesAndContentArray = [];
-    const numCols2 = 26; // 열 수 조정
-    for (let i = 0; i < numRows; i++) {
-      linesAndContentArray.push(<hr key={`line-${i}`} className="line" />);
-      const startIndex = i * numCols2;
-      const endIndex = startIndex + numCols2;
-      const lineContent = content.slice(startIndex, endIndex);
-      linesAndContentArray.push(
-        <div key={`content-${i}`} className="line-content">
-          {lineContent || "\u00A0"}{" "}
-          {/* 빈 줄일 경우 빈 칸을 추가하여 간격 유지 */}
-        </div>
-      );
-    }
-    return linesAndContentArray;
-  };
-
-  useEffect(() => {
-    if (displayText) {
-      const linesAndContentArray = createLinesAndContent();
-      setLinesAndContent(linesAndContentArray);
-    }
-  }, [displayText]);
-
-  //스티커
   useEffect(() => {
     call(`/diary/${diaryId}/stickers`, "GET", null)
       .then((response) => {
@@ -166,6 +115,32 @@ const WritingDiary = () => {
     const updatedChunks = chunkArray(stickers, 5);
     setChunks(updatedChunks);
   }, [stickers]);
+
+  const [isNotebookStyle, setIsNotebookStyle] = useState(false);
+
+  const toggleStyle = () => {
+    setIsNotebookStyle((prevState) => !prevState);
+  };
+
+  const createNotebookStyleContent = () => {
+    const notebookStyleArray = [];
+    const numCols2 = 25; // 열 수 조정
+    for (let i = 0; i < numRows; i++) {
+      const startIndex = i * numCols2;
+      const endIndex = startIndex + numCols2;
+      const lineContent = content.slice(startIndex, endIndex);
+      notebookStyleArray.push(
+        <div key={`notebook-line-${i}`} className="notebook-line">
+          <div className="line-content">
+            <div className="lined-paper-line"></div> {/* 각 줄의 밑줄 */}
+            {lineContent || "\u00A0"}{" "}
+            {/* 빈 줄일 경우 빈 칸을 추가하여 간격 유지 */}
+          </div>
+        </div>
+      );
+    }
+    return notebookStyleArray;
+  };
 
   //타입별로 사진 연결하기 + 삭제 버튼 띄우기
   function publicUrl(imageFileName) {
@@ -234,17 +209,15 @@ const WritingDiary = () => {
       <header>
         <div className="title">제목: {title}</div>
         <div className="writer">작성자: {user.nickname}</div>
-        <button onClick={handleButtonClick}>{buttonText}</button>
+        <button className="changeStyleBtn" onClick={toggleStyle}>
+          스타일 변경
+        </button>
       </header>
-      <div
-        className={`TextSquareContainer ${displayText ? "" : "lined-paper"}`}
-      >
-        {displayText ? (
-          squares
-        ) : (
-          <div className="lined-paper-container">{linesAndContent}</div>
-        )}
-      </div>
+      {isNotebookStyle ? (
+        <div className="lined-paper-line">{createNotebookStyleContent()}</div>
+      ) : (
+        <div className="TextSquareContainer">{squares}</div>
+      )}
       <footer>
         <div className="stampHeader">{"<도장을 찍어요!>"}</div>
         {isButtonVisible && nickname !== loginUser.nickname && (

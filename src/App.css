@@ -391,6 +391,11 @@ button {
   margin: 0 auto;
 }
 
+.CalenChart {
+  margin-left: 10%;
+  width: 100%;
+  height: 100%;
+}
 .CalendarPage.react-calendar {
   position: absolute;
   top: 2.5%;
@@ -608,7 +613,7 @@ button {
   border: 1px solid #dedede;
   right: -4%;
   width: 115%;
-  height: 19em;
+  height: 19rem;
   position: absolute;
   bottom: 16em; /* 적절한 값으로 팝업의 위치를 조절해주세요. */
   box-shadow: 3px 0px 3px 3px rgba(128, 128, 128, 0.2);
@@ -642,8 +647,15 @@ button {
   height: 100%;
 }
 .popupImage {
-  width: 55%;
-  height: 55%;
+  width: 50%;
+  margin-left: 6%;
+}
+.submitPic {
+  margin-left: 6%;
+}
+.submitPic:hover {
+  background-color: #6aafe6;
+  color: #e5e8ea;
 }
 .stcpopup {
   font-family: Cafe24Supermagic-Bold-v1.0;
@@ -664,9 +676,22 @@ button {
 .stcpopup h3 {
   background: linear-gradient (to right, #fe88ff 0%, #c2a4ff 100%);
 }
+.getSentenceBtn:hover {
+  background-color: #6aafe6;
+  color: #e5e8ea;
+}
+.PicContainer {
+  display: flex;
+  width: 100%;
+}
 .popCloseBtn {
   margin-left: 40%;
 }
+.popCloseBtn:hover {
+  background-color: #6aafe6;
+  color: #e5e8ea;
+}
+
 /*스티커*/
 .selectStamp {
   width: 100%;
@@ -735,11 +760,14 @@ button {
 /*마이페이지*/
 .mypage {
   position: absolute;
-  margin-left: 40%;
+  margin-left: 20%;
   width: 100%;
 }
 .mypageContainer {
-  margin-left: 30%;
+  margin-left: 15%;
+}
+.mypageBtns {
+  margin-left: 10%;
 }
 .basic-btn {
   padding: 0.4em 0.5em;

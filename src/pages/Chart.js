@@ -105,45 +105,39 @@ const Chart = ({ displayedMonth }) => {
   ].filter((entry) => entry.value > 0);
 
   return (
-    <div>
-      <div>
-        <h1>📅 캘린더</h1>
-        <hr />
-        <h3>
-          {year} 년 {month} 월의 통계
-        </h3>
-        <div className="col-md-8">
-          <ResponsiveContainer width={400} height={200} className="text-center">
-            {percentages.angry === 0 &&
-            percentages.sad === 0 &&
-            percentages.happy === 0 &&
-            percentages.soso === 0 ? (
-              <div>이번 달은 작성하신 일기가 없어요!</div>
-            ) : (
-              <PieChart>
-                <Legend
-                  layout="vertical"
-                  verticalAlign="middle"
-                  align="right"
-                />
-                <Pie
-                  data={numdata}
-                  cx="50%"
-                  cy="50%"
-                  labelLine={false}
-                  label={renderCustomizedLabel}
-                  outerRadius={80}
-                  fill="#8884d8"
-                  dataKey="value"
-                >
-                  {numdata.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={COLORS[entry.name]} />
-                  ))}
-                </Pie>
-              </PieChart>
-            )}
-          </ResponsiveContainer>
-        </div>
+    <div className="CalenChart">
+      <h1>📅 캘린더</h1>
+      <hr />
+      <h3>
+        {year} 년 {month} 월의 통계
+      </h3>
+      <div className="col-md-8">
+        <ResponsiveContainer width={300} height={200} className="text-center">
+          {percentages.angry === 0 &&
+          percentages.sad === 0 &&
+          percentages.happy === 0 &&
+          percentages.soso === 0 ? (
+            <div>이번 달은 작성하신 일기가 없어요!</div>
+          ) : (
+            <PieChart>
+              <Legend layout="vertical" verticalAlign="middle" align="right" />
+              <Pie
+                data={numdata}
+                cx="50%"
+                cy="50%"
+                labelLine={false}
+                label={renderCustomizedLabel}
+                outerRadius={80}
+                fill="#8884d8"
+                dataKey="value"
+              >
+                {numdata.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={COLORS[entry.name]} />
+                ))}
+              </Pie>
+            </PieChart>
+          )}
+        </ResponsiveContainer>
       </div>
     </div>
   );

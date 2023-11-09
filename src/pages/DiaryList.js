@@ -180,21 +180,30 @@ const DiaryList = () => {
                 marginTop: "10%",
               }}
             >
-              <button
-                className="basic-btn"
-                onClick={() => handlePageChange(currentPage - 1)}
+              <div
+                style={{
+                  marginLeft: "18%",
+                }}
               >
-                이전
-              </button>
-              <span>
-                {currentPage} / {totalPages}
-              </span>
-              <button
-                className="basic-btn"
-                onClick={() => handlePageChange(currentPage + 1)}
-              >
-                다음
-              </button>
+                <button
+                  className="basic-btn"
+                  onClick={() => handlePageChange(currentPage - 1)}
+                >
+                  이전
+                </button>
+                <span>
+                  {currentPage} / {totalPages}
+                </span>
+                <button
+                  className="basic-btn"
+                  style={{
+                    marginLeft: "4%",
+                  }}
+                  onClick={() => handlePageChange(currentPage + 1)}
+                >
+                  다음
+                </button>
+              </div>
             </div>
           </div>
         </div>

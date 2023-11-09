@@ -137,13 +137,15 @@ const Mypage = () => {
               ) : (
                 <p>Loading user information...</p>
               )}
+              <div className="mypageBtns">
+                <button onClick={navigateToMypageUpdate} className="basic-btn">
+                  프로필 수정
+                </button>
+                <button onClick={handleOpenPopup} className="basic-btn">
+                  회원 탈퇴
+                </button>
+              </div>
 
-              <button onClick={navigateToMypageUpdate} className="basic-btn">
-                프로필 수정
-              </button>
-              <button onClick={handleOpenPopup} className="basic-btn">
-                회원 탈퇴
-              </button>
               {isPopupOpen && (
                 <div
                   className="password-popup"

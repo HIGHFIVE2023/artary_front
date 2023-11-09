@@ -80,9 +80,9 @@ const PicPopup = ({ diaryId, onClose, onSubmitClick }) => {
           </button>
         )}
         {picVisible && (
-          <div className="container">
+          <div className="PicContainer">
             {isLoading && (
-              <div className="loading-container">
+              <div className="Container">
                 <img className="loadingImg" src="/img/loading.png" />
                 <SyncLoader style={{ size: "3em", margin: "1em" }} />
                 <br />
