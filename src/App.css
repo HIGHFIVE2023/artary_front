@@ -5,7 +5,6 @@
     format("woff2");
   font-weight: normal;
   font-style: normal;
-
 }
 @font-face {
   font-family: "Cafe24Supermagic-Bold-v1.0";
@@ -13,7 +12,6 @@
     format("woff2");
   font-weight: 700;
   font-style: normal;
-
 }
 
 /*백그라운드, 바디*/
@@ -33,7 +31,6 @@ p {
 @media (max-width: 1200px) {
   .App {
     width: 200vw;
-    
   }
 }
 @media (min-width: 1024px) {
@@ -47,7 +44,6 @@ p {
 }
 .App {
   min-height: 100vh;
-
 }
 
 /*홈 기본 틀*/
@@ -391,18 +387,18 @@ button {
   width: 100%;
   height: 100%;
 }
-.CalenChart h1{
+.CalenChart h1 {
   margin-left: 5%;
 }
-.CalenChart h3{
+.CalenChart h3 {
   margin-left: 5%;
 }
-.CalenChart hr{
+.CalenChart hr {
   width: 90%;
 }
 .CalendarPage.react-calendar {
   position: absolute;
-  top:8%;
+  top: 8%;
   left: 10%;
   width: 85%;
   height: 70%;
@@ -534,7 +530,6 @@ button {
 }
 .introSpan img {
   margin-right: 3%;
-
 }
 .intro02 {
   font-size: 1.3rem;
@@ -552,7 +547,7 @@ button {
 .intro02 span {
   line-height: 1.4;
 }
-.error-message{
+.error-message {
   margin-left: 10%;
 }
 .message {
@@ -565,9 +560,9 @@ button {
   width: 90%;
   text-align: center;
   margin-left: 10%;
-width: 80%;
+  width: 80%;
   position: relative;
-top: -5%;
+  top: -5%;
 }
 .input-group input {
   font-size: 1.3rem;
@@ -632,7 +627,7 @@ top: -5%;
   box-sizing: border-box;
   cursor: pointer;
 }
-.popup p{
+.popup p {
   margin-left: 5%;
 }
 .pencilStyle {
@@ -689,7 +684,7 @@ top: -5%;
 .stcpopup h3 {
   background: linear-gradient (to right, #fe88ff 0%, #c2a4ff 100%);
 }
-.inputKeyword{
+.inputKeyword {
   font-size: 1.3rem;
 }
 .getSentenceBtn:hover {
@@ -697,7 +692,8 @@ top: -5%;
   color: #e5e8ea;
 }
 .PicContainer {
-  display: flex;
+  display: block;
+  align-items: center;
   width: 90%;
   margin-left: 5%;
 }
@@ -790,10 +786,10 @@ top: -5%;
   margin-left: 20%;
   width: 100%;
 }
-.mypageEditInput{
+.mypageEditInput {
   margin-top: 5%;
 }
-.mypageEditInput input{
+.mypageEditInput input {
   font-size: 1.3rem;
   width: 25%;
 }
@@ -806,9 +802,9 @@ top: -5%;
   margin-top: 10%;
   margin-left: 18%;
 }
-.ProfileUpdate{
+.ProfileUpdate {
   margin-left: 50%;
 }
-.ProfileUpdate h1{
+.ProfileUpdate h1 {
   margin-left: -15%;
 }

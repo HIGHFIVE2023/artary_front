@@ -82,11 +82,22 @@ const PicPopup = ({ diaryId, onClose, onSubmitClick }) => {
           <div className="PicContainer">
             {isLoading && (
               <div className="Container">
-                <img className="loadingImg" src="/img/loading.png" />
-                <SyncLoader style={{ size: "3em", margin: "1em" }} />
+                <img
+                  className="loadingImg"
+                  src="/img/loading.png"
+                  style={{ margin: "0 auto" }}
+                />
+                <div
+                  style={{
+                    position: "absolute",
+                    alignItems: "center",
+                    left: "40%",
+                  }}
+                >
+                  <SyncLoader style={{ size: "3em" }} />
+                </div>
                 <br />
-                <br />
-                loading
+                <p style={{ textAlign: "center" }}>loading</p>
               </div>
             )}
             {!imageSrc ? null : (

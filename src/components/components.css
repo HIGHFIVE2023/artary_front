@@ -147,17 +147,15 @@ li {
   width: auto;
   max-width: 95%;
 }
-.container {
-  display: flex;
+.Container {
+  display: block;
+  position: relative;
   align-items: center;
-  justify-content: center;
 }
 .loadingContainer {
   display: block;
   align-items: center;
-  justify-content: center;
   text-align: center;
-  margin-top: 100px;
 }
 
 .loadingImg {
@@ -165,9 +163,8 @@ li {
   margin: 0 auto;
   max-width: 100px;
   max-height: 100px;
-  margin-left: 30%;
-} 
-   
+}
+
 /*오른쪽*/
 .RightDivOveray {
   flex-direction: column; /*수직 정렬*/
@@ -215,9 +212,9 @@ li {
   border-bottom: 1px solid #000;
 }
 
-.changeStyleBtn{
+.changeStyleBtn {
   position: relative;
-right: -40%;
+  right: -40%;
 }
 
 /*푸터*/
@@ -237,7 +234,7 @@ footer {
 .selectStampBtn {
   float: right;
 }
-.stampCloseBtn{
+.stampCloseBtn {
   margin-left: 40%;
 }
 .GetSticker {
@@ -307,7 +304,7 @@ footer {
 }
 
 /* 플레이어 */
-.Left footer{
+.Left footer {
   height: 20%;
 }
 .bgm {
@@ -358,10 +355,10 @@ header > div {
   width: 75%;
   margin-left: 5%;
 }
-.input-date{
+.input-date {
   font-size: 1.4rem;
 }
-.Emotion{
+.Emotion {
   margin-right: 5%;
 }
 .todayEmotion {
@@ -417,7 +414,7 @@ header > div {
 .tab-menu {
   width: 20%;
   position: fixed;
-  top:2.5%;
+  top: 2.5%;
   left: 48%;
   transform: translateX(20%);
 }
@@ -479,7 +476,7 @@ header > div {
   margin-top: 10%;
   margin-left: 10%;
 }
-.searchingBar input{
+.searchingBar input {
   font-size: 1.3rem;
 }
 .friendImage {
